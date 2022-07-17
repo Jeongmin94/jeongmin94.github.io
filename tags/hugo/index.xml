@@ -5,18 +5,14 @@
     <link>https://jeongmin94.github.io/tags/hugo/</link>
     <description>Recent content in Hugo on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 16 Jul 2022 20:10:19 +0900</lastBuildDate>
-    
-	<atom:link href="https://jeongmin94.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 16 Jul 2022 20:10:19 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test2</title>
       <link>https://jeongmin94.github.io/post/test2/</link>
       <pubDate>Sat, 16 Jul 2022 20:10:19 +0900</pubDate>
       
       <guid>https://jeongmin94.github.io/post/test2/</guid>
-      <description>Test H2 H3 &amp;lt;!doctype html&amp;gt;&amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;lt;head&amp;gt;&amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt;&amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1, shrink-to-fit=no&amp;#34;&amp;gt;&amp;lt;title&amp;gt;Hello, world!&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;h1&amp;gt;Hello, world!&amp;lt;/h1&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; markdown update  </description>
+      <description>Test H2 H3 &amp;lt;!doctype html&amp;gt; &amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;utf-8&amp;#34;&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width, initial-scale=1, shrink-to-fit=no&amp;#34;&amp;gt; &amp;lt;title&amp;gt;Hello, world!&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;Hello, world!&amp;lt;/h1&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; markdown update </description>
     </item>
     
   </channel>
