@@ -7,8 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Overview of all pages with tags, ordered by tag - 저장소</title>
-  <meta name="description" content="A full overview of all pages with tags, ordered by tag, such as: blog, hugo, and k8s-controller">
+  <title>K8s - 저장소</title>
   <meta name="author" content="jeongmin94"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -30,13 +29,13 @@
 }
 </script>
 
-<meta property="og:title" content="Tags" />
+<meta property="og:title" content="K8s" />
 <meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
-<meta property="og:url" content="https://jeongmin94.github.io/tags/" />
+<meta property="og:url" content="https://jeongmin94.github.io/k8s/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="저장소" />
 
-  <meta name="twitter:title" content="Tags" />
+  <meta name="twitter:title" content="K8s" />
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -178,9 +177,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="tags-heading">
+            <div class="k8s-heading">
               
-                <h1>Tags</h1>
+                <h1>K8s</h1>
               
               
                 <hr class="small">
@@ -197,86 +196,67 @@
 
 
     
+  <div class="container" role="main">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="posts-list">
+          
+            <article class="post-preview">
+    <a href="https://jeongmin94.github.io/k8s/07-kube-controller/">
+        <h2 class="post-title">07 Kube Controller</h2>
+        
+        
+        
+    </a>
+
+    <p class="post-meta">
+        <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on map[Count:July 18, 2022]
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;16&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3321&nbsp;words
+  
+  
+    
+      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;jeongmin94
+    
+  
+  
+</span>
 
 
+    </p>
+    <div class="post-entry">
+        
+        쿠버네티스 컨트롤러  https://kubernetes.io/docs/concepts/architecture/controller
+ 쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
+컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.
+컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.
+        <a href="https://jeongmin94.github.io/k8s/07-kube-controller/" class="post-read-more">[Read More]</a>
+        
+    </div>
 
-<div class="container" role="main">
-  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> 
-    <article class="post-preview">
-      <div class="panel-group" id="accordion">
+    
+    <div class="blog-tags">
         
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapseblog" data-parent="#accordion">
-                <div class="panel-heading" id="headerblog">
-                  <h4 class="panel-title">
-                      blog
-                    <span class="badge">1</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapseblog" class="panel-collapse collapse">
-              <div class="panel-body">
-                <a href="https://jeongmin94.github.io/tags/blog/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://jeongmin94.github.io/post/test2/" class="list-group-item">Test2</a>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+        <a href="https://jeongmin94.github.io/tags/k8s-controller/">k8s-controller</a>&nbsp;
         
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsehugo" data-parent="#accordion">
-                <div class="panel-heading" id="headerhugo">
-                  <h4 class="panel-title">
-                      hugo
-                    <span class="badge">1</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapsehugo" class="panel-collapse collapse">
-              <div class="panel-body">
-                <a href="https://jeongmin94.github.io/tags/hugo/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://jeongmin94.github.io/post/test2/" class="list-group-item">Test2</a>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        
-          <div class="panel panel-default">
-            <a class="collapsed" role="button" data-toggle="collapse" data-target="#collapsek8s-controller" data-parent="#accordion">
-                <div class="panel-heading" id="headerk8s-controller">
-                  <h4 class="panel-title">
-                      k8s-controller
-                    <span class="badge">1</span>
-                  </h4>
-                </div>
-            </a>
-            <div id="collapsek8s-controller" class="panel-collapse collapse">
-              <div class="panel-body">
-                <a href="https://jeongmin94.github.io/tags/k8s-controller/" class="list-group-item view-all">
-                View all</a>
-                <div class="list-group">
-                  
-                    <a href="https://jeongmin94.github.io/k8s/07-kube-controller/" class="list-group-item">07 Kube Controller</a>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+    
+
+</article>
+          
+        </div>
         
       </div>
-    </article>
+    </div>
   </div>
-</div>
-
-
 
       
 <footer>
@@ -295,7 +275,7 @@
               </li>
           
           <li>
-            <a href="/tags/index.xml" title="RSS">
+            <a href="/k8s/index.xml" title="RSS">
               <span class="fa-stack fa-lg">
                 <i class="fas fa-circle fa-stack-2x"></i>
                 <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
