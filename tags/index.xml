@@ -5,7 +5,16 @@
     <link>https://jeongmin94.github.io/tags/</link>
     <description>Recent content in Tags on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 16 Jul 2022 20:10:19 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jul 2022 21:59:10 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s-controller</title>
+      <link>https://jeongmin94.github.io/tags/k8s-controller/</link>
+      <pubDate>Mon, 18 Jul 2022 21:59:10 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/tags/k8s-controller/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Blog</title>
       <link>https://jeongmin94.github.io/tags/blog/</link>
