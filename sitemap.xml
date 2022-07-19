@@ -3,22 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://jeongmin94.github.io/k8s/07-kube-controller/</loc>
-    <lastmod>2022-07-18T21:59:10+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jeongmin94.github.io/post/07-kube-controller/</loc>
     <lastmod>2022-07-18T21:59:10+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://jeongmin94.github.io/categories/</loc>
-    <lastmod>2022-07-18T21:59:10+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://jeongmin94.github.io/k8s/</loc>
     <lastmod>2022-07-18T21:59:10+09:00</lastmod>
   </url>
   

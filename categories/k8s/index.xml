@@ -12,18 +12,6 @@
     
     <item>
       <title>07 Kube Controller</title>
-      <link>https://jeongmin94.github.io/k8s/07-kube-controller/</link>
-      <pubDate>Mon, 18 Jul 2022 21:59:10 +0900</pubDate>
-      
-      <guid>https://jeongmin94.github.io/k8s/07-kube-controller/</guid>
-      <description>쿠버네티스 컨트롤러  https://kubernetes.io/docs/concepts/architecture/controller
- 쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
-컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.
-컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.</description>
-    </item>
-    
-    <item>
-      <title>07 Kube Controller</title>
       <link>https://jeongmin94.github.io/post/07-kube-controller/</link>
       <pubDate>Mon, 18 Jul 2022 21:59:10 +0900</pubDate>
       
