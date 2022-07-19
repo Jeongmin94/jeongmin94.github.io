@@ -187,7 +187,7 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 16, 2022
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 18, 2022
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;0&nbsp;minutes
@@ -222,8 +222,8 @@
         <div class="posts-list">
           
             <article class="post-preview">
-    <a href="https://jeongmin94.github.io/post/test2/">
-        <h2 class="post-title">Test2</h2>
+    <a href="https://jeongmin94.github.io/post/07-kube-controller/">
+        <h2 class="post-title">07 Kube Controller</h2>
         
         
         
@@ -233,13 +233,13 @@
         <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 16, 2022
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 18, 2022
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;17&nbsp;minutes
   
   
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;25&nbsp;words
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;3586&nbsp;words
   
   
     
@@ -253,82 +253,20 @@
     </p>
     <div class="post-entry">
         
-        <h1 id="test">Test</h1>
-<h2 id="h2">H2</h2>
-<h3 id="h3">H3</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!doctype html&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1, shrink-to-fit=no&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello, world!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></span></code></pre></div><ul>
-<li>markdown</li>
-<li>update</li>
-</ul>
-
+        쿠버네티스 컨트롤러 https://kubernetes.io/docs/concepts/architecture/controller
+쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
+컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.
+컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.
+        <a href="https://jeongmin94.github.io/post/07-kube-controller/" class="post-read-more">[Read More]</a>
         
     </div>
 
     
     <div class="blog-tags">
         
-        <a href="https://jeongmin94.github.io/tags/blog/">Blog</a>&nbsp;
-        
-        <a href="https://jeongmin94.github.io/tags/hugo/">Hugo</a>&nbsp;
+        <a href="https://jeongmin94.github.io/tags/k8s-controller/">k8s-controller</a>&nbsp;
         
     </div>
-    
-
-</article>
-          
-            <article class="post-preview">
-    <a href="https://jeongmin94.github.io/post/test/">
-        <h2 class="post-title">Test</h2>
-        
-        
-        
-    </a>
-
-    <p class="post-meta">
-        <span class="post-meta">
-  
-  
-  <i class="fas fa-calendar"></i>&nbsp;Posted on July 16, 2022
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;1&nbsp;minutes
-  
-  
-    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;5&nbsp;words
-  
-  
-    
-      &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;jeongmin94
-    
-  
-  
-</span>
-
-
-    </p>
-    <div class="post-entry">
-        
-        <h1 id="test">Test</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">code block
-</span></span></code></pre></div><ul>
-<li>markdown</li>
-<li>update</li>
-</ul>
-
-        
-    </div>
-
     
 
 </article>

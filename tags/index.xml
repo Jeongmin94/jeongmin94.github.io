@@ -15,23 +15,5 @@
       <description></description>
     </item>
     
-    <item>
-      <title>Blog</title>
-      <link>https://jeongmin94.github.io/tags/blog/</link>
-      <pubDate>Sat, 16 Jul 2022 20:10:19 +0900</pubDate>
-      
-      <guid>https://jeongmin94.github.io/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hugo</title>
-      <link>https://jeongmin94.github.io/tags/hugo/</link>
-      <pubDate>Sat, 16 Jul 2022 20:10:19 +0900</pubDate>
-      
-      <guid>https://jeongmin94.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>
