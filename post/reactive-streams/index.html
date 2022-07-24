@@ -7,13 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Reactive Streams - 저장소</title>
-  <meta name="description" content="Reactive Streams 참고
-https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
-스프링 웹 프레임워크는 스프링 5 이후로 크게 두 가지 포트폴리오를 제공해준다. 하나는 서블릿 기반의 스프링 MVC이고, 다른 하나는 리액티브 스트림즈 기반의 스프링 WebFlux이다. WebFlux는 리액티브 스트림즈의 구현체인 Project Reactor 기반으로 구현이 되어 있기 때문에 WebFlux를 이해하기 위해선 리액티브 스트림즈에 대한 이해가 필요하다고 할 수 있다.
-1. 리액티브 프로그래밍 스프링의 리액티브 공식 페이지(https://spring.io/reactive)에서는 리액티브라는 단어의 뜻과 함께 리액티브 프로세싱에 대해서 설명을 해주고 있다.
-Reactive
-Reactive systems have certain characteristics that make them ideal for low-latency, high-throughput workloads.">
+  <title>리액티브 스트림즈 - 저장소</title>
+  <meta name="description" content="WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.">
   <meta name="author" content="jeongmin94"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -50,7 +45,7 @@ Reactive systems have certain characteristics that make them ideal for low-laten
         "position": 3,
         "item": {
           "@id": "https:\/\/jeongmin94.github.io\/post\/reactive-streams\/",
-          "name": "Reactive streams"
+          "name": "리액티브 스트림즈"
         }
     }]
 }
@@ -61,10 +56,10 @@ Reactive systems have certain characteristics that make them ideal for low-laten
   "author": {
     "name" : "jeongmin94"
   },
-  "headline": "Reactive Streams",
-  "description" : "Reactive Streams 참고\nhttps:\/\/engineering.linecorp.com\/ko\/blog\/reactive-streams-with-armeria-1\/\n스프링 웹 프레임워크는 스프링 5 이후로 크게 두 가지 포트폴리오를 제공해준다. 하나는 서블릿 기반의 스프링 MVC이고, 다른 하나는 리액티브 스트림즈 기반의 스프링 WebFlux이다. WebFlux는 리액티브 스트림즈의 구현체인 Project Reactor 기반으로 구현이 되어 있기 때문에 WebFlux를 이해하기 위해선 리액티브 스트림즈에 대한 이해가 필요하다고 할 수 있다.\n1. 리액티브 프로그래밍 스프링의 리액티브 공식 페이지(https:\/\/spring.io\/reactive)에서는 리액티브라는 단어의 뜻과 함께 리액티브 프로세싱에 대해서 설명을 해주고 있다.\nReactive\nReactive systems have certain characteristics that make them ideal for low-latency, high-throughput workloads.",
+  "headline": "리액티브 스트림즈",
+  "description" : "WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.\n",
   "inLanguage" : "ko",
-  "wordCount":  1479 ,
+  "wordCount":  1486 ,
   "datePublished" : "2022-07-21T09:55:17",
   "dateModified" : "2022-07-21T09:55:17",
   "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
@@ -83,26 +78,19 @@ Reactive systems have certain characteristics that make them ideal for low-laten
 }
 </script>
 
-<meta property="og:title" content="Reactive Streams" />
-<meta property="og:description" content="Reactive Streams 참고
-https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
-스프링 웹 프레임워크는 스프링 5 이후로 크게 두 가지 포트폴리오를 제공해준다. 하나는 서블릿 기반의 스프링 MVC이고, 다른 하나는 리액티브 스트림즈 기반의 스프링 WebFlux이다. WebFlux는 리액티브 스트림즈의 구현체인 Project Reactor 기반으로 구현이 되어 있기 때문에 WebFlux를 이해하기 위해선 리액티브 스트림즈에 대한 이해가 필요하다고 할 수 있다.
-1. 리액티브 프로그래밍 스프링의 리액티브 공식 페이지(https://spring.io/reactive)에서는 리액티브라는 단어의 뜻과 함께 리액티브 프로세싱에 대해서 설명을 해주고 있다.
-Reactive
-Reactive systems have certain characteristics that make them ideal for low-latency, high-throughput workloads.">
+<meta property="og:title" content="리액티브 스트림즈" />
+<meta property="og:description" content="WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.">
 <meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
 <meta property="og:url" content="https://jeongmin94.github.io/post/reactive-streams/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="저장소" />
 
-  <meta name="twitter:title" content="Reactive Streams" />
-  <meta name="twitter:description" content="Reactive Streams 참고
-https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
-스프링 웹 프레임워크는 스프링 5 이후로 크게 두 가지 포트폴리오를 제공해준다. 하나는 서블릿 기반의 스프링 MVC이고, 다른 하나는 리액티브 스트림즈 기반의 스프링 WebFlux이다. …">
+  <meta name="twitter:title" content="리액티브 스트림즈" />
+  <meta name="twitter:description" content="WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.">
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.101.0" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -242,7 +230,7 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               
-                <h1>Reactive Streams</h1>
+                <h1>리액티브 스트림즈</h1>
               
               
               
@@ -250,7 +238,7 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;
+  <i class="fas fa-calendar"></i>&nbsp;July 21, 2022에 게시됨
   
   
     &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;7&nbsp;분
@@ -280,7 +268,8 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <h1 id="reactive-streams">Reactive Streams</h1>
+        <p>WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.</p>
+<h1 id="reactive-streams">Reactive Streams</h1>
 <blockquote>
 <p>참고</p>
 <p><a href="https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/">https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/</a></p>
@@ -317,23 +306,23 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
 <h4 id="리액티브-스트림즈">리액티브 스트림즈</h4>
 <p>결과적으로 리액티브 이 핵심 개념들을 이용해서 공식 문서에서 설명되어 있는 것처럼, 빠른 응답 속도 - 높은 작업 처리율을 가진 프로그래밍 방식이라고 생각하면 될 것이다.</p>
 <h2 id="2-리액티브-스트림즈-api">2. 리액티브 스트림즈 API</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Publisher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="c1">// Subscriber의 구독을 받기 위한 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscriber</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="n">Subscription</span> <span class="n">s</span><span class="o">);</span>			<span class="c1">// Subscription을 받기 위한 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>											<span class="c1">// Publisher로 부터 받은 데이터 처리를 위한 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">);</span>							<span class="c1">// 에러를 처리하는 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">();</span>											<span class="c1">// 작업 완료 시 사용하는 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscription</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">request</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">);</span>									<span class="c1">// n개의 데이터 요청을 위한 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancel</span><span class="o">();</span>													<span class="c1">// 구독을 취소하기 위한 메서드
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
-</span></span></code></pre></div><p>리액티브 스트림즈에서 사용하는 인터페이스는 이게 전부다. 실제 리액티브 스트림즈를 사용하는 흐름은 다음과 같다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Publisher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="c1">// Subscriber의 구독을 받기 위한 메서드
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">s</span><span class="o">);</span>
+<span class="o">}</span>
+ 
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscriber</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="n">Subscription</span> <span class="n">s</span><span class="o">);</span>			<span class="c1">// Subscription을 받기 위한 메서드
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>											<span class="c1">// Publisher로 부터 받은 데이터 처리를 위한 메서드
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">t</span><span class="o">);</span>							<span class="c1">// 에러를 처리하는 메서드
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">();</span>											<span class="c1">// 작업 완료 시 사용하는 메서드
+</span><span class="c1"></span><span class="o">}</span>
+ 
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subscription</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">request</span><span class="o">(</span><span class="kt">long</span> <span class="n">n</span><span class="o">);</span>									<span class="c1">// n개의 데이터 요청을 위한 메서드
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancel</span><span class="o">();</span>													<span class="c1">// 구독을 취소하기 위한 메서드
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>리액티브 스트림즈에서 사용하는 인터페이스는 이게 전부다. 실제 리액티브 스트림즈를 사용하는 흐름은 다음과 같다.</p>
 <ol>
 <li>Subscriber가 <code>subscribe</code> 메서드를 사용해 Publisher에게 구독 요청</li>
 <li>Publisher는 Subscriber가 가지고 있는 <code>onSubscribe</code> 메서드를 사용해 Subscription을 전달</li>
@@ -352,189 +341,189 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
 <blockquote>
 <p><a href="https://youtu.be/6TiUCm3K_IE">https://youtu.be/6TiUCm3K_IE</a></p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">				<span class="c">&lt;!-- 리액티브 스트림즈 의존성 추가 --&gt;</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&lt;dependency&gt;</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&lt;groupId&gt;</span>org.reactivestreams<span class="nt">&lt;/groupId&gt;</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&lt;artifactId&gt;</span>reactive-streams<span class="nt">&lt;/artifactId&gt;</span>
-</span></span><span class="line"><span class="cl">            <span class="nt">&lt;version&gt;</span>1.0.4<span class="nt">&lt;/version&gt;</span>
-</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/dependency&gt;</span>
-</span></span><span class="line"><span class="cl">...
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">...
+				<span class="c">&lt;!-- 리액티브 스트림즈 의존성 추가 --&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.reactivestreams<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>reactive-streams<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>1.0.4<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+...
+</code></pre></div><ul>
 <li>Publisher</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPub</span> <span class="kd">implements</span> <span class="n">Publisher</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">8</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">subscriber</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">MySubscription</span> <span class="n">subscription</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MySubscription</span><span class="o">(</span><span class="n">subscriber</span><span class="o">,</span> <span class="n">its</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">// 구독자에게 구독 정보 리턴
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">subscriber</span><span class="o">.</span><span class="na">onSubscribe</span><span class="o">(</span><span class="n">subscription</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPub</span> <span class="kd">implements</span> <span class="n">Publisher</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">5</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">7</span><span class="o">,</span> <span class="n">8</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">subscribe</span><span class="o">(</span><span class="n">Subscriber</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">subscriber</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">MySubscription</span> <span class="n">subscription</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MySubscription</span><span class="o">(</span><span class="n">subscriber</span><span class="o">,</span> <span class="n">its</span><span class="o">);</span>
+
+        <span class="c1">// 구독자에게 구독 정보 리턴
+</span><span class="c1"></span>        <span class="n">subscriber</span><span class="o">.</span><span class="na">onSubscribe</span><span class="o">(</span><span class="n">subscription</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><ul>
 <li>Subscriber</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySub</span> <span class="kd">implements</span> <span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Subscription</span> <span class="n">subscription</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">bufferSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>					<span class="c1">// 백프레셔
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="n">Subscription</span> <span class="n">subscription</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">      	<span class="c1">// Publisher로 부터 Subscription 전달 받기
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">subscription</span> <span class="o">=</span> <span class="n">subscription</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">      	<span class="c1">// Publisher에게 데이터 요청하기
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">subscription</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="n">bufferSize</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">Integer</span> <span class="n">integer</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;onNext() : &#34;</span> <span class="o">+</span> <span class="n">integer</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">bufferSize</span><span class="o">--;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">bufferSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">bufferSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">            <span class="n">subscription</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="n">bufferSize</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;구독중 에러&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;구독 완료&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySub</span> <span class="kd">implements</span> <span class="n">Subscriber</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Subscription</span> <span class="n">subscription</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">bufferSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>					<span class="c1">// 백프레셔
+</span><span class="c1"></span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSubscribe</span><span class="o">(</span><span class="n">Subscription</span> <span class="n">subscription</span><span class="o">)</span> <span class="o">{</span>
+      	<span class="c1">// Publisher로 부터 Subscription 전달 받기
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">subscription</span> <span class="o">=</span> <span class="n">subscription</span><span class="o">;</span>
+
+      	<span class="c1">// Publisher에게 데이터 요청하기
+</span><span class="c1"></span>        <span class="n">subscription</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="n">bufferSize</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNext</span><span class="o">(</span><span class="n">Integer</span> <span class="n">integer</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;onNext() : &#34;</span> <span class="o">+</span> <span class="n">integer</span><span class="o">);</span>
+        <span class="n">bufferSize</span><span class="o">--;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">bufferSize</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bufferSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+            <span class="n">subscription</span><span class="o">.</span><span class="na">request</span><span class="o">(</span><span class="n">bufferSize</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;구독중 에러&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;구독 완료&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><ul>
 <li>Subscription</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySubscription</span> <span class="kd">implements</span> <span class="n">Subscription</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Subscriber</span> <span class="n">subscriber</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">MySubscription</span><span class="o">(</span><span class="n">Subscriber</span> <span class="n">subscriber</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">subscriber</span> <span class="o">=</span> <span class="n">subscriber</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">its</span> <span class="o">=</span> <span class="n">its</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">request</span><span class="o">(</span><span class="kt">long</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">its</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">subscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="n">its</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">                <span class="n">subscriber</span><span class="o">.</span><span class="na">onComplete</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">            <span class="o">}</span>
-</span></span><span class="line"><span class="cl">            <span class="n">l</span><span class="o">--;</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
-</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancel</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySubscription</span> <span class="kd">implements</span> <span class="n">Subscription</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Subscriber</span> <span class="n">subscriber</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">MySubscription</span><span class="o">(</span><span class="n">Subscriber</span> <span class="n">subscriber</span><span class="o">,</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">its</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">subscriber</span> <span class="o">=</span> <span class="n">subscriber</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">its</span> <span class="o">=</span> <span class="n">its</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">request</span><span class="o">(</span><span class="kt">long</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">its</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="na">onNext</span><span class="o">(</span><span class="n">its</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">subscriber</span><span class="o">.</span><span class="na">onComplete</span><span class="o">();</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">l</span><span class="o">--;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cancel</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><ul>
 <li>테스트</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">  <span class="n">MyPub</span> <span class="n">pub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyPub</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">  <span class="n">MySub</span> <span class="n">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MySub</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">  <span class="c1">// 구독 요청
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">pub</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">sub</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="3-webflux">3. WebFlux</h2>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">MyPub</span> <span class="n">pub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyPub</span><span class="o">();</span>
+  <span class="n">MySub</span> <span class="n">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MySub</span><span class="o">();</span>
+
+  <span class="c1">// 구독 요청
+</span><span class="c1"></span>  <span class="n">pub</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="n">sub</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="3-webflux">3. WebFlux</h2>
 <p>WebFlux는 리액티브 스트림즈라는 표준 명세를 기반으로 구현된 Project Reactor를 스프링 프로젝트에서 사용할 수 있게 만들어진 프레임워크이다. 그래서 실제로 WebFlux가 작동하는 방식은 리액티브 스트림즈의 명세와 동일한 방식으로 작동을 한다. 사용자가 데이터를 요청을 하면, 요청에 대한 처리를 하고 데이터를 발행할 Publisher가 필요하다. WebFlux에서는 그 역할을 <code>Flux</code>와 <code>Mono</code>가 담당하고 있다. 그리고 WebFlux에서는 발행 대신 방출(emit)이라는 표현을 사용한다.</p>
 <h4 id="flux-mono">Flux, Mono</h4>
 <p><img src="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/flux.svg" alt="flux"></p>
 <p><code>Flux</code>와 <code>Mono</code>는 리액티브 스트림즈의 Publisher 역할을 한다. 프로젝트 리액터의 공식 문서에서 이 두 추상 클래스에 대한 설명을 자세히 하고 있는데, 공통적으로는 데이터를 방출하면서 오퍼레이터(operator) 통해 데이터가 가공되어 사용자에게 결과물이 전달되지만, <code>Flux</code>는 0 ~ N개의 데이터를 방출할 수 있고, <code>Mono</code>는 0 ~ 1개의 데이터만 발행할 수 있다는 차이를 가진다. <code>Flux</code>와 <code>Mono</code>는 기능적으로도 큰 차이가 없기 때문에, 0이나 1대신 boolean을 사용하는 것처럼 하나의 데이터만 방출하는 경우 <code>Mono</code>를 사용해주면 된다.</p>
 <h4 id="오퍼레이터operator">오퍼레이터(operator)</h4>
 <p><code>Flux</code>와 <code>Mono</code>에서 사용하는 오퍼레이터는 요청이 들어오거나, 데이터를 방출할 때 등, 다양한 시점에서 사이드 이펙트를 발생시키고 싶을 때 사용한다. 오퍼레이터를 통해 사이드 이펙트가 발생하는 간단한 예시는 다음과 같다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">doOnNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">1</span><span class="o">)).</span><span class="na">log</span><span class="o">();</span>
-</span></span></code></pre></div><p>테스트를 위한 간단한 <code>Flux</code>를 만들었다. 스트림 내부의 숫자가 2로 나누어 떨어지는지 확인을 하고, 나누어 떨어진다면 <code>doOnNext</code>를 하는 시점에서 1을 더해 표준 출력을 하는 <code>Flux</code>이다. <code>doOnNext</code>는 다음과 같은 방식으로 작동하는 오퍼레이터다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">2</span> <span class="o">==</span> <span class="n">0</span><span class="o">).</span><span class="na">doOnNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="n">1</span><span class="o">)).</span><span class="na">log</span><span class="o">();</span>
+</code></pre></div><p>테스트를 위한 간단한 <code>Flux</code>를 만들었다. 스트림 내부의 숫자가 2로 나누어 떨어지는지 확인을 하고, 나누어 떨어진다면 <code>doOnNext</code>를 하는 시점에서 1을 더해 표준 출력을 하는 <code>Flux</code>이다. <code>doOnNext</code>는 다음과 같은 방식으로 작동하는 오퍼레이터다.</p>
 <blockquote>
 <p>Add behavior (side-effect) triggered when the Flux emits an item.</p>
 <p>The consumer is executed first, then the onNext signal is propagated downstream.</p>
 </blockquote>
 <p><img src="https://projectreactor.io/docs/core/release/api/reactor/core/publisher/doc-files/marbles/doOnNextForFlux.svg" alt="doOnNextForFlux"></p>
 <p>공식 문서의 설명에 따르면 <code>doOnNext</code>는 우리가 만든 <code>Flux</code>가 데이터를 방출할 때 작동한다고 적혀있다. 또한, 매개변수로 <code>Consumer</code>를 받고, <code>Consumer</code>가 먼저 실행되고 나서 <code>onNext</code> 시그널을 준다는 것도 확인할 수 있다. <code>Flux</code>나 <code>Mono</code>를 테스트하기 위해선 <code>StepVerifier</code>를 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">flux</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">0</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">assertNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">2</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">assertNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">4</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectComplete</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">log</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">verify</span><span class="o">();</span>
-</span></span></code></pre></div><p><code>StepVerifier</code>는 WebFlux 테스트를 위한 인터페이스다. 스트리밍 방식으로 데이터를 처리하기 때문에 전통적인 방식으로는 테스트를 하기 어렵기 때문에 <code>StepVerifier</code>를 통해 하나씩 흘러오는 데이터를 검증할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">flux</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">0</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">assertNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">2</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">assertNext</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">assertThat</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="n">4</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">expectComplete</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">log</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">verify</span><span class="o">();</span>
+</code></pre></div><p><code>StepVerifier</code>는 WebFlux 테스트를 위한 인터페이스다. 스트리밍 방식으로 데이터를 처리하기 때문에 전통적인 방식으로는 테스트를 하기 어렵기 때문에 <code>StepVerifier</code>를 통해 하나씩 흘러오는 데이터를 검증할 수 있다.</p>
 <ul>
 <li><code>expectNext()</code>는 <code>Flux</code>나 <code>Mono</code>에서 방출되는 데이터를 예측하는 것이다. 위의 케이스에서는 처음으로 방출되는 데이터가 0이기 때문에 다음에 방출되는 데이터가 0이라고 예측할 수 있다.</li>
 <li><code>assertNext()</code>는 일반적인 테스트 코드 검증 단계에서 사용하는 Assert 메서드를 사용하여 스트리밍 데이터를 검증한다. <code>expectNext</code>와 마찬가지로 하나씩 차례대로 데이터를 검증하지만, <code>Consumer</code> 타입의 메서드로 조금 더 다양한 방식으로 테스트가 가능하다.(<code>expectNext</code>는 동등한지만 비교)</li>
 </ul>
 <p><code>StepVerifier</code>를 실행하면 다음과 같은 로그를 볼 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># StepVerifier log</span>
-</span></span><span class="line"><span class="cl">12:37:09.855 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - Scenario:
-</span></span><span class="line"><span class="cl">12:37:09.855 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;defaultOnSubscribe&gt;
-</span></span><span class="line"><span class="cl">12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>0<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;assertNext&gt;
-</span></span><span class="line"><span class="cl">12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;assertNext&gt;
-</span></span><span class="line"><span class="cl">12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectComplete&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Flux log</span>
-</span></span><span class="line"><span class="cl">12:37:09.859 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onSubscribe<span class="o">([</span>Fuseable<span class="o">]</span> FluxPeekFuseable.PeekFuseableSubscriber<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:37:09.860 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> request<span class="o">(</span>unbounded<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="m">1</span>
-</span></span><span class="line"><span class="cl">12:37:09.861 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>0<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="m">3</span>
-</span></span><span class="line"><span class="cl">12:37:09.861 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>2<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="m">5</span>
-</span></span><span class="line"><span class="cl">12:37:09.886 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>4<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:37:09.887 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onComplete<span class="o">()</span>
-</span></span></code></pre></div><p><code>StepVerifier</code>의 로그를 통해 우리가 검증하기 위해 작성한 오퍼레이터 체인을 확인할 수 있고, 이를 통해 실행된 <code>Flux</code>의 로그를 보면 리액티브 스트림즈 API를 그대로 사용하고 있는 것을 확인할 수 있다. <code>doOnNext</code> 역시 설명대로 사용자가 <code>onNext</code>를 호출하기 전에 표준 출력이 실행된 것을 확인할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># StepVerifier log</span>
+12:37:09.855 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - Scenario:
+12:37:09.855 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;defaultOnSubscribe&gt;
+12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>0<span class="o">)</span>&gt;
+12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;assertNext&gt;
+12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;assertNext&gt;
+12:37:09.856 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectComplete&gt;
+
+<span class="c1"># Flux log</span>
+12:37:09.859 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onSubscribe<span class="o">([</span>Fuseable<span class="o">]</span> FluxPeekFuseable.PeekFuseableSubscriber<span class="o">)</span>
+12:37:09.860 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> request<span class="o">(</span>unbounded<span class="o">)</span>
+<span class="m">1</span>
+12:37:09.861 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>0<span class="o">)</span>
+<span class="m">3</span>
+12:37:09.861 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>2<span class="o">)</span>
+<span class="m">5</span>
+12:37:09.886 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>4<span class="o">)</span>
+12:37:09.887 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.PeekFuseable.1 - <span class="p">|</span> onComplete<span class="o">()</span>
+</code></pre></div><p><code>StepVerifier</code>의 로그를 통해 우리가 검증하기 위해 작성한 오퍼레이터 체인을 확인할 수 있고, 이를 통해 실행된 <code>Flux</code>의 로그를 보면 리액티브 스트림즈 API를 그대로 사용하고 있는 것을 확인할 수 있다. <code>doOnNext</code> 역시 설명대로 사용자가 <code>onNext</code>를 호출하기 전에 표준 출력이 실행된 것을 확인할 수 있다.</p>
 <p>다른 오퍼레이터인 <code>doFirst</code> 케이스를 확인해보자. <code>doFirst</code>는 <code>Flux</code>가 구독이 되기 전에 실행되는 사이드 이펙트이다. 따라서 <code>onSubscribe</code>로 구독이 되기 전에 사이드 이펙트가 발생한 것을 확인할 수 있다.(스택처럼 나중에 호출된 <code>doFirst</code>가 먼저 호출됨)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">doFirst</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">doFirst</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;World&#34;</span><span class="o">)).</span><span class="na">log</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">flux</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">expectComplete</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">log</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">verify</span><span class="o">();</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># StepVerifier log</span>
-</span></span><span class="line"><span class="cl">12:45:20.561 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - Scenario:
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;defaultOnSubscribe&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>0<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>1<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>2<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>3<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>4<span class="o">)</span>&gt;
-</span></span><span class="line"><span class="cl">12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectComplete&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Flux log</span>
-</span></span><span class="line"><span class="cl">World
-</span></span><span class="line"><span class="cl">Hello
-</span></span><span class="line"><span class="cl">12:45:20.565 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onSubscribe<span class="o">([</span>Synchronous Fuseable<span class="o">]</span> FluxRange.RangeSubscription<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> request<span class="o">(</span>unbounded<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>0<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>1<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>2<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>3<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>4<span class="o">)</span>
-</span></span><span class="line"><span class="cl">12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onComplete<span class="o">()</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">flux</span> <span class="o">=</span> <span class="n">Flux</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">5</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">doFirst</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">doFirst</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;World&#34;</span><span class="o">)).</span><span class="na">log</span><span class="o">();</span>
+
+<span class="n">StepVerifier</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">flux</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">expectNext</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">3</span><span class="o">,</span><span class="n">4</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">expectComplete</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">log</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">verify</span><span class="o">();</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># StepVerifier log</span>
+12:45:20.561 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - Scenario:
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;defaultOnSubscribe&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>0<span class="o">)</span>&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>1<span class="o">)</span>&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>2<span class="o">)</span>&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>3<span class="o">)</span>&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectNext<span class="o">(</span>4<span class="o">)</span>&gt;
+12:45:20.562 <span class="o">[</span>main<span class="o">]</span> DEBUG reactor.test.StepVerifier - 	&lt;expectComplete&gt;
+
+<span class="c1"># Flux log</span>
+World
+Hello
+12:45:20.565 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onSubscribe<span class="o">([</span>Synchronous Fuseable<span class="o">]</span> FluxRange.RangeSubscription<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> request<span class="o">(</span>unbounded<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>0<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>1<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>2<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>3<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onNext<span class="o">(</span>4<span class="o">)</span>
+12:45:20.567 <span class="o">[</span>main<span class="o">]</span> INFO reactor.Flux.DoFirstFuseable.1 - <span class="p">|</span> onComplete<span class="o">()</span>
+</code></pre></div>
 
         
           <div class="blog-tags">
@@ -630,7 +619,7 @@ https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
           
         </p>
       </div>

@@ -5,19 +5,18 @@
     <link>https://jeongmin94.github.io/categories/webflux/</link>
     <description>Recent content in WebFlux on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 21 Jul 2022 09:55:17 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/categories/webflux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jul 2022 09:55:17 +0900</lastBuildDate>
+    
+	<atom:link href="https://jeongmin94.github.io/categories/webflux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
-      <title>Reactive Streams</title>
+      <title>리액티브 스트림즈</title>
       <link>https://jeongmin94.github.io/post/reactive-streams/</link>
       <pubDate>Thu, 21 Jul 2022 09:55:17 +0900</pubDate>
       
       <guid>https://jeongmin94.github.io/post/reactive-streams/</guid>
-      <description>Reactive Streams 참고
-https://engineering.linecorp.com/ko/blog/reactive-streams-with-armeria-1/
-스프링 웹 프레임워크는 스프링 5 이후로 크게 두 가지 포트폴리오를 제공해준다. 하나는 서블릿 기반의 스프링 MVC이고, 다른 하나는 리액티브 스트림즈 기반의 스프링 WebFlux이다. WebFlux는 리액티브 스트림즈의 구현체인 Project Reactor 기반으로 구현이 되어 있기 때문에 WebFlux를 이해하기 위해선 리액티브 스트림즈에 대한 이해가 필요하다고 할 수 있다.
-1. 리액티브 프로그래밍 스프링의 리액티브 공식 페이지(https://spring.io/reactive)에서는 리액티브라는 단어의 뜻과 함께 리액티브 프로세싱에 대해서 설명을 해주고 있다.
-Reactive
-Reactive systems have certain characteristics that make them ideal for low-latency, high-throughput workloads.</description>
+      <description>&lt;p&gt;WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.&lt;/p&gt;</description>
     </item>
     
   </channel>
