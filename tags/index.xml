@@ -5,7 +5,11 @@
     <link>https://jeongmin94.github.io/tags/</link>
     <description>Recent content in Tags on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 08 Aug 2022 21:02:20 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Aug 2022 21:02:20 +0900</lastBuildDate>
+    
+	<atom:link href="https://jeongmin94.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>url-shortener</title>
       <link>https://jeongmin94.github.io/tags/url-shortener/</link>

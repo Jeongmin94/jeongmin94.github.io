@@ -59,7 +59,7 @@
   "headline": "08 Helm",
   "description" : "helm 패키지 매니저에 대해 알아본다.\n",
   "inLanguage" : "ko",
-  "wordCount":  857 ,
+  "wordCount":  787 ,
   "datePublished" : "2022-07-24T09:05:48",
   "dateModified" : "2022-07-24T09:05:48",
   "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
@@ -90,7 +90,7 @@
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.101.0" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -238,10 +238,10 @@
                 <span class="post-meta">
   
   
-  <i class="fas fa-calendar"></i>&nbsp;
+  <i class="fas fa-calendar"></i>&nbsp;July 24, 2022에 게시됨
   
   
-    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;5&nbsp;분
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;분
   
   
   
@@ -280,148 +280,148 @@
 <p>쿠버네티스에서는 helm을 이용하여 프로세스(Pod)와 네트워크(Service), 저장소 등 어플리케이션에 필요한 모든 자원을 helm 패키지 매니저를 통해 외부에서 가져올 수 있다.</p>
 <h2 id="1-helm-설치">1. helm 설치</h2>
 <p>helm을 설치하는 방법은 간단하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 <span class="p">|</span> bash -s -- --version v3.2.2
-</span></span></code></pre></div><h2 id="2-chart-생성">2. chart 생성</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 <span class="p">|</span> bash -s -- --version v3.2.2
+</code></pre></div><h2 id="2-chart-생성">2. chart 생성</h2>
 <p>chart는 리소스들을 편리하게 배포하거나 공유할 수 있게 패키징한 설치 파일들의 묶음이다. <code>mychart</code>라는 이름을 가진 테스트용 chart를 만들어 본다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm create mychart
-</span></span><span class="line"><span class="cl"><span class="c1"># Creating mychart</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">ls mychart
-</span></span><span class="line"><span class="cl"><span class="c1"># Chart.yaml  charts  templates  values.yaml</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm create mychart
+<span class="c1"># Creating mychart</span>
+
+ls mychart
+<span class="c1"># Chart.yaml  charts  templates  values.yaml</span>
+</code></pre></div><ul>
 <li>Chart.yaml : chart 이름, 버전 정보 등 chart의 메타데이터를 담고 있다.</li>
 <li>charts : chart 속에 또 다른 여러 chart를 넣을 수 있다. 기본적으로는 비어 있다.</li>
 <li>templates/ : chart의 뼈대가 되는 쿠버네티스 리소스가 들어있는 폴더이다.</li>
 <li>values.yaml : 사용자 정의 설정값을 가진 YAML 파일이다.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls mychart/templates
-</span></span><span class="line"><span class="cl"><span class="c1"># NOTES.txt</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># _helpers.tpl</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ingress.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># service.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># serviceaccount.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># tests/</span>
-</span></span></code></pre></div><p>templates 디렉토리에 여러 쿠버네티스 리소스의 YAML 정의서가 있는 것을 확인할 수 있다. <code>templates/service.yaml</code> 파일을 열어 확인해보면, values.yaml의 설정값을 사용하기 위해 플레이스홀더(placeholder)가 지정되어 있는 것을 볼 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># mychart/templates/service.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">include &#34;mychart.fullname&#34; . }}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>{{- <span class="l">include &#34;mychart.labels&#34; . | nindent 4 }}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Values.service.type }}        </span><span class="w"> </span><span class="c"># 서비스 타입 지정</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span><span class="l">.Values.service.port }}    </span><span class="w"> </span><span class="c"># 서비스 포트 지정</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>{{- <span class="l">include &#34;mychart.selectorLabels&#34; . | nindent 4 }}</span><span class="w">
-</span></span></span></code></pre></div><p><code>Values.service.type</code>, <code>Values.service.port</code>가 플레이스홀더로 등록되어 있다. values.yaml에서는 실제로 이 값을 채울 수 있는 필드들이 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># values.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">image</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pullPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">IfNotPresent</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">nameOverride</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">fullnameOverride</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">...</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 약 40줄</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">service</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer </span><span class="w"> </span><span class="c"># 기존 ClusterIP</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">          </span><span class="c"># 기존 80</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">...</span><span class="w">
-</span></span></span></code></pre></div><p>values.yaml 파일을 확인해보면 각 리소스에서 사용할 설정값들을 입력할 수 있는 필드가 존재하고, Service 리소스는 조금 전에 살펴 본 플레이스홀더에 들어갈 type과 port가 디폴트값으로 설정되어 있는 것을 확인할 수 있다. 그래서 디폴트값을 각각 <code>LoadBalancer</code>와 <code>8888</code>로 변경하고 helm chart를 설치해서 변경된 값을 확인해볼 것이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls mychart/templates
+<span class="c1"># NOTES.txt</span>
+<span class="c1"># _helpers.tpl</span>
+<span class="c1"># deployment.yaml</span>
+<span class="c1"># ingress.yaml</span>
+<span class="c1"># service.yaml</span>
+<span class="c1"># serviceaccount.yaml</span>
+<span class="c1"># tests/</span>
+</code></pre></div><p>templates 디렉토리에 여러 쿠버네티스 리소스의 YAML 정의서가 있는 것을 확인할 수 있다. <code>templates/service.yaml</code> 파일을 열어 확인해보면, values.yaml의 설정값을 사용하기 위해 플레이스홀더(placeholder)가 지정되어 있는 것을 볼 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># mychart/templates/service.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Service<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span>include<span class="w"> </span><span class="s2">&#34;mychart.fullname&#34;</span><span class="w"> </span>.<span class="w"> </span>}}<span class="w">
+</span><span class="w">  </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>{{- include<span class="w"> </span><span class="s2">&#34;mychart.labels&#34;</span><span class="w"> </span>.<span class="w"> </span>|<span class="w"> </span>nindent<span class="w"> </span><span class="m">4</span><span class="w"> </span>}}<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span>.Values.service.type<span class="w"> </span>}}<span class="w">         </span><span class="c"># 서비스 타입 지정</span><span class="w">
+</span><span class="w">  </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">port</span><span class="p">:</span><span class="w"> </span>{{<span class="w"> </span>.Values.service.port<span class="w"> </span>}}<span class="w">     </span><span class="c"># 서비스 포트 지정</span><span class="w">
+</span><span class="w">      </span><span class="k">targetPort</span><span class="p">:</span><span class="w"> </span>http<span class="w">
+</span><span class="w">      </span><span class="k">protocol</span><span class="p">:</span><span class="w"> </span>TCP<span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>http<span class="w">
+</span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>{{- include<span class="w"> </span><span class="s2">&#34;mychart.selectorLabels&#34;</span><span class="w"> </span>.<span class="w"> </span>|<span class="w"> </span>nindent<span class="w"> </span><span class="m">4</span><span class="w"> </span>}}<span class="w">
+</span></code></pre></div><p><code>Values.service.type</code>, <code>Values.service.port</code>가 플레이스홀더로 등록되어 있다. values.yaml에서는 실제로 이 값을 채울 수 있는 필드들이 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># values.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">replicaCount</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">image</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">repository</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span><span class="k">pullPolicy</span><span class="p">:</span><span class="w"> </span>IfNotPresent<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">imagePullSecrets</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="w"></span><span class="k">nameOverride</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w"></span><span class="k">fullnameOverride</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>...<span class="w">
+</span><span class="w"></span><span class="c"># 약 40줄</span><span class="w">
+</span><span class="w"></span><span class="k">service</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>LoadBalancer<span class="w">  </span><span class="c"># 기존 ClusterIP</span><span class="w">
+</span><span class="w">  </span><span class="k">port</span><span class="p">:</span><span class="w"> </span><span class="m">8888</span><span class="w">          </span><span class="c"># 기존 80</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>...<span class="w">
+</span></code></pre></div><p>values.yaml 파일을 확인해보면 각 리소스에서 사용할 설정값들을 입력할 수 있는 필드가 존재하고, Service 리소스는 조금 전에 살펴 본 플레이스홀더에 들어갈 type과 port가 디폴트값으로 설정되어 있는 것을 확인할 수 있다. 그래서 디폴트값을 각각 <code>LoadBalancer</code>와 <code>8888</code>로 변경하고 helm chart를 설치해서 변경된 값을 확인해볼 것이다.</p>
 <h2 id="3-chart-설치">3. chart 설치</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm install &lt;CHART_NAME&gt; &lt;CHART_PATH&gt;
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">helm install foo ./mychart
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME: foo</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># LAST DEPLOYED: Tue Mar 10 14:26:02 2020</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAMESPACE: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># STATUS: deployed</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># REVISION: 1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NOTES:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#    ....</span>
-</span></span></code></pre></div><p><code>foo</code>라는 이름을 가진 chart를 생성했다. 도커를 사용하면 프로세스 실행에 필요한 개별 환경을 모두 컨테이너 내부에서 해결할 수 있었던 만큼, chart 생성하는 과정도 패키지에 필요한 별도의 라이브러리 없이 실행에 필요한 프로세스만 생성된다. 따라서 <code>kubectl</code> 명령어를 사용해서 chart에서 정의된 쿠버네티스의 리소스들이 실행되었는지 확인해보자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># service 리소스를 조회합니다.</span>
-</span></span><span class="line"><span class="cl">kubectl get svc
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME         TYPE          CLUSTER-IP      EXTERNAL-IP    PORT(S)   </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># kubernetes   ClusterIP     10.43.0.1       &lt;none&gt;         443/TCP   </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># foo-mychart  LoadBalancer  10.43.142.107   10.0.1.1       8888:32597/TCP </span>
-</span></span></code></pre></div><p>Service 리소스를 확인해보면, <code>mychart</code>라는 Service 리소스의 타입과 포트 번호가 values.yaml에서 변경한 값이 적용되어 있다. 플레이스홀더에 정상적으로 설정값이 적용된 것이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm install &lt;CHART_NAME&gt; &lt;CHART_PATH&gt;
+
+helm install foo ./mychart
+<span class="c1"># NAME: foo</span>
+<span class="c1"># LAST DEPLOYED: Tue Mar 10 14:26:02 2020</span>
+<span class="c1"># NAMESPACE: default</span>
+<span class="c1"># STATUS: deployed</span>
+<span class="c1"># REVISION: 1</span>
+<span class="c1"># NOTES:</span>
+<span class="c1">#    ....</span>
+</code></pre></div><p><code>foo</code>라는 이름을 가진 chart를 생성했다. 도커를 사용하면 프로세스 실행에 필요한 개별 환경을 모두 컨테이너 내부에서 해결할 수 있었던 만큼, chart 생성하는 과정도 패키지에 필요한 별도의 라이브러리 없이 실행에 필요한 프로세스만 생성된다. 따라서 <code>kubectl</code> 명령어를 사용해서 chart에서 정의된 쿠버네티스의 리소스들이 실행되었는지 확인해보자.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># service 리소스를 조회합니다.</span>
+kubectl get svc
+<span class="c1"># NAME         TYPE          CLUSTER-IP      EXTERNAL-IP    PORT(S)</span>   
+<span class="c1"># kubernetes   ClusterIP     10.43.0.1       &lt;none&gt;         443/TCP</span>   
+<span class="c1"># foo-mychart  LoadBalancer  10.43.142.107   10.0.1.1       8888:32597/TCP</span> 
+</code></pre></div><p>Service 리소스를 확인해보면, <code>mychart</code>라는 Service 리소스의 타입과 포트 번호가 values.yaml에서 변경한 값이 적용되어 있다. 플레이스홀더에 정상적으로 설정값이 적용된 것이다.</p>
 <h2 id="4-helm-리스트-조회">4. helm 리스트 조회</h2>
 <p>helm을 통해서 여러 chart를 설치할 수 있다. <code>-n</code> 옵션을 사용하면 다른 <code>kubectl</code> 명령어와 동일하게 네임스페이스별로 분류를 할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 설치된 chart 리스트 확인하기</span>
-</span></span><span class="line"><span class="cl">helm list
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME    NAMESPACE  REVISION  UPDATED   STATUS    CHART          APP VER</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># foo     default    1         2020-3-1  deployed  mychart-0.1.0  1.16.0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 다른 네임스페이스에는 설치된 chart가 없습니다.</span>
-</span></span><span class="line"><span class="cl">helm list -n kube-system
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME   NAMESPACE   REVISION    UPDATED STATUS  CHART   APP   VERSION</span>
-</span></span></code></pre></div><h2 id="5-chart-랜더링">5. chart 랜더링</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 설치된 chart 리스트 확인하기</span>
+helm list
+<span class="c1"># NAME    NAMESPACE  REVISION  UPDATED   STATUS    CHART          APP VER</span>
+<span class="c1"># foo     default    1         2020-3-1  deployed  mychart-0.1.0  1.16.0</span>
+
+<span class="c1"># 다른 네임스페이스에는 설치된 chart가 없습니다.</span>
+helm list -n kube-system
+<span class="c1"># NAME   NAMESPACE   REVISION    UPDATED STATUS  CHART   APP   VERSION</span>
+</code></pre></div><h2 id="5-chart-랜더링">5. chart 랜더링</h2>
 <p>방금 전에 실행한 <code>helm install</code> 명령어는 chart를 설치하고 실행까지 되는 명령어다. chart가 설치, 실행되는 것이 아니라 values.yaml 파일과 templates 디렉토리 안에 있는 템플릿 YAML 정의서가 합쳐진 YAML 정의서가 보고 싶다면 <code>template</code> 명령어를 사용한면 된다. helm에서는 이러한 작업을 렌더링한다고 표현을 한다. <code>--dry-run</code>과 비슷하다고 생각하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm template foo ./mychart &gt; foo-output.yaml
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">cat foo-output.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># 전체 YAML 정의서 출력</span>
-</span></span></code></pre></div><p>이렇게 만들어진 <code>foo-output.yaml</code>에는 values.yaml에서 설정한 값들이 각각의 템플릿에 적용되어 있는 것을 볼 수 있다. 이를 통해 <code>helm install</code> 명령어는 다음과 같다고 할 수 있겠다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm install &lt;NAME&gt; &lt;CHART_PATH&gt; <span class="o">==</span> helm template &lt;NAME&gt; &lt;CHART_PATH&gt; <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    output.yaml <span class="o">&amp;&amp;</span> kubectl apply -f output.yaml
-</span></span></code></pre></div><h2 id="6-chart-업그레이드">6. chart 업그레이드</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm template foo ./mychart &gt; foo-output.yaml
+
+cat foo-output.yaml
+<span class="c1"># 전체 YAML 정의서 출력</span>
+</code></pre></div><p>이렇게 만들어진 <code>foo-output.yaml</code>에는 values.yaml에서 설정한 값들이 각각의 템플릿에 적용되어 있는 것을 볼 수 있다. 이를 통해 <code>helm install</code> 명령어는 다음과 같다고 할 수 있겠다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm install &lt;NAME&gt; &lt;CHART_PATH&gt; <span class="o">==</span> helm template &lt;NAME&gt; &lt;CHART_PATH&gt; <span class="se">\
+</span><span class="se"></span>    output.yaml <span class="o">&amp;&amp;</span> kubectl apply -f output.yaml
+</code></pre></div><h2 id="6-chart-업그레이드">6. chart 업그레이드</h2>
 <p>이미 설치한 chart의 values.yaml 값을 수정하고 업그레이드를 할 수 있다. Service 리소스의 타입을 NodePort로 수정하고 다시 배포해보자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># values.yaml</span>
-</span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">service:
-</span></span><span class="line"><span class="cl">  type: NodePort    <span class="c1"># 기존 LoadBalancer</span>
-</span></span><span class="line"><span class="cl">  port: <span class="m">8888</span>        
-</span></span><span class="line"><span class="cl">...
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 업그레이드</span>
-</span></span><span class="line"><span class="cl">helm upgrade foo ./mychart
-</span></span><span class="line"><span class="cl"><span class="c1"># Release &#34;foo&#34; has been upgraded. Happy Helming!</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME: foo</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># LAST DEPLOYED: Mon Jul  6 19:26:35 2020</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAMESPACE: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># STATUS: deployed</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># REVISION: 2</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get svc
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># kubernetes  ClusterIP   10.43.0.1      &lt;none&gt;        443/TCP   </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># foo         NodePort    10.43.155.85   &lt;none&gt;        8888:32160/TCP </span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">helm list
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME     NAMESPACE  REVISION   UPDATED    STATUS      CHART      </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># foo      default    2          2020-3-2   deployed    mychart-0.1.0 </span>
-</span></span></code></pre></div><p>업그레이드된 <code>foo</code>를 확인해보면 REVISION 숫자가 2로 변경되었다. 업그레이드 역시 쿠버네티스의 리소스를 사용해서 진행하기 때문에 REVISION 역시 변경된 것이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># values.yaml</span>
+...
+
+service:
+  type: NodePort    <span class="c1"># 기존 LoadBalancer</span>
+  port: <span class="m">8888</span>        
+...
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 업그레이드</span>
+helm upgrade foo ./mychart
+<span class="c1"># Release &#34;foo&#34; has been upgraded. Happy Helming!</span>
+<span class="c1"># NAME: foo</span>
+<span class="c1"># LAST DEPLOYED: Mon Jul  6 19:26:35 2020</span>
+<span class="c1"># NAMESPACE: default</span>
+<span class="c1"># STATUS: deployed</span>
+<span class="c1"># REVISION: 2</span>
+<span class="c1"># ...</span>
+
+kubectl get svc
+<span class="c1"># NAME        TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)</span>          
+<span class="c1"># kubernetes  ClusterIP   10.43.0.1      &lt;none&gt;        443/TCP</span>   
+<span class="c1"># foo         NodePort    10.43.155.85   &lt;none&gt;        8888:32160/TCP</span> 
+
+helm list
+<span class="c1"># NAME     NAMESPACE  REVISION   UPDATED    STATUS      CHART</span>      
+<span class="c1"># foo      default    2          2020-3-2   deployed    mychart-0.1.0</span> 
+</code></pre></div><p>업그레이드된 <code>foo</code>를 확인해보면 REVISION 숫자가 2로 변경되었다. 업그레이드 역시 쿠버네티스의 리소스를 사용해서 진행하기 때문에 REVISION 역시 변경된 것이다.</p>
 <h2 id="7-chart-배포상태-확인">7. chart 배포상태 확인</h2>
 <p>배포된 chart의 상태를 확인하기 위해 다음과 같은 명령을 사용한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm status foo
-</span></span><span class="line"><span class="cl"><span class="c1"># Release &#34;foo&#34; has been upgraded. Happy Helming!</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME: foo</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># LAST DEPLOYED: Mon Jul  6 19:26:35 2020</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAMESPACE: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># STATUS: deployed</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># REVISION: 2</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span></code></pre></div><h2 id="8-chart-삭제">8. chart 삭제</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm status foo
+<span class="c1"># Release &#34;foo&#34; has been upgraded. Happy Helming!</span>
+<span class="c1"># NAME: foo</span>
+<span class="c1"># LAST DEPLOYED: Mon Jul  6 19:26:35 2020</span>
+<span class="c1"># NAMESPACE: default</span>
+<span class="c1"># STATUS: deployed</span>
+<span class="c1"># REVISION: 2</span>
+<span class="c1"># ...</span>
+</code></pre></div><h2 id="8-chart-삭제">8. chart 삭제</h2>
 <p>생성하고 나서 필요 없어진 chart는 <code>delete</code> 명령을 사용해서 삭제할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm delete foo
-</span></span><span class="line"><span class="cl"><span class="c1"># release &#34;foo&#34; uninstalled</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">helm list
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME   NAMESPACE   REVISION    UPDATED STATUS  CHART   APP   VERSION</span>
-</span></span></code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm delete foo
+<span class="c1"># release &#34;foo&#34; uninstalled</span>
+
+helm list
+<span class="c1"># NAME   NAMESPACE   REVISION    UPDATED STATUS  CHART   APP   VERSION</span>
+</code></pre></div>
 
         
           <div class="blog-tags">
@@ -521,7 +521,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
           
         </p>
       </div>
