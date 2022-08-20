@@ -12,10 +12,10 @@
     
     <item>
       <title>07 Kube Controller</title>
-      <link>https://jeongmin94.github.io/post/07-kube-controller/</link>
+      <link>https://jeongmin94.github.io/k8s/07-kube-controller/</link>
       <pubDate>Mon, 18 Jul 2022 21:59:10 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/07-kube-controller/</guid>
+      <guid>https://jeongmin94.github.io/k8s/07-kube-controller/</guid>
       <description>&lt;p&gt;쿠버네티스 컨트롤러에 대해 알아본다.&lt;/p&gt;</description>
     </item>
     

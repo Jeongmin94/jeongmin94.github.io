@@ -21,19 +21,19 @@
     
     <item>
       <title>10 Storage</title>
-      <link>https://jeongmin94.github.io/post/10-storage/</link>
+      <link>https://jeongmin94.github.io/k8s/10-storage/</link>
       <pubDate>Sat, 06 Aug 2022 16:10:25 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/10-storage/</guid>
+      <guid>https://jeongmin94.github.io/k8s/10-storage/</guid>
       <description>&lt;p&gt;쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>08 Helm</title>
-      <link>https://jeongmin94.github.io/post/08-helm/</link>
+      <link>https://jeongmin94.github.io/k8s/08-helm/</link>
       <pubDate>Sun, 24 Jul 2022 09:05:48 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/08-helm/</guid>
+      <guid>https://jeongmin94.github.io/k8s/08-helm/</guid>
       <description>&lt;p&gt;helm 패키지 매니저에 대해 알아본다.&lt;/p&gt;</description>
     </item>
     
@@ -48,10 +48,10 @@
     
     <item>
       <title>07 Kube Controller</title>
-      <link>https://jeongmin94.github.io/post/07-kube-controller/</link>
+      <link>https://jeongmin94.github.io/k8s/07-kube-controller/</link>
       <pubDate>Mon, 18 Jul 2022 21:59:10 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/07-kube-controller/</guid>
+      <guid>https://jeongmin94.github.io/k8s/07-kube-controller/</guid>
       <description>&lt;p&gt;쿠버네티스 컨트롤러에 대해 알아본다.&lt;/p&gt;</description>
     </item>
     

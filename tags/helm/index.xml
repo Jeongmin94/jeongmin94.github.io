@@ -12,10 +12,10 @@
     
     <item>
       <title>08 Helm</title>
-      <link>https://jeongmin94.github.io/post/08-helm/</link>
+      <link>https://jeongmin94.github.io/k8s/08-helm/</link>
       <pubDate>Sun, 24 Jul 2022 09:05:48 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/08-helm/</guid>
+      <guid>https://jeongmin94.github.io/k8s/08-helm/</guid>
       <description>&lt;p&gt;helm 패키지 매니저에 대해 알아본다.&lt;/p&gt;</description>
     </item>
     

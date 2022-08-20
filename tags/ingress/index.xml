@@ -12,10 +12,10 @@
     
     <item>
       <title>10 Storage</title>
-      <link>https://jeongmin94.github.io/post/10-storage/</link>
+      <link>https://jeongmin94.github.io/k8s/10-storage/</link>
       <pubDate>Sat, 06 Aug 2022 16:10:25 +0900</pubDate>
       
-      <guid>https://jeongmin94.github.io/post/10-storage/</guid>
+      <guid>https://jeongmin94.github.io/k8s/10-storage/</guid>
       <description>&lt;p&gt;쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.&lt;/p&gt;</description>
     </item>
     

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ko" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>10 Storage - 저장소</title>
+  <meta name="description" content="쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.">
+  <meta name="author" content="jeongmin94"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "저장소",
+    
+    "url": "https:\/\/jeongmin94.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/jeongmin94.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io\/k8s\/10-storage\/",
+          "name": "10 storage"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "jeongmin94"
+  },
+  "headline": "10 Storage",
+  "description" : "쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.\n",
+  "inLanguage" : "ko",
+  "wordCount":  1906 ,
+  "datePublished" : "2022-08-06T16:10:25",
+  "dateModified" : "2022-08-06T16:10:25",
+  "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "ingress" ],
+  "mainEntityOfPage" : "https:\/\/jeongmin94.github.io\/k8s\/10-storage\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/jeongmin94.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="10 Storage" />
+<meta property="og:description" content="쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.">
+<meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://jeongmin94.github.io/k8s/10-storage/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="저장소" />
+
+  <meta name="twitter:title" content="10 Storage" />
+  <meta name="twitter:description" content="쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.">
+  <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.68.3" />
+  <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://jeongmin94.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://jeongmin94.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">네비게이션 토글</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jeongmin94.github.io">저장소</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Categories" href="/categories">Categories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="" href="/"></a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="저장소" href="https://jeongmin94.github.io">
+            <img class="avatar-img" src="https://jeongmin94.github.io/img/avatar-icon.png" alt="저장소" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="k8s-heading">
+              
+                <h1>10 Storage</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>쿠버네티스의 데이터 영속성을 위한 스토리지를 알아본다.</p>
+<h1 id="스토리지">스토리지</h1>
+<p>쿠버네티스에서는 단순히 호스트 서버의 볼륨을 연결하는 것 외에 다양한 형태로 데이터를 저장 및 참조하는 방법을 제공한다. 쿠버네티스에서 제공하는 대표적인 볼륨은 다음과 같다.</p>
+<ul>
+<li>PersistentVolume</li>
+<li>PersistentVolumeClaim</li>
+<li>StorageClass</li>
+</ul>
+<p>데이터를 저장하기 위해서는 누군가 데이터를 저장할 공간을 제공해야 하며, 사용자는 그 공간에 데이터를 저장하게 된다. 쿠버네티스에서는 이 과정을 크게 두 부분으로 나누었다.
+데이터 저장소를 제공(provisioning)하는 부분과 마련한 저장소를 사용하는 부분이다.</p>
+<p>PersistentVolume은 클러스터 관리자가 데이터를 어떻게 제공할 것인지에 대한 리소스이고, PersistentVolumeClaim은 사용자가 데이터 저장소를 어떻게 활용할 것인지에 대한 리소스이다. StorageClass는 클러스터 관리자가 사용자들에게 제공하는 저장소 종류에 대한 리소스가 된다. 실제 사용자들에게는 StorageClass 리소스를 통해 동적으로 저장소가 제공된다.</p>
+<h2 id="1-persistentvolume">1. PersistentVolume</h2>
+<p>PersistentVolume(PV)는 데이터 저장소를 추상화시킨 리소스다. 클러스터의 관리자가 데이터 저장소를 사용하기 위해 미리 마련한 저장 장치들을 나타낸다.</p>
+<p>PV에는 구체적인 저장소에 대한 정보가 담겨 있다. AWS에서는 EBS를, GCP에서는 PersistentDisk 정보를, 로컬 호스트의 저장소에서는 path 정보가 담기게 된다. 다양한 저장소를 지원하기 위해 쿠버네티스는 PersistentVolume이라는 추상화된 리소스를 사용하고, 각 환경에 맞게 타입을 선택할 수 있게 됐다.</p>
+<h3 id="hostpath-pv">hostPath PV</h3>
+<p>호스트 서버의 볼륨을 연결하는 PersistentVolume YAML 정의서다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-YAML" data-lang="YAML"><span class="c"># hostpath-pv.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolume<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>my-volume<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">storageClassName</span><span class="p">:</span><span class="w"> </span>manual<span class="w">
+</span><span class="w">  </span><span class="k">capacity</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">hostPath</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">path</span><span class="p">:</span><span class="w"> </span>/tmp<span class="w">
+</span></code></pre></div><ul>
+<li>storageClassName : 저장소 타입의 이름을 정의한다. PersistentVolumeClaim에서 특정 저장소 타입을 지정하기 위해 사용한다.</li>
+<li>capacity : 데이터 저장소의 크기를 지정한다. 호스트 서버의 디스크를 1Gi를 이용한다.</li>
+<li>accessModes : 접근 모드 설정. ReadWriteOnce는 동시에 1개의 Pod만 해당 볼륨에 접근할 수 있다는 것을 의미한다. NFS Volumes 같은 경우 ReadWriteMany로 여러 Pod에서 동시 접근이 가능하다.</li>
+<li>hostPath : 호스트 서버에서 연결될 path를 나타낸다.(ex. /home)</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f hostpath-pv.yaml
+<span class="c1"># persistentvolume/my-volume created</span>
+
+kubectl get pv
+<span class="c1"># NAME        CAPACITY  ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   REASON   AGE</span>
+<span class="c1"># my-volume   1Gi       RWO            Retain           Available           manual                  12s</span>
+</code></pre></div><p>PV 리소스는 네임스페이스에 국한되지 않은 클러스터 레벨의 리소스다. <code>kubectl get pv</code> 명령을 사용하면 STATUS가 <code>Available</code>인 것을 확인할 수 있다. 이것은 현재 볼륨만 생성되었을 뿐 아직 아무도 데이터 저장소를 사용하고 있지 않다는 것을 의미한다. PersistentVolumeClaim에서 저장소를 요청하고 사용하는 방법을 지정해야 한다.</p>
+<h3 id="nfs-pv">NFS PV</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># my-nfs.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolume<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>my-nfs<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">storageClassName</span><span class="p">:</span><span class="w"> </span>nfs<span class="w">
+</span><span class="w">  </span><span class="k">capacity</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>5Gi<span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteMany<span class="w">
+</span><span class="w">  </span><span class="k">mountOptions</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- hard<span class="w">
+</span><span class="w">    </span>- nfsvers=<span class="m">4.1</span><span class="w">
+</span><span class="w">  </span><span class="k">nfs</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">path</span><span class="p">:</span><span class="w"> </span>/tmp<span class="w">
+</span><span class="w">    </span><span class="k">server</span><span class="p">:</span><span class="w"> </span>&lt;NFS_SERVER_IP&gt;<span class="w">
+</span></code></pre></div><p>로컬 호스트의 볼륨 뿐만 아니라 NFS 볼륨도 사용이 가능하다.</p>
+<ul>
+<li>storageClassName : nfs라는 클래스 이름을 지정한다.</li>
+<li>capacity : NFS 서버의 5Gi를 사용하게 된다.</li>
+<li>accessModes : NFS의 경우 여러 Pod의 접근이 가능한 ReadWriteMany를 적용할 수 있다.</li>
+<li>mountOptions : NFS 서버와 마운트하기 위한 옵션 설정이다.</li>
+<li>nfs : 마운트할 NFS 서버 정보를 입력한다.</li>
+</ul>
+<p>현재 NFS 서버가 없기 때문에 StorageClass에서 NFS 서버를 구축하고 설정을 진행한다.</p>
+<h3 id="awselasticblockstore-pv">awsElasticBlockStore PV</h3>
+<blockquote>
+<p>AWS 플랫폼 위에서 적절한 권한이 부여된 환경에서만 동작한다. AWS의 EB를 생성하고 볼륨 아이디를 가져와야 한다.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">aws ec2 create-volume --availability-zone=eu-east-1a \
+  --size=80 --volume-type=gp2
+# {
+#     &#34;AvailabilityZone&#34;: &#34;us-east-1a&#34;,
+#     &#34;Tags&#34;: [],
+#     &#34;Encrypted&#34;: false,
+#     &#34;VolumeType&#34;: &#34;gp2&#34;,
+#     &#34;VolumeId&#34;: &#34;vol-1234567890abcdef0&#34;,
+#     &#34;State&#34;: &#34;creating&#34;,
+#     &#34;Iops&#34;: 240,
+#     &#34;SnapshotId&#34;: &#34;&#34;,
+#     &#34;CreateTime&#34;: &#34;YYYY-MM-DDTHH:MM:SS.000Z&#34;,
+#     &#34;Size&#34;: 80
+# }
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># aws-ebs.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolume<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>aws-ebs<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">capacity</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">awsElasticBlockStore</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">volumeID</span><span class="p">:</span><span class="w"> </span>&lt;volume-id<span class="sd">&gt;
+</span><span class="sd">    fsType: ext4</span><span class="w">
+</span></code></pre></div><ul>
+<li>awsElasticBlockStore : AWS EBS 자원 정보를 입력한다. 해당 EBS에 PV가 연결된다.</li>
+</ul>
+<h3 id="다른-pv">다른 PV</h3>
+<ul>
+<li>azureDisk : Azure에서 제공하는 저장소를 사용할 때 사용</li>
+<li>emptyDir : Pod와 생명 주기를 같이하는 임시 저장소다. 주로 같은 Pod 내 컨테이너들끼리 파일시스템을 통한 정보를 주고 받을 때 사용한다.</li>
+<li>downward API : 일반적인 볼륨과는 다르게 쿠버네티스 리소스 메타 정보를 마운트하여 마치 파일처럼 읽을 수 있게 제공한다.</li>
+<li>configMap : configMap 리소스를 PV 리소스처럼 마운트하여 사용할 수 있다.</li>
+</ul>
+<h2 id="2-persistentvolumeclaim">2. PersistentVolumeClaim</h2>
+<p>PersistentVolumeClaim(PVC)는 저장소 사용자가 PV를 요청하는 리소스다. 클러스터 관리자가 PV를 통해 데이터 저장소를 준비하면, 쿠버네티스의 사용자는 PVC 요청을 통해 리소스를 선점하게 된다.</p>
+<ol>
+<li>클러스터 관리자가 PV를 생성한다.</li>
+<li>PV의 정의에 따라 구체적인 볼륨이 생성된다.</li>
+<li>일반 사용자가 PV를 선점ㄴ하기 위해 PVC 요청을 한다.</li>
+<li>PV와 사용자가 연결되어 볼륨을 사용한다.</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># my-pvc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>my-pvc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">storageClassName</span><span class="p">:</span><span class="w"> </span>manual<span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span></code></pre></div><ul>
+<li>storageClassName : 선점할 PV의 저장소 클래스를 입력한다.</li>
+<li>accessModes : 선점할 PV의 접근 모드를 설정한다.</li>
+<li>resources : 요청할 저장소 크기를 지정한다.</li>
+</ul>
+<p>PVC 리소스를 생성하면 요청할 때 입력한 <code>storageClassName</code>에 맞는 PV를 연결해준다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f my-pvc.yaml
+<span class="c1"># persistentvolumeclaim/my-pvc created</span>
+
+<span class="c1"># 앞에서 생성한 my-volume을 선점하였습니다.</span>
+kubectl get pvc
+<span class="c1"># NAME          STATUS   VOLUME      CAPACITY  ACCESS MODES    ...</span> 
+<span class="c1"># my-pvc        Bound    my-volume   1Gi       RWO             ...</span>
+
+kubectl get pv
+<span class="c1"># NAME        CAPACITY  ACCESS MODES   RECLAIM POLICY   STATUS</span>   
+<span class="c1"># my-volume   1Gi       RWO            Retain           Bound</span>    
+#
+<span class="c1">#                 CLAIM              STORAGECLASS    REASON   AGE</span>
+<span class="c1">#                 default/my-pvc     manual                   11s</span>
+</code></pre></div><p>PVC 리소스가 생성되고 나서 이전에 생성한 <code>manual</code> PV의 STATUS가 <code>Bound</code>로 변경된 것을 확인할 수 있다. CLAIM 역시 <code>my-pvc</code>인 것을 볼 수 있다. PVC를 이용해서 Pod에서 직접 사용하는 방법이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># use-pvc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pod<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>use-pvc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">containers</span><span class="p">:</span><span class="w"> 
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">mountPath</span><span class="p">:</span><span class="w"> </span>/test-volume<span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">  </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">    </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>my-pvc<span class="w">
+</span></code></pre></div><ul>
+<li>volumes : 연결할 볼륨을 설정한다.
+<ul>
+<li>persistentVolumeClaim : PVC 볼륨 사용을 선언한다.
+<ul>
+<li>claimName : 사용할 PVC의 이름을 지정한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f use-pvc.yaml
+<span class="c1"># pod/use-pvc created</span>
+
+<span class="c1"># 데이터 저장</span>
+kubectl <span class="nb">exec</span> use-pvc -- sh -c <span class="s2">&#34;echo &#39;hello&#39; &gt; /test-volume/hello.txt&#34;</span>
+
+<span class="c1"># 데이터 확인</span>
+kubectl <span class="nb">exec</span> use-pvc -- cat /test-volume/hello.txt
+<span class="c1"># hello</span>
+</code></pre></div><p>요청한 PVC에 <code>/text-volume/hello.txt</code>라는 데이터를 저장했다. 그리고 데이터가 저장된 것을 확인했다. 우리는 이 데이터를 PVC라는 저장소에 저장했기 때문에 <code>use-pvc</code> Pod를 삭제하고, 다시 Pod를 생성하면 해당 데이터가 남아있을 것을 기대할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete pod use-pvc
+<span class="c1"># pod/use-pvc deleted</span>
+
+kubectl apply -f use-pvc.yaml
+<span class="c1"># pod/use-pvc created</span>
+
+kubectl <span class="nb">exec</span> use-pvc -- cat /test-volume/hello.txt
+<span class="c1"># hello</span>
+</code></pre></div><p>Pod을 삭제하고 다시 만들어도 PVC를 통해 만들어진 저장소가 유지된 것을 확인할 수 있다.</p>
+<h2 id="pv와-pvc로-나누는-이유">PV와 PVC로 나누는 이유</h2>
+<p>쿠버네티스의 Node와 Pod는 서로 다른 생명주기를 가지고 있다. Pod는 한번 실행되었다가 종료될 수 있지만, Node는 Pod와 상관없이 지속적으로 유지된다. 그리고 Node는 인프라적인 성격이 강하다.</p>
+<p>Pod는 누구나 쉽게 생성하고 삭제할 수 있지만 Node는 클러스터 관리자가 직접 추가해야 하고 비용이 발생한다. 클러스터 관리자가 Node를 제공하면 Pod는 Node의 자원을 소비하는 형태이다.</p>
+<p>PV와 PVC도 이와 비슷한 관계를 가진다. 데이터를 저장하는 PV와 이를 활용하는 PVC의 생명주기는 서로 다르다. PVC는 사용자의 요청에 의해 생성되고 삭제될 수 있지만 PV는 PVC의 생명주기와 상관없이 지속적으로 데이터를 유지하고 있어야 한다. PV도 Node와 마찬가지로 인프라적인 성격이 강하기 때문이다.</p>
+<p>데이터 저장소를 준비하기 위해서는 물리적으로 스토리지를 붙이거나 스토리지 비용을 지불해야 하는데, PVC는 클러스터 관리자가 마련한 PV를 소비하는 역할을 한다.</p>
+<p>또한, PV는 Node와 마찬가지로 네임스페이스에 포함되지 않고(클러스터 레벨) PVC는 Pod와 마찬가지로 특정 네임스페이스 안에 존재(네임스페이스 레벨)한다. 이러한 이유로 쿠버네티스는 스토리지 자원을 책임과 역할에 따라 구분하여 제공한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clean up</span>
+kubectl delete pod use-pvc
+kubectl delete pvc my-pvc
+kubectl delete pv my-volume
+</code></pre></div><h2 id="3-storageclass">3. StorageClass</h2>
+<p>StorageClass 리소스는 클러스터 관리자에 의해 사용자들이 선택할 수 있는 스토리지 열거한 것이다. 사용자는 클러스터 관리자가 제공하는 StorageClass를 이용하여 동적으로 볼륨을 제공 받게 된다.</p>
+<p>원래 데이터 저장소를 사용하려면 먼저 쿠버네티스 관리자가 데이터 저장소를 미리 준비해야 한다. 가용 가능한 볼륨이 존재하지 않는다면 Pod가 생성되지 않고 Pending 상태로 대기하게 된다. 하지만 StorageClass를 사용하면 볼륨 생성을 기다리지 않고 동적으로 데이터 저장소를 제공받을 수 있다.</p>
+<p>쿠버네티스가 설치된 방법에 따라 기본적으로 제공되는 StorageClass가 있다. k3s는 <code>local-path</code>라는 이름의 StorageClass 리소스가 존재하는데, 노드의 로컬 저장소를 활용할 수 있게 해준다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># local-path라는 이름의 StorageClass</span>
+kubectl get sc
+<span class="c1"># NAME                  PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE</span>
+<span class="c1"># local-path (default)  rancher.io/local-path   Delete          WaitForFirstConsumer   false                  20d</span>
+
+kubectl get sc local-path -oyaml
+<span class="c1"># apiVersion: storage.k8s.io/v1</span>
+<span class="c1"># kind: StorageClass</span>
+<span class="c1"># metadata:</span>
+<span class="c1">#   annotations:</span>
+<span class="c1">#     objectset.rio.cattle.io/id: &#34;&#34;</span>
+<span class="c1">#   ...</span>
+<span class="c1">#   name: local-path</span>
+<span class="c1">#   resourceVersion: &#34;172&#34;</span>
+<span class="c1">#   selfLink: /apis/storage.k8s.io/v1/storageclasses/local-path</span>
+<span class="c1">#   uid: 3aede349-0b94-40c8-b10a-784d38f7c120</span>
+<span class="c1"># provisioner: rancher.io/local-path</span>
+<span class="c1"># reclaimPolicy: Delete</span>
+<span class="c1"># volumeBindingMode: WaitForFirstConsumer</span>
+</code></pre></div><p>StorageClass 클래스는 클러스터 레벨 리소스로 조회 시, 네임스페이스 지정을 할 필요가 없다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># my-pvc-sc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>my-pvc-sc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">storageClassName</span><span class="p">:</span><span class="w"> </span>local-path<span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span></code></pre></div><p><code>storageClassName</code>을 기본 제공되는 StorageClass의 이름으로 지정한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f my-pvc-sc.yaml
+<span class="c1"># persistentvolumeclaim/my-pvc-sc created</span>
+
+kubectl get pvc my-pvc-sc
+<span class="c1"># NAME         STATUS    VOLUME     CAPACITY   ACCESS MODES  STORAGECLASS   AGE</span> 
+<span class="c1"># my-pvc-sc    Pending                                       local-path     11s</span> 
+</code></pre></div><p>Pending 상태는 Pod가 PVC를 사용하게 만들면 변하게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># use-pvc-sc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pod<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>use-pvc-sc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">    </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>my-pvc-sc<span class="w">
+</span><span class="w">  </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/usr/share/nginx/html&#34;</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># pod 생성</span>
+kubectl apply -f use-pvc-sc.yaml
+<span class="c1"># pod/use-pvc-sc created</span>
+
+<span class="c1"># STATUS가 Bound로 변경</span>
+kubectl get pvc my-pvc-sc
+<span class="c1"># NAME         STATUS   VOLUME            CAPACITY   ACCESS MODES   STORAGECLASS   AGE</span>
+<span class="c1"># my-pvc-sc    Bound    pvc-479cff32-xx   1Gi        RWO            local-path     92s</span>         
+
+<span class="c1"># 기존에 생성하지 않은 신규 volume이 생성된 것을 확인</span>
+kubectl get pv
+<span class="c1"># NAME              CAPACITY  ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS   REASON   AGE</span>
+<span class="c1"># pvc-479cff32-xx   1Gi       RWO            Delete           Bound    default/my-pvc-sc   local-path              3m</span>
+
+<span class="c1"># pv 상세 정보 확인 (hostPath 등)</span>
+kubectl get pv pvc-479cff32-xx -oyaml
+<span class="c1"># apiVersion: v1</span>
+<span class="c1"># kind: PersistentVolume</span>
+<span class="c1"># metadata:</span>
+<span class="c1">#     ...</span>
+<span class="c1">#   name: pvc-b1727544-f4be-4cd6-acb7-29eb8f68e84a</span>
+<span class="c1">#   ...</span>
+<span class="c1"># spec:</span>
+<span class="c1">#   ...</span>
+<span class="c1">#   hostPath:</span>
+<span class="c1">#     path: /var/lib/rancher/k3s/storage/pvc-b1727544-f4be-4cd6-acb7-29eb8f68e84a</span>
+<span class="c1">#     type: DirectoryOrCreate</span>
+<span class="c1">#   nodeAffinity:</span>
+<span class="c1">#     required:</span>
+<span class="c1">#       nodeSelectorTerms:</span>
+<span class="c1">#       - matchExpressions:</span>
+<span class="c1">#         - key: kubernetes.io/hostname</span>
+<span class="c1">#           operator: In</span>
+<span class="c1">#           values:</span>
+<span class="c1">#           - worker</span>
+<span class="c1">#    ...</span>
+</code></pre></div><p>local-path를 사용하는 StorageClass는 결국 로컬 호스트 볼륨을 사용하는 PV와 다를게 없어 보인다. 실제로 PV를 StorageClass가 대신 만들어 준다는 것을 제외하면 특별한 차이가 없다.</p>
+<p>그럼에도 StorageClass 리소스를 사용하는 이유는 PV를 StorageClass가 대신 특정 디렉토리 위치 아래(<code>/var/lib/rancher/k3s/storage</code>)로만 만들어주기 때문에 일반 사용자가 로컬 호스트 서버의 아무 위치나 디렉토리를 사용하지 못하게 막을 수 있다.</p>
+<p>또한, <code>local-path</code>와 같이 간단하게 PV를 설정하는 경우에는 별 차이가 없겠지만, NFS StorageClass와 같이 NFS 서버 정보, 마운트 옵션, 마운트 디렉토리 등 PV를 생성하기 위해 복잡한 인프라 정보를 알고 있어야 하는 경우, 사용자가 StorageClass에게 요청만 보내면 나머지는 StorageClass가 알아서 PV를 만들어 사용자를 PVC에 연결해준다.</p>
+<ol>
+<li>일반 사용자가 StorageClass를 이용하여 PVC를 생성한다.</li>
+<li>StorageClass 프로비저닝이 사용자의 요청을 인지한다.</li>
+<li>사용자의 요청에 따라 PV를 생성한다.</li>
+<li>볼륨이 만들어진다.</li>
+<li>사용자는 PV와 연결되어 볼륨을 사용한다.</li>
+</ol>
+<h3 id="nfs-storageclass-설정">NFS StorageClass 설정</h3>
+<p>helm chart 중에 NFS 서버를 생성하고, NFS StorageClass를 제공하는 <code>nfs-server-provisioner</code>라는 chart가 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">helm install nfs stable/nfs-server-provisioner <span class="se">\
+</span><span class="se"></span>    --set persistence.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span><span class="se"></span>    --set persistence.size<span class="o">=</span>10Gi <span class="se">\
+</span><span class="se"></span>    --version 1.1.1 <span class="se">\
+</span><span class="se"></span>    --namespace ctrl
+<span class="c1"># NAME: nfs</span>
+<span class="c1"># LAST DEPLOYED: Wed Jul  8 13:19:46 2020</span>
+<span class="c1"># NAMESPACE: ctrl</span>
+<span class="c1"># STATUS: deployed</span>
+<span class="c1"># REVISION: 1</span>
+<span class="c1"># TEST SUITE: None</span>
+<span class="c1"># NOTES:</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># nfs-server-provisioner라는 Pod가 생성되어 있습니다.</span>
+kubectl get pod -n ctrl
+<span class="c1"># NAME                           READY   STATUS       RESTARTS   AGE</span>
+<span class="c1"># ...</span>
+<span class="c1"># nfs-nfs-server-provisioner-0   1/1     Running      0          4m</span>
+
+<span class="c1"># 이것은 StatefulSet로 구성되어 있습니다.</span>
+kubectl get statefulset  -n ctrl
+<span class="c1"># NAME                         READY   AGE</span>
+<span class="c1"># nfs-nfs-server-provisioner   1/1     57s</span>
+
+<span class="c1"># nfs-server-provisioner Service도 있습니다.</span>
+kubectl get svc  -n ctrl
+<span class="c1"># NAME                                  TYPE           CLUSTER-IP     ..</span>
+<span class="c1"># nginx-nginx-ingress-default-backend   ClusterIP      10.43.79.133   ..</span> 
+<span class="c1"># nginx-nginx-ingress-controller        LoadBalancer   10.43.182.174  ..</span>  
+<span class="c1"># nfs-nfs-server-provisioner            ClusterIP      10.43.248.122  ..</span>  
+
+<span class="c1"># 새로운 nfs StorageClass 생성</span>
+kubectl get sc
+<span class="c1"># NAME                 PROVISIONER                                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE</span>
+<span class="c1"># local-path (default) rancher.io/local-path                      Delete          WaitForFirstConsumer   false                  20d</span>
+<span class="c1"># nfs                  cluster.local/nfs-nfs-server-provisioner   Delete          Immediate              true                   10s</span>
+</code></pre></div><p><code>nfs-server-provisioner</code>는 크게 StatefulSet과 Service로 이루어져 있다. 그리고 nfs라는 StorageClass가 생성된 것을 확인할 수 있다. 이를 활용하여 NFS 볼륨을 생성한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># nfs-sc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>nfs-sc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="c"># 기존 local-path에서 nfs로 변경</span><span class="w">
+</span><span class="w">  </span><span class="k">storageClassName</span><span class="p">:</span><span class="w"> </span>nfs<span class="w">
+</span><span class="w">  </span><span class="c"># accessModes를 ReadWriteMany로 변경</span><span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteMany<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f nfs-sc.yaml
+<span class="c1"># persistentvolumeclaim/nfs-sc created</span>
+
+<span class="c1"># pvc 리소스 확인</span>
+kubectl get pvc
+<span class="c1"># NAME        STATUS   VOLUME             CAPACITY   ACCESS MODES  ...</span>
+<span class="c1"># my-pvc-sc   Bound    pvc-b1727544-xxx   1Gi        RWO           ...</span>
+<span class="c1"># nfs-sc      Bound    pvc-49fea9cf-xxx   1Gi        RWO           ...</span>
+
+<span class="c1"># pv 리소스 확인</span>
+kubectl get pv pvc-49fea9cf-xxx
+<span class="c1"># NAME                CAPACITY   ACCESS MODES   RECLAIM  POLICY  STATUS    CLAIM            STORAGECLASS   REASON  AGE</span>
+<span class="c1"># pvc-49fea9cf-xxx    1Gi        RWX            Delete           Bound     default/nfs-sc   nfs                    5m</span>
+
+<span class="c1"># pv 상세 정보 확인 (nfs 마운트 정보)</span>
+kubectl get pv pvc-49fea9cf-xxx -oyaml
+<span class="c1"># apiVersion: v1</span>
+<span class="c1"># kind: PersistentVolume</span>
+<span class="c1"># metadata:</span>
+<span class="c1">#   ...</span>
+<span class="c1"># spec:</span>
+<span class="c1">#   accessModes:</span>
+<span class="c1">#   - ReadWriteMany</span>
+<span class="c1">#   capacity:</span>
+<span class="c1">#     storage: 1Gi</span>
+<span class="c1">#   claimRef:</span>
+<span class="c1">#     apiVersion: v1</span>
+<span class="c1">#     kind: PersistentVolumeClaim</span>
+<span class="c1">#     name: nfs-sc</span>
+<span class="c1">#     namespace: default</span>
+<span class="c1">#     resourceVersion: &#34;10084380&#34;</span>
+<span class="c1">#     uid: 2e95f6c4-2b43-4375-808f-0c93e44a1003</span>
+<span class="c1">#   mountOptions:</span>
+<span class="c1">#   - vers=3</span>
+<span class="c1">#   nfs:</span>
+<span class="c1">#     path: /export/pvc-2e95f6c4-2b43-4375-808f-0c93e44a1003</span>
+<span class="c1">#     server: 10.43.248.122</span>
+<span class="c1">#   persistentVolumeReclaimPolicy: Delete</span>
+<span class="c1">#   storageClassName: nfs</span>
+<span class="c1">#   volumeMode: Filesystem</span>
+<span class="c1"># status:</span>
+<span class="c1">#   phase: Bound</span>
+</code></pre></div><p>NFS StorageClass를 이용하여 PVC를 생성하면 다음과 같이 자동으로 PV가 생성되고 사용자가 직접 NFS 서버 정보를 몰라도 자동으로 연결이 된다. 이제 이 PVC를 사용하는 Pod를 생성한다. 동일한 NFS 저장소를 바라보는 nginx pod를 2개 만들고, 이때 nodeSelector를 이용하여 서로 다른 노드에 Pod를 배치한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># use-nfs-sc.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pod<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>use-nfs-sc-master<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">    </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>nfs-sc<span class="w">
+</span><span class="w">  </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/usr/share/nginx/html&#34;</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">  </span><span class="k">nodeSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">kubernetes.io/hostname</span><span class="p">:</span><span class="w"> </span>master<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pod<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>use-nfs-sc-worker<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">    </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>nfs-sc<span class="w">
+</span><span class="w">  </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span><span class="k">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">mountPath</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/usr/share/nginx/html&#34;</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">  </span><span class="k">nodeSelector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">kubernetes.io/hostname</span><span class="p">:</span><span class="w"> </span>worker<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f use-nfs-sc.yaml
+<span class="c1"># pod/use-nfs-sc-master created</span>
+<span class="c1"># pod/use-nfs-sc-worker created</span>
+
+kubectl get pod -o wide
+<span class="c1"># NAME               READY  STATUS    RESTARTS  AGE   IP          NODE</span>
+<span class="c1"># ...</span>
+<span class="c1"># use-nfs-sc-master  1/1    Running   0         19s   10.42.0.8   master</span>
+<span class="c1"># use-nfs-sc-worker  1/1    Running   0         19s   10.42.0.52  worker</span>
+</code></pre></div><p>서로 다른 Node에 만들어진 Pod을 확인할 수 있다. master에 위치한 Pod에서 index.html 파일을 생성하고, worker에 위치한 Pod에서는 index.html을 읽어 NFS 저장소를 사용하는지 확인할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># master Pod에 index.html 파일을 생성합니다.</span>
+kubectl <span class="nb">exec</span> use-nfs-sc-master -- sh -c <span class="se">\
+</span><span class="se"></span>      <span class="s2">&#34;echo &#39;hello world&#39; &gt;&gt; /usr/share/nginx/html/index.html&#34;</span>
+
+<span class="c1"># worker Pod에서 호출을 합니다.</span>
+kubectl <span class="nb">exec</span> use-nfs-sc-worker -- curl -s localhost
+<span class="c1"># hello world</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clean up</span>
+kubectl delete pod --all
+kubectl delete pvc nfs-sc my-pvc-sc
+</code></pre></div><h2 id="마치며">마치며</h2>
+<p>스토리지는 컴퓨팅에 있어서 중요한 리소스다. 쿠버네티스에서는 스토리지 생성(PV)과 활용(PVC)이라는 생명주기를 나누어 관리하여 플랫폼 종속성을 최대한 낮추고자 했다.</p>
+<p>또한, 매번 관리자가 스토리지 자원을 프로비저닝 할 필요 없이 클러스터 관리자가 제공하는 스토리지 종류(StorageClass)를 통해 스토리지 리소스를 동적으로 사용할 수 있는 방법도 제공해준다.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://jeongmin94.github.io/tags/ingress/">ingress</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://jeongmin94.github.io/k8s/08-helm/" data-toggle="tooltip" data-placement="top" title="08 Helm">&larr; 이전 글</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+<script src="https://utteranc.es/client.js"
+        repo="Jeongmin94/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Jeongmin94" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              jeongmin94
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jeongmin94.github.io">저장소</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://jeongmin94.github.io/js/main.js"></script>
+<script src="https://jeongmin94.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://jeongmin94.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

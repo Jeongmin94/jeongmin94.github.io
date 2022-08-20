@@ -8,10 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <title>07 Kube Controller - 저장소</title>
-  <meta name="description" content="쿠버네티스 컨트롤러 https://kubernetes.io/docs/concepts/architecture/controller
-쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
-컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.
-컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.">
+  <meta name="description" content="쿠버네티스 컨트롤러에 대해 알아본다.">
   <meta name="author" content="jeongmin94"/><script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -60,9 +57,9 @@
     "name" : "jeongmin94"
   },
   "headline": "07 Kube Controller",
-  "description" : "쿠버네티스 컨트롤러 https:\/\/kubernetes.io\/docs\/concepts\/architecture\/controller\n쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.\n컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.\n컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.",
+  "description" : "쿠버네티스 컨트롤러에 대해 알아본다.\n",
   "inLanguage" : "ko",
-  "wordCount":  3586 ,
+  "wordCount":  3352 ,
   "datePublished" : "2022-07-18T21:59:10",
   "dateModified" : "2022-07-18T21:59:10",
   "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
@@ -82,23 +79,18 @@
 </script>
 
 <meta property="og:title" content="07 Kube Controller" />
-<meta property="og:description" content="쿠버네티스 컨트롤러 https://kubernetes.io/docs/concepts/architecture/controller
-쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
-컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분이 바로 바라는 상태와 현재 상태이다. 관찰 대상이 되는 리소스가 사용자의 요청에 따라 바라는 상태가 변경되고, 변경된 상태가 현재 상태와 달라지는 경우 컨트롤러가 현재 상태를 바라는 상태와 동일하게 만들 수 있도록 정해진 작업을 수행하게 된다.
-컨트롤러는 특정 리소스의 상태를 바라는 상태로 만들기 위해 배치 작업을 수행하는 Pod를 생성하고, 이 Pod를 통해 특정 리소스의 현재 상태를 바라는 상태로 맞춰지게 만든다.">
+<meta property="og:description" content="쿠버네티스 컨트롤러에 대해 알아본다.">
 <meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
 <meta property="og:url" content="https://jeongmin94.github.io/k8s/07-kube-controller/" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="저장소" />
 
   <meta name="twitter:title" content="07 Kube Controller" />
-  <meta name="twitter:description" content="쿠버네티스 컨트롤러 https://kubernetes.io/docs/concepts/architecture/controller
-쿠번네티스의 컨트롤러는 특정 리소스를 지속적으로 바라보며 리소스의 생명주기에 따라 미리 정해진 작업을 수행하는 주체이다.
-컨트롤러는 control-loop를 지속적으로 돌면서 특정 리소스를 관찰하는데, 이 때 중요하게 봐야하는 부분 …">
+  <meta name="twitter:description" content="쿠버네티스 컨트롤러에 대해 알아본다.">
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.101.0" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -259,7 +251,8 @@
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <h1 id="쿠버네티스-컨트롤러">쿠버네티스 컨트롤러</h1>
+        <p>쿠버네티스 컨트롤러에 대해 알아본다.</p>
+<h1 id="쿠버네티스-컨트롤러">쿠버네티스 컨트롤러</h1>
 <blockquote>
 <p><a href="https://kubernetes.io/docs/concepts/architecture/controller">https://kubernetes.io/docs/concepts/architecture/controller</a></p>
 </blockquote>
@@ -269,71 +262,71 @@
 <p>쿠버네티스에서는 기본적으로 ReplicaSet, Deployment, Job &amp; CronJob, DaemonSet, StatefulSet 등과 같은 내장 컨트롤러를 지원해준다. 내장 컨트롤러는 kube-controller-manager 컴포넌트 안에서 동작하며 사용자 정의 컨트롤러를 만들어 사용할 수도 있다.</p>
 <h2 id="1-replicaset">1. ReplicaSet</h2>
 <p>이름에서 알 수 있듯 Pod의 복제를 담당하는 컨트롤러이다. 복제를 통해 하나의 Pod에 문제가 생기더라도 다른 Pod을 이용하여 동일한 서비스를 제공할 수 있다.(쿠버네티스에서 Pod은 가축이기 때문에 쉽게 대체가능하다.)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="c"># myreplicaset.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ReplicaSet			# ReplicaSet 종류 지정</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myreplicaset</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">				</span><span class="c"># 복제할 Pod의 개수</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">matchLabels:			# 복제할 Pod을 선택(라벨링 시스템 사용)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-rs</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">template:					# 복제할 Pod의 spec 정의</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-rs</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span></code></pre></div><p>ReplicaSet에서도 라벨링 시스템을 이용하여 복제 개수를 유지할 Pod을 선택한다. 여기에서는 <code>nginx-rs</code>라는 라벨을 가진 Pod을 복제하게 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f myreplicaset.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># replicaset.apps/myreplicaset created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get replicaset  <span class="c1"># 축약 시, rs</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME            DESIRED   CURRENT   READY   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset    2         2         2       1m</span>
-</span></span></code></pre></div><ul>
+<div class="highlight"><pre class="chroma"><code class="language-YAML" data-lang="YAML"><span class="c"># myreplicaset.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ReplicaSet<span class="w">			</span><span class="c"># ReplicaSet 종류 지정</span><span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>myreplicaset<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">				</span><span class="c"># 복제할 Pod의 개수</span><span class="w">
+</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
+</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">			</span><span class="c"># 복제할 Pod을 선택(라벨링 시스템 사용)</span><span class="w">
+</span><span class="w">      </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx-rs<span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">					</span><span class="c"># 복제할 Pod의 spec 정의</span><span class="w">
+</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx-rs<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span></code></pre></div><p>ReplicaSet에서도 라벨링 시스템을 이용하여 복제 개수를 유지할 Pod을 선택한다. 여기에서는 <code>nginx-rs</code>라는 라벨을 가진 Pod을 복제하게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f myreplicaset.yaml
+<span class="c1"># replicaset.apps/myreplicaset created</span>
+
+kubectl get replicaset  <span class="c1"># 축약 시, rs</span>
+<span class="c1"># NAME            DESIRED   CURRENT   READY   AGE</span>
+<span class="c1"># myreplicaset    2         2         2       1m</span>
+</code></pre></div><ul>
 <li>DESIRED : YAML 정의서에서 정의한 <code>replicas</code>의 2가 바라는 복제 Pod의 개수</li>
 <li>CURRENT : 현재 Pod의 개수</li>
 <li>READY : 생성된 Pod 중 준비가 완료된 Pod의 개수</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-jc496  1/1     Running     0          6s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-xr216  1/1     Running     0          6s</span>
-</span></span></code></pre></div><p>그리고 나서 Pod를 조회하면 <code>myreplicaset-XXXX</code>라는 형식을 가진 Pod이 2개 생성된 것을 확인할 수 있다. YAML 정의서에 정의한 리소스의 이름인 <code>myreplicaset</code>이라는 접두어에 쿠버네티스에서 알아서 이름을 붙여준 것이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl get pod
+<span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
+<span class="c1"># myreplicaset-jc496  1/1     Running     0          6s</span>
+<span class="c1"># myreplicaset-xr216  1/1     Running     0          6s</span>
+</code></pre></div><p>그리고 나서 Pod를 조회하면 <code>myreplicaset-XXXX</code>라는 형식을 가진 Pod이 2개 생성된 것을 확인할 수 있다. YAML 정의서에 정의한 리소스의 이름인 <code>myreplicaset</code>이라는 접두어에 쿠버네티스에서 알아서 이름을 붙여준 것이다.</p>
 <p>ReplicaSet 리소스는 그 자체로는 복제와 유지의 기능만을 담당하고 있고, 복제된 Pod의 실행은 Pod 리소스를 직접 사용하게 된다. 쿠버네티스는 이처럼 컨트롤러에서 모든 일을 담당하는 것이 아니라 각 컨트롤러 리소스가 담당한 작업을 제외한 나머지 작업은 적절한 다른 리소스를 사용하게 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 복제본 개수 확장</span>
-</span></span><span class="line"><span class="cl">kubectl scale rs --replicas <span class="m">4</span> myreplicaset
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get rs
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME            DESIRED   CURRENT   READY   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset    4         4         4       1m</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-jc496  1/1     Running     0          2m</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-xr216  1/1     Running     0          2m</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-dc20x  1/1     Running     0          9s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-3pq2t  1/1     Running     0          9s</span>
-</span></span></code></pre></div><p>가축은 필요할 때 늘리고 줄일 수 있다. ReplicaSet으로 복제할 Pod 역시 마찬가지이다. <code>scale</code>이라는 명령을 통해 복제본의 개수를 손쉽게 늘리거나 줄일 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 복제본 개수 확장</span>
+kubectl scale rs --replicas <span class="m">4</span> myreplicaset
+
+kubectl get rs
+<span class="c1"># NAME            DESIRED   CURRENT   READY   AGE</span>
+<span class="c1"># myreplicaset    4         4         4       1m</span>
+
+kubectl get pod
+<span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
+<span class="c1"># myreplicaset-jc496  1/1     Running     0          2m</span>
+<span class="c1"># myreplicaset-xr216  1/1     Running     0          2m</span>
+<span class="c1"># myreplicaset-dc20x  1/1     Running     0          9s</span>
+<span class="c1"># myreplicaset-3pq2t  1/1     Running     0          9s</span>
+</code></pre></div><p>가축은 필요할 때 늘리고 줄일 수 있다. ReplicaSet으로 복제할 Pod 역시 마찬가지이다. <code>scale</code>이라는 명령을 통해 복제본의 개수를 손쉽게 늘리거나 줄일 수 있다.</p>
 <p>여기서 강제로 복제본으로 생성된 Pod을 삭제하면 어떻게 될까? 직접 delete 명령어를 사용해서 Pod을 삭제해보자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete pod myreplicaset-jc496
-</span></span><span class="line"><span class="cl"><span class="c1"># pod &#34;myreplicaset-jc496&#34; deleted</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-xr216  1/1     Running     0          3m</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-dc20x  1/1     Running     0          1m</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-3pq2t  1/1     Running     0          1m</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myreplicaset-0y18b  1/1     Running     0          11s</span>
-</span></span></code></pre></div><p><code>jc496</code>이라는 Pod이 삭제되었지만, control-loop를 돌며 대기하는 컨트롤러가 Pod의 현재 개수가 줄어들어 다시 하나를 생성해준 것을 확인할 수 있다. 즉, 복제본의 개수 4개(<code>replicas: 4</code>)를 바라는 상태로 보고 현재 상태에서 변화가 발생한다면 이를 바라는 상태로 맞춰주기 위해 새로운 Pod을 생성한 것을 알 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete pod myreplicaset-jc496
+<span class="c1"># pod &#34;myreplicaset-jc496&#34; deleted</span>
+
+kubectl get pod
+<span class="c1"># NAME                READY   STATUS      RESTARTS   AGE</span>
+<span class="c1"># myreplicaset-xr216  1/1     Running     0          3m</span>
+<span class="c1"># myreplicaset-dc20x  1/1     Running     0          1m</span>
+<span class="c1"># myreplicaset-3pq2t  1/1     Running     0          1m</span>
+<span class="c1"># myreplicaset-0y18b  1/1     Running     0          11s</span>
+</code></pre></div><p><code>jc496</code>이라는 Pod이 삭제되었지만, control-loop를 돌며 대기하는 컨트롤러가 Pod의 현재 개수가 줄어들어 다시 하나를 생성해준 것을 확인할 수 있다. 즉, 복제본의 개수 4개(<code>replicas: 4</code>)를 바라는 상태로 보고 현재 상태에서 변화가 발생한다면 이를 바라는 상태로 맞춰주기 위해 새로운 Pod을 생성한 것을 알 수 있다.</p>
 <p>서비스의 가용성을 위해 일정 수의 컨테이너를 지속적으로 유지시켜야 하는 경우 ReplicaSet을 유용하게 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ReplicaSet 정리</span>
-</span></span><span class="line"><span class="cl">kubectl delete rs --all
-</span></span></code></pre></div><h2 id="2-deployment">2. Deployment</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ReplicaSet 정리</span>
+kubectl delete rs --all
+</code></pre></div><h2 id="2-deployment">2. Deployment</h2>
 <p>ReplicaSet과 유사하지만 업데이트 및 배포에 조금 더 특화된 리소스가 바로 Deployment이다. Deployment 컨트롤러에서는 다음과 같은 작업을 한다.</p>
 <ul>
 <li>롤링 업데이트를 지원하고 롤링 업데이트되는 Pod의 비율을 조절할 수 있다.</li>
@@ -342,30 +335,30 @@
 <li>배포 상태를 확인할 수 있다.</li>
 </ul>
 <p>Deployment는 말 그대로 ReplicaSet이 가지고 있는 Pod의 개수를 조절하는 기능에 더하여 어플리케이션의 배포에 특화된 리소스라고 할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># mydeploy.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mydeploy</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">					</span><span class="c"># 유지할 Pod의 개수</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">matchLabels:				# 복제할 Pod을 선택(라벨링 시스템 사용) </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">RollingUpdate			# 배포전략 종류 선택</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">rollingUpdate</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="m">25</span><span class="l">%  </span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="m">25</span><span class="l">%</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">template:						# 복제할 Pod 정의</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span></code></pre></div><p>Deployment의 YAML 정의서는 ReplicaSet과 마찬가지로 Pod의 개수와 복제할 Pod을 지정해주어야 한다. 배포에 대한 부분은 <code>strategy</code>에서 정의를 하고 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># mydeploy.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Deployment<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>mydeploy<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">					</span><span class="c"># 유지할 Pod의 개수</span><span class="w">
+</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
+</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">				</span><span class="c"># 복제할 Pod을 선택(라벨링 시스템 사용) </span><span class="w">
+</span><span class="w">      </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span>strategy<span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>RollingUpdate<span class="w">			</span><span class="c"># 배포전략 종류 선택</span><span class="w">
+</span><span class="w">    </span>rollingUpdate<span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">maxUnavailable</span><span class="p">:</span><span class="w"> </span><span class="m">25</span>%<span class="w">  
+</span><span class="w">      </span><span class="k">maxSurge</span><span class="p">:</span><span class="w"> </span><span class="m">25</span>%<span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">						</span><span class="c"># 복제할 Pod 정의</span><span class="w">
+</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span></code></pre></div><p>Deployment의 YAML 정의서는 ReplicaSet과 마찬가지로 Pod의 개수와 복제할 Pod을 지정해주어야 한다. 배포에 대한 부분은 <code>strategy</code>에서 정의를 하고 있다.</p>
 <ul>
 <li>배포타입 - 배포타입에는 RollingUpdate와 Recreate가 있다. 전자는 점진적으로 업데이트가 진행되고, 후자는 복제된 Pod이 전부 삭제되고 새로 생성된다.
 <ul>
@@ -377,172 +370,172 @@
 <li>maxSurge : 점진적 업데이트 중 바라는 상태로 설정한 최대 Pod의 개수를 초과해서 만들 수 있는 Pod의 개수를 정의한다.(소수점 올림)</li>
 </ul>
 <p>위와 같은 설정을 한 Deployment 컨트롤러는 기본적으로 10개의 Pod을 유지하게 되지만, 업데이트를 하는 경우에는 maxUnavailable과 maxSurge 설정에 따라 최소 8개에서 최대 13개까지의 Pod을 점진적으로 업데이트하게 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply --record -f mydeploy.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get deployment  <span class="c1"># 축약 시, deploy</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME       READY   UP-TO-DATE   AVAILABLE   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy   10/10   10           10          10m</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get rs
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME              DESIRED   CURRENT   READY   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-649xxx   10        10        10       1m</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                   READY   STATUS       RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-649xxx-bbxx   1/1     Running      0          9s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-649xxx-dtxx   1/1     Running      0          2m9s</span>
-</span></span></code></pre></div><p>Deployment 리소스를 사용하게 되면 deploy 리소스와 함께 ReplicaSet과 Pod이 생성된 것을 확인할 수 있다. 각각의 리소스의 역할은 다음과 같다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply --record -f mydeploy.yaml
+<span class="c1"># deployment.apps/mydeploy created</span>
+
+kubectl get deployment  <span class="c1"># 축약 시, deploy</span>
+<span class="c1"># NAME       READY   UP-TO-DATE   AVAILABLE   AGE</span>
+<span class="c1"># mydeploy   10/10   10           10          10m</span>
+
+kubectl get rs
+<span class="c1"># NAME              DESIRED   CURRENT   READY   AGE</span>
+<span class="c1"># mydeploy-649xxx   10        10        10       1m</span>
+
+kubectl get pod
+<span class="c1"># NAME                   READY   STATUS       RESTARTS   AGE</span>
+<span class="c1"># mydeploy-649xxx-bbxx   1/1     Running      0          9s</span>
+<span class="c1"># mydeploy-649xxx-dtxx   1/1     Running      0          2m9s</span>
+</code></pre></div><p>Deployment 리소스를 사용하게 되면 deploy 리소스와 함께 ReplicaSet과 Pod이 생성된 것을 확인할 수 있다. 각각의 리소스의 역할은 다음과 같다.</p>
 <ul>
 <li>Deployment : 배포 담당</li>
 <li>ReplicaSet : 복제 담당</li>
 <li>Pod : 컨테이너 실행 담당</li>
 </ul>
 <p>배포타입을 롤링 업데이트로 설정했기 때문에 복제된 Pod이 점진적으로 업데이트가 되는지 확인할 필요가 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 이미지 주소 변경</span>
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">set</span> image deployment &lt;NAME&gt; &lt;CONTAINER_NAME&gt;<span class="o">=</span>&lt;IMAGE&gt;
-</span></span></code></pre></div><p>위의 명령어를 입력하면 이미지의 주소를 변경할 수 있는데, nginx의 버전 변경으로 롤링 업데이트를 진행한다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.9.1로 업데이트</span>
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">set</span> image deployment mydeploy <span class="nv">nginx</span><span class="o">=</span>nginx:1.9.1 --record
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy image updated</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 업데이트 진행 상황 확인합니다.</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                   READY   STATUS             RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-649xxx-bbxx   1/1     ContainerCreating  0          9s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-649xxx-dtxx   1/1     Running            0          2m9s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 배포 상태확인</span>
-</span></span><span class="line"><span class="cl">kubectl rollout status deployment mydeploy
-</span></span><span class="line"><span class="cl"><span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish: </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 7 out of 10 new replicas have been updated...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish: </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 7 out of 10 new replicas have been updated...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish: </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 7 out of 10 new replicas have been updated...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish: </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 8 out of 10 new replicas have been updated...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment &#34;mydeploy&#34; successfully rolled out</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 특정 Pod의 이미지 tag 정보를 확인합니다.</span>
-</span></span><span class="line"><span class="cl">kubectl get pod mydeploy-xxx-xxx -o yaml <span class="p">|</span> grep <span class="s2">&#34;image: nginx&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   - image: nginx:1.9.1</span>
-</span></span></code></pre></div><p><code>rollout status</code> 명령어를 사용하면 배포 중인 Deployment 리소스의 상태를 확인할 수 있다. 복제된 전체 Pod의 개수와 현재 업데이트된 Pod의 개수를 확인할 수 있다. Deployment 리소스의 롤링 업데이트 옵션과 Service 리소스에서 만들어진 엔드포인트를 함께 사용하면 무중단 배포를 손쉽게 적용할 수 있게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 이미지 주소 변경</span>
+kubectl <span class="nb">set</span> image deployment &lt;NAME&gt; &lt;CONTAINER_NAME&gt;<span class="o">=</span>&lt;IMAGE&gt;
+</code></pre></div><p>위의 명령어를 입력하면 이미지의 주소를 변경할 수 있는데, nginx의 버전 변경으로 롤링 업데이트를 진행한다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.9.1로 업데이트</span>
+kubectl <span class="nb">set</span> image deployment mydeploy <span class="nv">nginx</span><span class="o">=</span>nginx:1.9.1 --record
+<span class="c1"># deployment.apps/mydeploy image updated</span>
+
+<span class="c1"># 업데이트 진행 상황 확인합니다.</span>
+kubectl get pod
+<span class="c1"># NAME                   READY   STATUS             RESTARTS   AGE</span>
+<span class="c1"># mydeploy-649xxx-bbxx   1/1     ContainerCreating  0          9s</span>
+<span class="c1"># mydeploy-649xxx-dtxx   1/1     Running            0          2m9s</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># 배포 상태확인</span>
+kubectl rollout status deployment mydeploy
+<span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish:</span> 
+<span class="c1"># 7 out of 10 new replicas have been updated...</span>
+<span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish:</span> 
+<span class="c1"># 7 out of 10 new replicas have been updated...</span>
+<span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish:</span> 
+<span class="c1"># 7 out of 10 new replicas have been updated...</span>
+<span class="c1"># Waiting for deployment &#34;mydeploy&#34; rollout to finish:</span> 
+<span class="c1"># 8 out of 10 new replicas have been updated...</span>
+<span class="c1"># ...</span>
+<span class="c1"># deployment &#34;mydeploy&#34; successfully rolled out</span>
+
+<span class="c1"># 특정 Pod의 이미지 tag 정보를 확인합니다.</span>
+kubectl get pod mydeploy-xxx-xxx -o yaml <span class="p">|</span> grep <span class="s2">&#34;image: nginx&#34;</span>
+<span class="c1">#   - image: nginx:1.9.1</span>
+</code></pre></div><p><code>rollout status</code> 명령어를 사용하면 배포 중인 Deployment 리소스의 상태를 확인할 수 있다. 복제된 전체 Pod의 개수와 현재 업데이트된 Pod의 개수를 확인할 수 있다. Deployment 리소스의 롤링 업데이트 옵션과 Service 리소스에서 만들어진 엔드포인트를 함께 사용하면 무중단 배포를 손쉽게 적용할 수 있게 된다.</p>
 <p>Deployment의 또 다른 기능인 롤백을 테스트할 차례이다. nginx의 버전을 임의로 변경하여 에러를 발생시키고, 롤백을 통해 정상적으로 작동하게 만들 것이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.9.1 버전에서 (존재하지 않는) 1.9.21 버전으로 업데이트 (에러 발생)</span>
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">set</span> image deployment mydeploy <span class="nv">nginx</span><span class="o">=</span>nginx:1.9.21 --record
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy image updated</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Pod의 상태확인</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                  READY   STATUS            RESTARTS  AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-bbk9v   1/1     Running           0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-dt5d7   1/1     Running           0         9m28s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-wrpgt   1/1     Running           0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-sbkzz   1/1     Running           0         9m27s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-hclwx   1/1     Running           0         9m26s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-98hd5   1/1     Running           0         9m25s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-5gjrg   1/1     Running           0         9m24s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-4lz4p   1/1     Running           0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-7kzpf   0/1     ErrImagePull      0         48s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-rfgbd   0/1     ErrImagePull      0         48s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-v5ms5   0/1     ErrImagePull      0         48s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-rccw4   0/1     ErrImagePull      0         48s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-ncqd2   0/1     ImagePullBackOff  0         48s</span>
-</span></span></code></pre></div><p>비정상적인 nginx의 버전을 입력하여 Pod이 정상적으로 실행되지 않고 있는 상황이다. 여기에서 maxUnavailable 에서 설정한 비율만큼은 사용하지 않고 있기 때문에 10개 중 8개의 Pod은 실행중인 상황임을 알 수 있고, maxSurge 값으로 추가적으로 생성할 수 있는 Pod을 설정해주었기 때문에 최대 Pod이 13개인 것을 확인할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 지금까지의 배포 히스토리를 확인합니다.</span>
-</span></span><span class="line"><span class="cl">kubectl rollout <span class="nb">history</span> deployment mydeploy
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># REVISION  CHANGE-CAUSE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 1         kubectl apply --record=true --filename=mydeploy.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2         kubectl set image deployment mydeploy nginx=nginx:1.9.1 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#                   --record=true</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 3         kubectl set image deployment mydeploy nginx=nginx:1.9.21 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#                   --record=true</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 잘못 설정된 1.9.21에서 --&gt; 1.9.1로 롤백</span>
-</span></span><span class="line"><span class="cl">kubectl rollout undo deployment mydeploy
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy rolled back</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl rollout <span class="nb">history</span> deployment mydeploy
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># REVISION  CHANGE-CAUSE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 1         kubectl apply --record=true --filename=mydeploy.yaml</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 3         kubectl set image deployment mydeploy nginx=nginx:1.9.21 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#                    --record=true</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 4         kubectl set image deployment mydeploy nginx=nginx:1.9.1 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#                    --record=true</span>
-</span></span></code></pre></div><p><code>kubectl rollout history</code> 명령어를 사용하면 지금까지 Deployment 리소스를 이용해서 배포한 내역을 확인할 수 있다. 마지막 배포에서 nginx 버전 문제로 Pod이 정상적으로 실행되지 않았기 때문에 2번이나 1번으로 롤백을 하면 될 것이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.9.1 버전에서 (존재하지 않는) 1.9.21 버전으로 업데이트 (에러 발생)</span>
+kubectl <span class="nb">set</span> image deployment mydeploy <span class="nv">nginx</span><span class="o">=</span>nginx:1.9.21 --record
+<span class="c1"># deployment.apps/mydeploy image updated</span>
+
+<span class="c1"># Pod의 상태확인</span>
+kubectl get pod
+<span class="c1"># NAME                  READY   STATUS            RESTARTS  AGE</span>
+<span class="c1"># mydeploy-6498-bbk9v   1/1     Running           0         9m38s</span>
+<span class="c1"># mydeploy-6498-dt5d7   1/1     Running           0         9m28s</span>
+<span class="c1"># mydeploy-6498-wrpgt   1/1     Running           0         9m38s</span>
+<span class="c1"># mydeploy-6498-sbkzz   1/1     Running           0         9m27s</span>
+<span class="c1"># mydeploy-6498-hclwx   1/1     Running           0         9m26s</span>
+<span class="c1"># mydeploy-6498-98hd5   1/1     Running           0         9m25s</span>
+<span class="c1"># mydeploy-6498-5gjrg   1/1     Running           0         9m24s</span>
+<span class="c1"># mydeploy-6498-4lz4p   1/1     Running           0         9m38s</span>
+<span class="c1"># mydeploy-6fbf-7kzpf   0/1     ErrImagePull      0         48s</span>
+<span class="c1"># mydeploy-6fbf-rfgbd   0/1     ErrImagePull      0         48s</span>
+<span class="c1"># mydeploy-6fbf-v5ms5   0/1     ErrImagePull      0         48s</span>
+<span class="c1"># mydeploy-6fbf-rccw4   0/1     ErrImagePull      0         48s</span>
+<span class="c1"># mydeploy-6fbf-ncqd2   0/1     ImagePullBackOff  0         48s</span>
+</code></pre></div><p>비정상적인 nginx의 버전을 입력하여 Pod이 정상적으로 실행되지 않고 있는 상황이다. 여기에서 maxUnavailable 에서 설정한 비율만큼은 사용하지 않고 있기 때문에 10개 중 8개의 Pod은 실행중인 상황임을 알 수 있고, maxSurge 값으로 추가적으로 생성할 수 있는 Pod을 설정해주었기 때문에 최대 Pod이 13개인 것을 확인할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 지금까지의 배포 히스토리를 확인합니다.</span>
+kubectl rollout <span class="nb">history</span> deployment mydeploy
+<span class="c1"># deployment.apps/mydeploy</span>
+<span class="c1"># REVISION  CHANGE-CAUSE</span>
+<span class="c1"># 1         kubectl apply --record=true --filename=mydeploy.yaml</span>
+<span class="c1"># 2         kubectl set image deployment mydeploy nginx=nginx:1.9.1</span> 
+<span class="c1">#                   --record=true</span>
+<span class="c1"># 3         kubectl set image deployment mydeploy nginx=nginx:1.9.21</span> 
+<span class="c1">#                   --record=true</span>
+
+<span class="c1"># 잘못 설정된 1.9.21에서 --&gt; 1.9.1로 롤백</span>
+kubectl rollout undo deployment mydeploy
+<span class="c1"># deployment.apps/mydeploy rolled back</span>
+
+kubectl rollout <span class="nb">history</span> deployment mydeploy
+<span class="c1"># deployment.apps/mydeploy</span>
+<span class="c1"># REVISION  CHANGE-CAUSE</span>
+<span class="c1"># 1         kubectl apply --record=true --filename=mydeploy.yaml</span>
+<span class="c1"># 3         kubectl set image deployment mydeploy nginx=nginx:1.9.21</span> 
+<span class="c1">#                    --record=true</span>
+<span class="c1"># 4         kubectl set image deployment mydeploy nginx=nginx:1.9.1</span> 
+<span class="c1">#                    --record=true</span>
+</code></pre></div><p><code>kubectl rollout history</code> 명령어를 사용하면 지금까지 Deployment 리소스를 이용해서 배포한 내역을 확인할 수 있다. 마지막 배포에서 nginx 버전 문제로 Pod이 정상적으로 실행되지 않았기 때문에 2번이나 1번으로 롤백을 하면 될 것이다.</p>
 <p>배포를 할 때 <code>--record</code>라는 옵션을 사용했기 때문에 <code>rollout history</code>에서 실제 사용한 명령을 조회할 수 있었던 것이다. <code>rollout undo</code> 명령을 사용하면 이전 상태로 롤백을 할 수 있게 된다.</p>
 <p>롤백을 하고나서 다시 배포 내역을 확인해보면 문제가 발생한 버전의 직전 버전인 REVISION 2가 가지고 있던 배포 버전이 최종 배포 버전으로 옮겨진 것을 확인할 수 있다.(REVISION 4로 이동함) 물론, 직접 REVISION 값을 명시해서 특정 버전으로 롤백도 가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.9.1 --&gt; 1.7.9 (revision 1)로 롤백 (처음으로 롤백)</span>
-</span></span><span class="line"><span class="cl">kubectl rollout undo deployment mydeploy --to-revision<span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy rolled back</span>
-</span></span></code></pre></div><p>Deployment에서 ReplicaSet을 사용하고 있기 때문에 이를 이용해서 Pod의 개수를 조절할 수도 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 복제본 개수 조절</span>
-</span></span><span class="line"><span class="cl">kubectl scale deployment --replicas &lt;NUMBER&gt; &lt;NAME&gt;
-</span></span></code></pre></div><p>ReplicaSet과 동일하게 scale 명령어를 사용하지만 deployment로 사용하는 것에 유의하자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl scale deployment mydeploy --replicas <span class="m">5</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy scaled</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 10개에서 5개로 줄어가는 것을 확인할 수 있습니다.</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                  READY   STATUS           RESTARTS  AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-bbk9v   1/1     Running          0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-dt5d7   1/1     Running          0         9m28s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-wrpgt   1/1     Running          0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-sbkzz   1/1     Running          0         9m27s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-98hd5   1/1     Running          0         9m27s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-3srxd   0/1     Terminating      0         9m25s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-5gjrg   0/1     Terminating      0         9m24s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-4lz4p   0/1     Terminating      0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-7kzpf   0/1     Terminating      0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-d245c   0/1     Terminating      0         9m38s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 다시 Pod의 개수를 10개로 되돌립니다.</span>
-</span></span><span class="line"><span class="cl">kubectl scale deployment mydeploy --replicas<span class="o">=</span><span class="m">10</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy scaled</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5개가 새롭게 추가되어 다시 10개가 됩니다.</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                  READY   STATUS              RESTARTS  AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-bbk9v   1/1     Running             0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-dt5d7   1/1     Running             0         9m28s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-wrpgt   1/1     Running             0         9m38s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-sbkzz   1/1     Running             0         9m27s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-98hd5   1/1     Running             0         9m25s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-30cs2   0/1     ContainerCreating   0         5s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-sdjc8   0/1     ContainerCreating   0         5s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-w8fkx   0/1     ContainerCreating   0         5s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-qw89f   0/1     ContainerCreating   0         5s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6fbf-19glc   0/1     ContainerCreating   0         5s</span>
-</span></span></code></pre></div><p>마지막으로 Deployment 리소스를 edit 명령으로 직접 수정할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl edit deploy mydeploy
-</span></span><span class="line"><span class="cl"><span class="c1"># apiVersion: apps/v1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># kind: Deployment</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># metadata:</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># spec:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   progressDeadlineSeconds: 600</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   replicas: 10                  # --&gt; 3으로 수정</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   revisionHistoryLimit: 10</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   selector:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#     matchLabels:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#       run: nginx</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># &lt;ESC&gt; + :wq</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME                  READY   STATUS     RESTARTS  AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-bbk9v   1/1     Running    0         12m8s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-dt5d7   1/1     Running    0         12m8s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mydeploy-6498-wrpgt   1/1     Running    0         12m8s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># deployment 리소스 정리</span>
-</span></span><span class="line"><span class="cl">kubectl delete deploy --all
-</span></span></code></pre></div><h2 id="3-statefulset">3. StatefulSet</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.9.1 --&gt; 1.7.9 (revision 1)로 롤백 (처음으로 롤백)</span>
+kubectl rollout undo deployment mydeploy --to-revision<span class="o">=</span>1
+<span class="c1"># deployment.apps/mydeploy rolled back</span>
+</code></pre></div><p>Deployment에서 ReplicaSet을 사용하고 있기 때문에 이를 이용해서 Pod의 개수를 조절할 수도 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 복제본 개수 조절</span>
+kubectl scale deployment --replicas &lt;NUMBER&gt; &lt;NAME&gt;
+</code></pre></div><p>ReplicaSet과 동일하게 scale 명령어를 사용하지만 deployment로 사용하는 것에 유의하자.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl scale deployment mydeploy --replicas 5
+<span class="c1"># deployment.apps/mydeploy scaled</span>
+
+<span class="c1"># 10개에서 5개로 줄어가는 것을 확인할 수 있습니다.</span>
+kubectl get pod
+<span class="c1"># NAME                  READY   STATUS           RESTARTS  AGE</span>
+<span class="c1"># mydeploy-6498-bbk9v   1/1     Running          0         9m38s</span>
+<span class="c1"># mydeploy-6498-dt5d7   1/1     Running          0         9m28s</span>
+<span class="c1"># mydeploy-6498-wrpgt   1/1     Running          0         9m38s</span>
+<span class="c1"># mydeploy-6498-sbkzz   1/1     Running          0         9m27s</span>
+<span class="c1"># mydeploy-6498-98hd5   1/1     Running          0         9m27s</span>
+<span class="c1"># mydeploy-6498-3srxd   0/1     Terminating      0         9m25s</span>
+<span class="c1"># mydeploy-6498-5gjrg   0/1     Terminating      0         9m24s</span>
+<span class="c1"># mydeploy-6498-4lz4p   0/1     Terminating      0         9m38s</span>
+<span class="c1"># mydeploy-6fbf-7kzpf   0/1     Terminating      0         9m38s</span>
+<span class="c1"># mydeploy-6fbf-d245c   0/1     Terminating      0         9m38s</span>
+
+<span class="c1"># 다시 Pod의 개수를 10개로 되돌립니다.</span>
+kubectl scale deployment mydeploy --replicas<span class="o">=</span>10
+<span class="c1"># deployment.apps/mydeploy scaled</span>
+
+<span class="c1"># 5개가 새롭게 추가되어 다시 10개가 됩니다.</span>
+kubectl get pod
+<span class="c1"># NAME                  READY   STATUS              RESTARTS  AGE</span>
+<span class="c1"># mydeploy-6498-bbk9v   1/1     Running             0         9m38s</span>
+<span class="c1"># mydeploy-6498-dt5d7   1/1     Running             0         9m28s</span>
+<span class="c1"># mydeploy-6498-wrpgt   1/1     Running             0         9m38s</span>
+<span class="c1"># mydeploy-6498-sbkzz   1/1     Running             0         9m27s</span>
+<span class="c1"># mydeploy-6498-98hd5   1/1     Running             0         9m25s</span>
+<span class="c1"># mydeploy-6498-30cs2   0/1     ContainerCreating   0         5s</span>
+<span class="c1"># mydeploy-6fbf-sdjc8   0/1     ContainerCreating   0         5s</span>
+<span class="c1"># mydeploy-6498-w8fkx   0/1     ContainerCreating   0         5s</span>
+<span class="c1"># mydeploy-6498-qw89f   0/1     ContainerCreating   0         5s</span>
+<span class="c1"># mydeploy-6fbf-19glc   0/1     ContainerCreating   0         5s</span>
+</code></pre></div><p>마지막으로 Deployment 리소스를 edit 명령으로 직접 수정할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl edit deploy mydeploy
+<span class="c1"># apiVersion: apps/v1</span>
+<span class="c1"># kind: Deployment</span>
+<span class="c1"># metadata:</span>
+<span class="c1"># ...</span>
+<span class="c1"># spec:</span>
+<span class="c1">#   progressDeadlineSeconds: 600</span>
+<span class="c1">#   replicas: 10                  # --&gt; 3으로 수정</span>
+<span class="c1">#   revisionHistoryLimit: 10</span>
+<span class="c1">#   selector:</span>
+<span class="c1">#     matchLabels:</span>
+<span class="c1">#       run: nginx</span>
+# 
+<span class="c1"># &lt;ESC&gt; + :wq</span>
+
+kubectl get pod
+<span class="c1"># NAME                  READY   STATUS     RESTARTS  AGE</span>
+<span class="c1"># mydeploy-6498-bbk9v   1/1     Running    0         12m8s</span>
+<span class="c1"># mydeploy-6498-dt5d7   1/1     Running    0         12m8s</span>
+<span class="c1"># mydeploy-6498-wrpgt   1/1     Running    0         12m8s</span>
+
+<span class="c1"># deployment 리소스 정리</span>
+kubectl delete deploy --all
+</code></pre></div><h2 id="3-statefulset">3. StatefulSet</h2>
 <p>StatefulSet은 StatefulSet한 Pod이 필요할 때 사용한다. Deployment, ReplicaSet과는 다르게 복제된 Pod이 완벽하게 동일하지 않고 순서에 따라 고유의 역할을 가진다.</p>
 <p>동일한 이미지로 Pod을 생성하지만 실행 시, 각기 다른 역할을 부여하고 서로 그 역할을 교체하지 못하는 경우에 StatefulSet 리소스를 사용하면 된다. 예를 들어, 동일한 프로세스이지만 실행 순서에 따라 마스터 혹은 워커로 결정되는 경우를 생각해볼 수 있다.</p>
 <p>StatefulSet은 상태정보를 저장하는 어플리케이션에서 사용하는 리소스이다. Deployment처럼 여러 Pod을 만들어 ReplicaSet을 통한 관리를 하지만, StatefulSet에서는 각 Pod의 순서와 고유성을 보장해준다. Deployment에서의 Pod은 하나의 Pod이 다른 Pod으로 쉽게 대체가 가능하지만, StatefulSet에서는 이것이 불가능하다고 볼 수 있다.</p>
@@ -556,157 +549,157 @@
 <blockquote>
 <p>Deployment에서는 Pod 자체적으로 상태를 저장하는 것은 불가능하다. 따라서 DB를 연결하거나 외부 스토리지 연결을 통해 Deployment에서 생성된 Pod의 상태 정보를 저장하고 관리할 수 있다. 하지만 StatefulSet에서는 Pod이 자체적으로 상태 정보를 가지기 때문에 상태 정보가 필요하다면 StatefulSet을 사용하는 것이 합리적인 선택이다.</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-YAML" data-lang="YAML"><span class="line"><span class="cl"><span class="c"># mysts.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StatefulSet</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysts</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l">mysts														# StatefulSet과 연결할 Service 이름 지정</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">matchLabels:																# 라벨링 시스템을 사용하여 Pod 선택</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">template:																			# 복제할 Pod 정의</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">vol</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/usr/share/nginx/html</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">volumeClaimTemplates:													# 동적 Volume 생성</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">vol</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">accessModes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;ReadWriteOnce&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">requests</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">1Gi</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mysts																			# StatefulSet에서 연결할 Service 리소스 생성</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">clusterIP</span><span class="p">:</span><span class="w"> </span><span class="l">None</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span></code></pre></div><p>StatefulSet 리소스의 YAML 정의서다. 해당 정의서를 가지고 리소스를 생성하고 조회해보자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f mysts.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># statefulset.apps/mysts created</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># service/mysts created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get statefulset   <span class="c1"># 축약 시, sts</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME    READY   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts   2/3     20s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME      READY   STATUS              RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-0   1/1     Running             0          29s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-1   0/1     ContainerCreating   0          20s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-2   0/1     Pending             0          10s</span>
-</span></span></code></pre></div><p>Deployment 리소스와 마찬가지로 <code>replicas</code>에 지정한 개수만큼 Pod이 생성되지만, Pod를 조회해서 확인을 해보면 랜덤한 해시 값이 Pod의 이름으로 작성된 것이 아니라 <code>mysts-0</code>과 같이 Pod의 순서가 적힌 상태로 생성된 것을 확인할 수 있다. 0,1,2라는 숫자가 Pod의 생성 순서이자 식별자가 되는 것이다. 이렇게 생성된 각 Pod는 서로 다른 호스트 이름을 가지고 있어 구분이 가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-0 -- hostname
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-1 -- hostname
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-1</span>
-</span></span></code></pre></div><p>호스트이름 역시 Pod의 이름과 마찬가지로 0,1,2를 통해 순서와 식별자를 가지고 있음을 알 수 있다. nginx의 html 디렉토리에 각각의 호스트 이름을 저장하고 호출해보자.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-0 -- sh -c <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s1">&#39;echo &#34;$(hostname)&#34; &gt; /usr/share/nginx/html/index.html&#39;</span>
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-1 -- sh -c <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s1">&#39;echo &#34;$(hostname)&#34; &gt; /usr/share/nginx/html/index.html&#39;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-0 -- curl -s http://localhost
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-0</span>
-</span></span><span class="line"><span class="cl">kubectl <span class="nb">exec</span> mysts-1 -- curl -s http://localhost
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-1</span>
-</span></span></code></pre></div><p>YAML 정의서에서 볼륨 마운트를 진행한 경로가 <code>/usr/share/nginx/html</code>이기 때문에 StatefulSet의 Pod이 같은 저장소를 바라보고 있다면 <code>mysts-0</code>이 <code>mysts-1</code>에 의해 덮어져야 하는데, 그것이 아니라 각 Pod이 별도의 볼륨을 사용하고 있기 때문에 서로 다른 값을 가지고 있는 것을 확인할 수 있다. 볼륨을 확인하는 명령을 통해 볼륨 역시 순서와 식별자를 가지고 있는 것을 볼 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl get persistentvolumeclaim
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME          STATUS   VOLUME        CAP  MODE   STORAGECLASS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># vol-mysts-0   Bound    pvc-09d-xxx   1Gi  RWO    local-path     118s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># vol-mysts-1   Bound    pvc-421-xxx   1Gi  RWO    local-path     109s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># vol-mysts-2   Bound    pvc-x42-xxx   1Gi  RWO    local-path     60s</span>
-</span></span></code></pre></div><p>StatefulSet은 ReplicaSet, Deployment와 마찬가지로 scale 명령을 통해 Pod의 개수를 조절할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl scale sts mysts --replicas<span class="o">=</span><span class="m">0</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># statefulset.apps/mysts scaled</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME      READY   STATUS       RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-0   1/1     Running      0          29s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># mysts-1   0/1     Terminating  0          20s</span>
-</span></span></code></pre></div><p>생성이 0,1,2 순서대로 진행됐다면, Pod의 개수를 줄일 때에는 역순으로 삭제가 진행된다. StatefulSet을 사용하면 이처럼 Pod의 생성 순서를 보장 받거나, 각기 다른 역할을 하는 Pod을 여러 개 만들 때 유용하게 사용할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-YAML" data-lang="YAML"><span class="c"># mysts.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>StatefulSet<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>mysts<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">serviceName</span><span class="p">:</span><span class="w"> </span>mysts<span class="w">														</span><span class="c"># StatefulSet과 연결할 Service 이름 지정</span><span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
+</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">																</span><span class="c"># 라벨링 시스템을 사용하여 Pod 선택</span><span class="w">
+</span><span class="w">      </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">																			</span><span class="c"># 복제할 Pod 정의</span><span class="w">
+</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span><span class="w">        </span>volumeMounts<span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">          </span><span class="k">mountPath</span><span class="p">:</span><span class="w"> </span>/usr/share/nginx/html<span class="w">
+</span><span class="w">  </span>volumeClaimTemplates<span class="p">:</span><span class="w">													</span><span class="c"># 동적 Volume 생성</span><span class="w">
+</span><span class="w">  </span>- metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>vol<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">accessModes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;ReadWriteOnce&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="w">      </span>resources<span class="p">:</span><span class="w">
+</span><span class="w">        </span>requests<span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>1Gi<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Service<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>mysts<span class="w">																			</span><span class="c"># StatefulSet에서 연결할 Service 리소스 생성</span><span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">clusterIP</span><span class="p">:</span><span class="w"> </span>None<span class="w">
+</span><span class="w">  </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span><span class="w">    </span><span class="k">protocol</span><span class="p">:</span><span class="w"> </span>TCP<span class="w">
+</span><span class="w">    </span><span class="k">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">run</span><span class="p">:</span><span class="w"> </span>nginx<span class="w">
+</span></code></pre></div><p>StatefulSet 리소스의 YAML 정의서다. 해당 정의서를 가지고 리소스를 생성하고 조회해보자.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f mysts.yaml
+<span class="c1"># statefulset.apps/mysts created</span>
+<span class="c1"># service/mysts created</span>
+
+kubectl get statefulset   <span class="c1"># 축약 시, sts</span>
+<span class="c1"># NAME    READY   AGE</span>
+<span class="c1"># mysts   2/3     20s</span>
+
+kubectl get pod
+<span class="c1"># NAME      READY   STATUS              RESTARTS   AGE</span>
+<span class="c1"># mysts-0   1/1     Running             0          29s</span>
+<span class="c1"># mysts-1   0/1     ContainerCreating   0          20s</span>
+<span class="c1"># mysts-2   0/1     Pending             0          10s</span>
+</code></pre></div><p>Deployment 리소스와 마찬가지로 <code>replicas</code>에 지정한 개수만큼 Pod이 생성되지만, Pod를 조회해서 확인을 해보면 랜덤한 해시 값이 Pod의 이름으로 작성된 것이 아니라 <code>mysts-0</code>과 같이 Pod의 순서가 적힌 상태로 생성된 것을 확인할 수 있다. 0,1,2라는 숫자가 Pod의 생성 순서이자 식별자가 되는 것이다. 이렇게 생성된 각 Pod는 서로 다른 호스트 이름을 가지고 있어 구분이 가능하다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl <span class="nb">exec</span> mysts-0 -- hostname
+<span class="c1"># mysts-0</span>
+
+kubectl <span class="nb">exec</span> mysts-1 -- hostname
+<span class="c1"># mysts-1</span>
+</code></pre></div><p>호스트이름 역시 Pod의 이름과 마찬가지로 0,1,2를 통해 순서와 식별자를 가지고 있음을 알 수 있다. nginx의 html 디렉토리에 각각의 호스트 이름을 저장하고 호출해보자.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl <span class="nb">exec</span> mysts-0 -- sh -c <span class="se">\</span>
+  <span class="s1">&#39;echo &#34;$(hostname)&#34; &gt; /usr/share/nginx/html/index.html&#39;</span>
+kubectl <span class="nb">exec</span> mysts-1 -- sh -c <span class="se">\</span>
+  <span class="s1">&#39;echo &#34;$(hostname)&#34; &gt; /usr/share/nginx/html/index.html&#39;</span>
+
+kubectl <span class="nb">exec</span> mysts-0 -- curl -s http://localhost
+<span class="c1"># mysts-0</span>
+kubectl <span class="nb">exec</span> mysts-1 -- curl -s http://localhost
+<span class="c1"># mysts-1</span>
+</code></pre></div><p>YAML 정의서에서 볼륨 마운트를 진행한 경로가 <code>/usr/share/nginx/html</code>이기 때문에 StatefulSet의 Pod이 같은 저장소를 바라보고 있다면 <code>mysts-0</code>이 <code>mysts-1</code>에 의해 덮어져야 하는데, 그것이 아니라 각 Pod이 별도의 볼륨을 사용하고 있기 때문에 서로 다른 값을 가지고 있는 것을 확인할 수 있다. 볼륨을 확인하는 명령을 통해 볼륨 역시 순서와 식별자를 가지고 있는 것을 볼 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl get persistentvolumeclaim
+<span class="c1"># NAME          STATUS   VOLUME        CAP  MODE   STORAGECLASS   AGE</span>
+<span class="c1"># vol-mysts-0   Bound    pvc-09d-xxx   1Gi  RWO    local-path     118s</span>
+<span class="c1"># vol-mysts-1   Bound    pvc-421-xxx   1Gi  RWO    local-path     109s</span>
+<span class="c1"># vol-mysts-2   Bound    pvc-x42-xxx   1Gi  RWO    local-path     60s</span>
+</code></pre></div><p>StatefulSet은 ReplicaSet, Deployment와 마찬가지로 scale 명령을 통해 Pod의 개수를 조절할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl scale sts mysts --replicas<span class="o">=</span>0
+<span class="c1"># statefulset.apps/mysts scaled</span>
+
+kubectl get pod
+<span class="c1"># NAME      READY   STATUS       RESTARTS   AGE</span>
+<span class="c1"># mysts-0   1/1     Running      0          29s</span>
+<span class="c1"># mysts-1   0/1     Terminating  0          20s</span>
+</code></pre></div><p>생성이 0,1,2 순서대로 진행됐다면, Pod의 개수를 줄일 때에는 역순으로 삭제가 진행된다. StatefulSet을 사용하면 이처럼 Pod의 생성 순서를 보장 받거나, 각기 다른 역할을 하는 Pod을 여러 개 만들 때 유용하게 사용할 수 있다.</p>
 <p>클러스터 시스템을 구성할 때 StatefulSet을 사용할 수 있다. 클러스터 시스템 구성을 하는 과정에서 리더 선출이나 primary vs replica를 지정하기 위해 명시적은 순서를 지정하는 경우 활용해보자.</p>
 <blockquote>
 <p>쿠버네티스 공식 홈페이지에서는 StatefuleSet의 활용 예제로 MySQL 클러스터 구축을 설명하고 있다. 앞에서 진행한 nginx 예제는 StatefulSet의 특징과 역할을 우선적으로 확인하기 위한 것이었고, 필요하다면 직접 이를 확인해보자.</p>
 <p><a href="https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/">https://kubernetes.io/docs/tasks/run-application/run-replicated-stateful-application/</a></p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete sts mysts
-</span></span><span class="line"><span class="cl">kubectl delete svc mysts
-</span></span><span class="line"><span class="cl">kubectl delete pvc --all
-</span></span></code></pre></div><h2 id="4-daemonset">4. DaemonSet</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete sts mysts
+kubectl delete svc mysts
+kubectl delete pvc --all
+</code></pre></div><h2 id="4-daemonset">4. DaemonSet</h2>
 <p>DaemonSet 리소스는 모든 노드에서 동일한 Pod을 실행시키고 싶을 때 사용하는 리소스다. 리소스 모니터링, 로그 수집 등과 같이 모든 노드에서 동일한 Pod이 위치하면서 노드에 대한 정보를 추출할 때 많이 사용한다.</p>
 <p>다음은 모든 노드의 로그 정보를 추출하는 fluentd DaemonSet 예시이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># fluentd.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">DaemonSet</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fluentd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fluentd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fluentd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fluentd</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">quay.io/fluentd_elasticsearch/fluentd:v2.5.2</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">varlibdockercontainers</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/var/lib/docker/containers</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">varlibdockercontainers</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/lib/docker/containers</span><span class="w">
-</span></span></span></code></pre></div><p>DaemonSet의 YAML 정의서다. <code>template</code>에 원하는 Pod 스펙을 정의하면 정의한 스펙을 가진 Pod이 모든 노드에서 일괄적으로 실행된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f fluentd.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># daemonset.apps/fluentd created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get daemonset   <span class="c1"># 축약 시, ds</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># fluentd   2         2         2       2            2                ..</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get pod -owide
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME           READY  STATUS    RESTARTS  AGE   IP          NODE    ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># fluentd-q9vcc  1/1    Running   0         92s   10.42.0.8   master  ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># fluentd-f3gt3  1/1    Running   0         92s   10.42.0.10  worker  ..</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl logs fluentd-q9vcc
-</span></span><span class="line"><span class="cl"><span class="c1"># 2020-07-05 04:12:05 +0000 [info]: parsing config file is succeeded ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2020-07-05 04:12:05 +0000 [info]: using configuration file: &lt;ROOT&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   &lt;match fluent.**&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#     @type null</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   &lt;/match&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># &lt;/ROOT&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2020-07-05 04:12:05 +0000 [info]: starting fluentd-1.4.2 pid=1 ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2020-07-05 04:12:05 +0000 [info]: spawn command to main: cmdline=..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span></code></pre></div><p>마스터와 워커로 구성된 노드를 가지고 있다면, 각 노드마다 Pod이 하나씩 생성된다. DaemonSet 리소스는 모든 노드에서 항상 동일한 작업을 수행해야 하는 경우 사용하는 리소스이기 때문이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># fluentd.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>DaemonSet<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>fluentd<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
+</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>fluentd<span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">
+</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>fluentd<span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>fluentd<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>quay.io/fluentd_elasticsearch/fluentd<span class="p">:</span>v2<span class="m">.5.2</span><span class="w">
+</span><span class="w">        </span>volumeMounts<span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>varlibdockercontainers<span class="w">
+</span><span class="w">          </span><span class="k">mountPath</span><span class="p">:</span><span class="w"> </span>/var/lib/docker/containers<span class="w">
+</span><span class="w">          </span><span class="k">readOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w">      </span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>varlibdockercontainers<span class="w">
+</span><span class="w">        </span>hostPath<span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="k">path</span><span class="p">:</span><span class="w"> </span>/var/lib/docker/containers<span class="w">
+</span></code></pre></div><p>DaemonSet의 YAML 정의서다. <code>template</code>에 원하는 Pod 스펙을 정의하면 정의한 스펙을 가진 Pod이 모든 노드에서 일괄적으로 실행된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f fluentd.yaml
+<span class="c1"># daemonset.apps/fluentd created</span>
+
+kubectl get daemonset   <span class="c1"># 축약 시, ds</span>
+<span class="c1"># NAME      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE ..</span>
+<span class="c1"># fluentd   2         2         2       2            2                ..</span>
+
+kubectl get pod -owide
+<span class="c1"># NAME           READY  STATUS    RESTARTS  AGE   IP          NODE    ..</span>
+<span class="c1"># fluentd-q9vcc  1/1    Running   0         92s   10.42.0.8   master  ..</span>
+<span class="c1"># fluentd-f3gt3  1/1    Running   0         92s   10.42.0.10  worker  ..</span>
+
+kubectl logs fluentd-q9vcc
+<span class="c1"># 2020-07-05 04:12:05 +0000 [info]: parsing config file is succeeded ..</span>
+<span class="c1"># 2020-07-05 04:12:05 +0000 [info]: using configuration file: &lt;ROOT&gt;</span>
+<span class="c1">#   &lt;match fluent.**&gt;</span>
+<span class="c1">#     @type null</span>
+<span class="c1">#   &lt;/match&gt;</span>
+<span class="c1"># &lt;/ROOT&gt;</span>
+<span class="c1"># 2020-07-05 04:12:05 +0000 [info]: starting fluentd-1.4.2 pid=1 ..</span>
+<span class="c1"># 2020-07-05 04:12:05 +0000 [info]: spawn command to main: cmdline=..</span>
+<span class="c1"># ...</span>
+</code></pre></div><p>마스터와 워커로 구성된 노드를 가지고 있다면, 각 노드마다 Pod이 하나씩 생성된다. DaemonSet 리소스는 모든 노드에서 항상 동일한 작업을 수행해야 하는 경우 사용하는 리소스이기 때문이다.</p>
 <p>DaemonSet을 사용하면 클러스터에 노드를 새롭게 추가할 때, 따로 작업을 수행하지 않아도 신규로 편입된 노드에도 자동으로 DaemonSet의 <code>template</code>을 통해 정의한 Pod들을 생성하게 된다. 그래서 로그 수집이나 리소스 모니터링 등 모든 노드에서 동일하게 필요한 작업이 필요하다면 DaemonSet을 활용하는 것이 좋은 선택이다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete ds --all
-</span></span></code></pre></div><h2 id="5-job--cronjob">5. Job &amp; CronJob</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete ds --all
+</code></pre></div><h2 id="5-job--cronjob">5. Job &amp; CronJob</h2>
 <h3 id="job">Job</h3>
 <p>Job 리소스는 일반 Pod 처럼 항상 실행되고 있는 서비스 프로세스가 아닌 한번 실행하고 완료가 되는 배치 전용 프로세스로 만들어졌다. 기계학습 모델을 Job으로 실행하는 시나리오는 다음과 같다.</p>
 <ul>
@@ -714,205 +707,205 @@
 <li>Dockerfile : 기계학습 스크립트를 도커 이미지로 변환</li>
 <li>job.yaml : Job 실행을 위한 YAML 정의서</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># train.py</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">json</span>
-</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">keras</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
-</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#####################</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># parameters &lt;-- Job 리소스에서 파라미터로 전달할 예정</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#####################</span>
-</span></span><span class="line"><span class="cl"><span class="n">epochs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="n">activate</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="n">dropout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#####################</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">loss_func</span> <span class="o">=</span> <span class="s2">&#34;categorical_crossentropy&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">opt</span> <span class="o">=</span> <span class="n">RMSprop</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># preprocess</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">784</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">784</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
-</span></span><span class="line"><span class="cl"><span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># convert class vectors to binary class matrices</span>
-</span></span><span class="line"><span class="cl"><span class="n">y_train</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">y_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># build model</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,)))</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activate</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">loss_func</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># train</span>
-</span></span><span class="line"><span class="cl"><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> 
-</span></span><span class="line"><span class="cl">        <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test loss:&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test accuracy:&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="c"># Dockerfile</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> python:3.6.8-stretch</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> pip install <span class="nv">tensorflow</span><span class="o">==</span>1.5 <span class="nv">keras</span><span class="o">==</span>2.0.8 <span class="nv">h5py</span><span class="o">==</span>2.7.1<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> train.py .<span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="s2">&#34;train.py&#34;</span><span class="p">]</span><span class="err">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 도커 이미지 빌드</span>
-</span></span><span class="line"><span class="cl">docker build . -t <span class="nv">$USERNAME</span>/train
-</span></span><span class="line"><span class="cl"><span class="c1"># Sending build context to Docker daemon  3.249MB</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Step 1/4 : FROM python:3.6.8-stretch</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 3.6.8-stretch: Pulling from library/python</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 6f2f362378c5: Pull complete</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 도커 이미지 업로드를 위해 도커허브에 로그인합니다.</span>
-</span></span><span class="line"><span class="cl">docker login
-</span></span><span class="line"><span class="cl"><span class="c1"># Login with your Docker ID to push and pull images from Docker Hub. ..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Username: $USERNAME</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Password:</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># WARNING! Your password will be stored unencrypted in /home/..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Configure a credential helper to remove this warning. See</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># https://docs.docker.com/engine/reference/commandline/..</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Login Succeeded</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 도커 이미지 업로드</span>
-</span></span><span class="line"><span class="cl">docker push <span class="nv">$USERNAME</span>/train
-</span></span><span class="line"><span class="cl"><span class="c1"># The push refers to repository [docker.io/$USERNAME/train]</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># job.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myjob</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">$USERNAME/train</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span></span></span></code></pre></div><p>Job 리소스도 내부적으로 Pod을 실행하기 때문에 <code>template</code>을 통해 Pod의 스펙을 정의해주었다. <code>backoffLimit</code>를 통해 재시도 횟수를 지정할 수 있는데, Job이 실행되고 총 2번의 재시도 후에도 실패하면 최종적으로 실패로 기록된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Job 생성</span>
-</span></span><span class="line"><span class="cl">kubectl apply -f job.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># job.batch/myjob created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Job 리소스 확인</span>
-</span></span><span class="line"><span class="cl">kubectl get job
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME    COMPLETIONS   DURATION   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob   0/1           9s         9s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Pod 리소스 확인</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME          READY   STATUS      RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob-l5thh   1/1     Running     0          9s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 로그 확인</span>
-</span></span><span class="line"><span class="cl">kubectl logs -f myjob-l5thh 
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Layer (type)                 Output Shape              Param #</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># =================================================================</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># dense_1 (Dense)              (None, 512)               401920</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Pod 완료 확인</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME          READY   STATUS      RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob-l5thh   0/1     Completed   0          3m27s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Job 완료 확인</span>
-</span></span><span class="line"><span class="cl">kubectl get job
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME    COMPLETIONS   DURATION   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob   1/1           51s         4m</span>
-</span></span></code></pre></div><p>Job 리소스로 배치 작업이 종료되면 Pod은 Completed로 남게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># train.py</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">keras</span>
+<span class="kn">from</span> <span class="nn">keras.datasets</span> <span class="kn">import</span> <span class="n">mnist</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="kn">import</span> <span class="n">RMSprop</span>
+
+<span class="c1">#####################</span>
+<span class="c1"># parameters &lt;-- Job 리소스에서 파라미터로 전달할 예정</span>
+<span class="c1">#####################</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">activate</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">dropout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+<span class="c1">#####################</span>
+
+<span class="n">batch_size</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
+<span class="n">loss_func</span> <span class="o">=</span> <span class="s2">&#34;categorical_crossentropy&#34;</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">RMSprop</span><span class="p">()</span>
+
+<span class="c1"># preprocess</span>
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">784</span><span class="p">)</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">784</span><span class="p">)</span>
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+
+<span class="c1"># convert class vectors to binary class matrices</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+
+<span class="c1"># build model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">hidden</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">784</span><span class="p">,)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">num_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="n">activate</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="n">loss_func</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="c1"># train</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> 
+        <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+
+<span class="n">score</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Test loss:&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Test accuracy:&#39;</span><span class="p">,</span> <span class="n">score</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="c"># Dockerfile</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> python:3.6.8-stretch</span><span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> pip install <span class="nv">tensorflow</span><span class="o">==</span>1.5 <span class="nv">keras</span><span class="o">==</span>2.0.8 <span class="nv">h5py</span><span class="o">==</span>2.7.1<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">COPY</span> train.py .<span class="err">
+</span><span class="err"></span><span class="err">
+</span><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;python&#34;</span><span class="p">,</span> <span class="s2">&#34;train.py&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 도커 이미지 빌드</span>
+docker build . -t <span class="nv">$USERNAME</span>/train
+<span class="c1"># Sending build context to Docker daemon  3.249MB</span>
+<span class="c1"># Step 1/4 : FROM python:3.6.8-stretch</span>
+<span class="c1"># 3.6.8-stretch: Pulling from library/python</span>
+<span class="c1"># 6f2f362378c5: Pull complete</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># 도커 이미지 업로드를 위해 도커허브에 로그인합니다.</span>
+docker login
+<span class="c1"># Login with your Docker ID to push and pull images from Docker Hub. ..</span>
+<span class="c1"># Username: $USERNAME</span>
+<span class="c1"># Password:</span>
+<span class="c1"># WARNING! Your password will be stored unencrypted in /home/..</span>
+<span class="c1"># Configure a credential helper to remove this warning. See</span>
+<span class="c1"># https://docs.docker.com/engine/reference/commandline/..</span>
+# 
+<span class="c1"># Login Succeeded</span>
+
+<span class="c1"># 도커 이미지 업로드</span>
+docker push <span class="nv">$USERNAME</span>/train
+<span class="c1"># The push refers to repository [docker.io/$USERNAME/train]</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># job.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>batch/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Job<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>myjob<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>ml<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>$USERNAME/train<span class="w">
+</span><span class="w">        </span><span class="k">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="k">restartPolicy</span><span class="p">:</span><span class="w"> </span>Never<span class="w">
+</span><span class="w">  </span><span class="k">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></code></pre></div><p>Job 리소스도 내부적으로 Pod을 실행하기 때문에 <code>template</code>을 통해 Pod의 스펙을 정의해주었다. <code>backoffLimit</code>를 통해 재시도 횟수를 지정할 수 있는데, Job이 실행되고 총 2번의 재시도 후에도 실패하면 최종적으로 실패로 기록된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Job 생성</span>
+kubectl apply -f job.yaml
+<span class="c1"># job.batch/myjob created</span>
+
+<span class="c1"># Job 리소스 확인</span>
+kubectl get job
+<span class="c1"># NAME    COMPLETIONS   DURATION   AGE</span>
+<span class="c1"># myjob   0/1           9s         9s</span>
+
+<span class="c1"># Pod 리소스 확인</span>
+kubectl get pod
+<span class="c1"># NAME          READY   STATUS      RESTARTS   AGE</span>
+<span class="c1"># myjob-l5thh   1/1     Running     0          9s</span>
+
+<span class="c1"># 로그 확인</span>
+kubectl logs -f myjob-l5thh 
+<span class="c1"># ...</span>
+<span class="c1"># Layer (type)                 Output Shape              Param #</span>
+<span class="c1"># =================================================================</span>
+<span class="c1"># dense_1 (Dense)              (None, 512)               401920</span>
+<span class="c1"># ...</span>
+
+<span class="c1"># Pod 완료 확인</span>
+kubectl get pod
+<span class="c1"># NAME          READY   STATUS      RESTARTS   AGE</span>
+<span class="c1"># myjob-l5thh   0/1     Completed   0          3m27s</span>
+
+<span class="c1"># Job 완료 확인</span>
+kubectl get job
+<span class="c1"># NAME    COMPLETIONS   DURATION   AGE</span>
+<span class="c1"># myjob   1/1           51s         4m</span>
+</code></pre></div><p>Job 리소스로 배치 작업이 종료되면 Pod은 Completed로 남게 된다.</p>
 <p>의도적으로 장애 상황을 만들어 재시도 작업을 수행하는지(<code>backoffLimit</code> 테스트) 확인할 차례이다. <code>backoffLimit</code>을 2로 설정했기 때문에 첫 번째 시도와 두 번의 재시도, 총 3번의 시도를 하게 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># job-bug.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Job</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myjob-bug</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">$USERNAME/train</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># int 타입이 아닌 string 타입 전달</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;bug-string&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Never</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f job-bug.yaml
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2번 재시도 후(총 3번 실행) failed</span>
-</span></span><span class="line"><span class="cl">kubectl get pod
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME               READY   STATUS              RESTARTS   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob-bug-8f867      0/1     Error               0          6s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob-bug-s23xs      0/1     Error               0          4s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># myjob-bug-jz2ss      0/1     ContainerCreating   0          1s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get job myjob-bug -oyaml <span class="p">|</span> grep <span class="nb">type</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># type: Failed</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 에러 원인 확인</span>
-</span></span><span class="line"><span class="cl">kubectl logs -f myjob-bug-jz2ss
-</span></span><span class="line"><span class="cl"><span class="c1"># /usr/local/lib/python3.6/site-packages/tensorflow/python/framework/</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   dtypes.py:502: FutureWarning: Passing (type, 1) or &#39;1type&#39; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   as a synonym of type is deprecated; in a future version of numpy, </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   it will be understood as (type, (1,)) / &#39;(1,)type&#39;.</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   np_resource = np.dtype([(&#34;resource&#34;, np.ubyte, 1)])</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Traceback (most recent call last):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#   File &#34;train.py&#34;, line 11, in &lt;module&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#    epochs = int(sys.argv[1])</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ValueError: invalid literal for int() with base 10: &#39;bug-string&#39;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete job --all
-</span></span></code></pre></div><h3 id="cronjob">CronJob</h3>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># job-bug.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>batch/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Job<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>myjob-bug<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span>template<span class="p">:</span><span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>ml<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>$USERNAME/train<span class="w">
+</span><span class="w">        </span><span class="c"># int 타입이 아닌 string 타입 전달</span><span class="w">
+</span><span class="w">        </span><span class="k">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;bug-string&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;softmax&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;0.5&#39;</span><span class="p">]</span><span class="w">
+</span><span class="w">      </span><span class="k">restartPolicy</span><span class="p">:</span><span class="w"> </span>Never<span class="w">
+</span><span class="w">  </span><span class="k">backoffLimit</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f job-bug.yaml
+
+<span class="c1"># 2번 재시도 후(총 3번 실행) failed</span>
+kubectl get pod
+<span class="c1"># NAME               READY   STATUS              RESTARTS   AGE</span>
+<span class="c1"># myjob-bug-8f867      0/1     Error               0          6s</span>
+<span class="c1"># myjob-bug-s23xs      0/1     Error               0          4s</span>
+<span class="c1"># myjob-bug-jz2ss      0/1     ContainerCreating   0          1s</span>
+
+kubectl get job myjob-bug -oyaml <span class="p">|</span> grep <span class="nb">type</span>
+<span class="c1"># type: Failed</span>
+
+<span class="c1"># 에러 원인 확인</span>
+kubectl logs -f myjob-bug-jz2ss
+<span class="c1"># /usr/local/lib/python3.6/site-packages/tensorflow/python/framework/</span>
+<span class="c1">#   dtypes.py:502: FutureWarning: Passing (type, 1) or &#39;1type&#39;</span> 
+<span class="c1">#   as a synonym of type is deprecated; in a future version of numpy,</span> 
+<span class="c1">#   it will be understood as (type, (1,)) / &#39;(1,)type&#39;.</span>
+<span class="c1">#   np_resource = np.dtype([(&#34;resource&#34;, np.ubyte, 1)])</span>
+<span class="c1"># Traceback (most recent call last):</span>
+<span class="c1">#   File &#34;train.py&#34;, line 11, in &lt;module&gt;</span>
+<span class="c1">#    epochs = int(sys.argv[1])</span>
+<span class="c1"># ValueError: invalid literal for int() with base 10: &#39;bug-string&#39;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete job --all
+</code></pre></div><h3 id="cronjob">CronJob</h3>
 <p>Job이 한 번의 작업을 완료하고 Completed가 되는 Pod을 만드는 것이라면, CronJob은 주기적으로 Job을 실행시킬 수 있는 확장된 리소스다. 리눅스의 crontab과 마찬가지로 cron 형식을 이용하여 주기를 정할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># cronjob.yaml</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">batch/v1beta1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CronJob</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">schedule</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*/1 * * * *&#34;</span><span class="w">						</span><span class="c"># Job 리소스를 실행할 실행 주기</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">jobTemplate:											# Job 리소스에서 사용할 Pod의 스펙 정의</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hello</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">args</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">/bin/sh</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- -<span class="l">c</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="l">date; echo Hello from the Kubernetes cluster</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">OnFailure</span><span class="w">
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f cronjob.yaml
-</span></span><span class="line"><span class="cl"><span class="c1"># cronjob.batch/hello created</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get cronjob
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># hello   */1 * * * *   False     0        &lt;none&gt;          4s</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">kubectl get job
-</span></span><span class="line"><span class="cl"><span class="c1"># NAME               COMPLETIONS   DURATION   AGE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># hello-1584873060   0/1           3s         3s</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># hello-1584873060   0/1           3s         62s</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete cronjob --all
-</span></span></code></pre></div><p>CronJob은 동일한 주기마다 반복해서 실행해야 하는 작업을 할 때 활용할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># cronjob.yaml</span><span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>batch/v1beta1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>CronJob<span class="w">
+</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>hello<span class="w">
+</span><span class="w"></span>spec<span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">schedule</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*/1 * * * *&#34;</span><span class="w">						</span><span class="c"># Job 리소스를 실행할 실행 주기</span><span class="w">
+</span><span class="w">  </span>jobTemplate<span class="p">:</span><span class="w">											</span><span class="c"># Job 리소스에서 사용할 Pod의 스펙 정의</span><span class="w">
+</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">      </span>template<span class="p">:</span><span class="w">
+</span><span class="w">        </span>spec<span class="p">:</span><span class="w">
+</span><span class="w">          </span>containers<span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>hello<span class="w">
+</span><span class="w">            </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>busybox<span class="w">
+</span><span class="w">            </span>args<span class="p">:</span><span class="w">
+</span><span class="w">            </span>- /bin/sh<span class="w">
+</span><span class="w">            </span>- -c<span class="w">
+</span><span class="w">            </span>- date;<span class="w"> </span>echo<span class="w"> </span>Hello<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>Kubernetes<span class="w"> </span>cluster<span class="w">
+</span><span class="w">          </span><span class="k">restartPolicy</span><span class="p">:</span><span class="w"> </span>OnFailure<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl apply -f cronjob.yaml
+<span class="c1"># cronjob.batch/hello created</span>
+
+kubectl get cronjob
+<span class="c1"># NAME    SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE</span>
+<span class="c1"># hello   */1 * * * *   False     0        &lt;none&gt;          4s</span>
+
+kubectl get job
+<span class="c1"># NAME               COMPLETIONS   DURATION   AGE</span>
+<span class="c1"># hello-1584873060   0/1           3s         3s</span>
+<span class="c1"># hello-1584873060   0/1           3s         62s</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">kubectl delete cronjob --all
+</code></pre></div><p>CronJob은 동일한 주기마다 반복해서 실행해야 하는 작업을 할 때 활용할 수 있다.</p>
 <h3 id="heading"></h3>
 <p>쿠버네티스는 모든 것을 리소스로 표현한다. 그리그 빌딩블럭처럼 작은 단위의 리소스를 조합하여 점점 더 큰 리소스로 만들어 사용하게 된다.</p>
 <ol>
@@ -927,7 +920,6 @@
 </li>
 </ol>
 
-
         
           <div class="blog-tags">
             
@@ -936,61 +928,6 @@
           </div>
         
 
-        
-            <hr/>
-            <section id="social-share">
-              <div class="list-inline footer-links">
-                
-
-<div class="share-box" aria-hidden="true">
-    <ul class="share">
-      
-      <li>
-        <a href="//twitter.com/share?url=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f&amp;text=07%20Kube%20Controller&amp;via=" target="_blank" title="Share on Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f" target="_blank" title="Share on Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//reddit.com/submit?url=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f&amp;title=07%20Kube%20Controller" target="_blank" title="Share on Reddit">
-          <i class="fab fa-reddit"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f&amp;title=07%20Kube%20Controller" target="_blank" title="Share on LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.stumbleupon.com/submit?url=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f&amp;title=07%20Kube%20Controller" target="_blank" title="Share on StumbleUpon">
-          <i class="fab fa-stumbleupon"></i>
-        </a>
-      </li>
-  
-      
-      <li>
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fjeongmin94.github.io%2fk8s%2f07-kube-controller%2f&amp;description=07%20Kube%20Controller" target="_blank" title="Share on Pinterest">
-          <i class="fab fa-pinterest"></i>
-        </a>
-      </li>
-    </ul>
-  </div>
-  
-
-              </div>
-            </section>
         
 
         
@@ -1003,6 +940,10 @@
       
         <ul class="pager blog-pager">
           
+          
+            <li class="next">
+              <a href="https://jeongmin94.github.io/k8s/08-helm/" data-toggle="tooltip" data-placement="top" title="08 Helm">다음 글 &rarr;</a>
+            </li>
           
         </ul>
       
@@ -1073,7 +1014,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
           
         </p>
       </div>
