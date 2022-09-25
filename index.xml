@@ -20,6 +20,24 @@
     </item>
     
     <item>
+      <title>레퍼런스</title>
+      <link>https://jeongmin94.github.io/cpp/reference/</link>
+      <pubDate>Sat, 17 Sep 2022 19:22:42 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/cpp/reference/</guid>
+      <description>&lt;p&gt;cpp의 레퍼런스에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>포인터</title>
+      <link>https://jeongmin94.github.io/cpp/pointer/</link>
+      <pubDate>Fri, 02 Sep 2022 19:56:32 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/cpp/pointer/</guid>
+      <description>&lt;p&gt;cpp의 포인터에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Go로 URL 단축기 만들기 - 1</title>
       <link>https://jeongmin94.github.io/go/01-go-url-shortener-setup/</link>
       <pubDate>Mon, 08 Aug 2022 21:02:20 +0900</pubDate>

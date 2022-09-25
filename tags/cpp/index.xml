@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cpp on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/cpp/</link>
+    <description>Recent content in cpp on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 17 Sep 2022 19:22:42 +0900</lastBuildDate>
+    
+	<atom:link href="https://jeongmin94.github.io/tags/cpp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>레퍼런스</title>
+      <link>https://jeongmin94.github.io/cpp/reference/</link>
+      <pubDate>Sat, 17 Sep 2022 19:22:42 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/cpp/reference/</guid>
+      <description>&lt;p&gt;cpp의 레퍼런스에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>포인터</title>
+      <link>https://jeongmin94.github.io/cpp/pointer/</link>
+      <pubDate>Fri, 02 Sep 2022 19:56:32 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/cpp/pointer/</guid>
+      <description>&lt;p&gt;cpp의 포인터에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
