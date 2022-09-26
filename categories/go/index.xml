@@ -5,10 +5,19 @@
     <link>https://jeongmin94.github.io/categories/go/</link>
     <description>Recent content in go on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 08 Aug 2022 21:02:20 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 26 Sep 2022 23:36:33 +0900</lastBuildDate>
     
 	<atom:link href="https://jeongmin94.github.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Uml</title>
+      <link>https://jeongmin94.github.io/go/uml/</link>
+      <pubDate>Mon, 26 Sep 2022 23:36:33 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/go/uml/</guid>
+      <description>&lt;p&gt;Hugo에서 uml을 사용해보자.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Go로 URL 단축기 만들기 - 1</title>
