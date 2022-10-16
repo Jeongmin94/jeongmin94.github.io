@@ -133,11 +133,6 @@
   </url>
   
   <url>
-    <loc>https://jeongmin94.github.io/post/</loc>
-    <lastmod>2022-07-21T09:55:17+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://jeongmin94.github.io/tags/reactive-streams/</loc>
     <lastmod>2022-07-21T09:55:17+09:00</lastmod>
   </url>
@@ -148,7 +143,7 @@
   </url>
   
   <url>
-    <loc>https://jeongmin94.github.io/post/reactive-streams/</loc>
+    <loc>https://jeongmin94.github.io/java/reactive-streams/</loc>
     <lastmod>2022-07-21T09:55:17+09:00</lastmod>
   </url>
   

@@ -28,5 +28,14 @@
       <description>&lt;p&gt;자바 8 람다식 해설서를 읽어본다.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>리액티브 스트림즈</title>
+      <link>https://jeongmin94.github.io/java/reactive-streams/</link>
+      <pubDate>Thu, 21 Jul 2022 09:55:17 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/java/reactive-streams/</guid>
+      <description>&lt;p&gt;WebFlux의 뼈대가 되는 리액티브 스트림즈에 대해 살펴본다.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
