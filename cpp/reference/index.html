@@ -90,7 +90,7 @@
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.68.3" />
+  <meta name="generator" content="Hugo 0.101.0" />
   <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -254,47 +254,47 @@
         <p>cpp의 레퍼런스에 대해 알아본다.</p>
 <h1 id="레퍼런스">레퍼런스</h1>
 <p>cpp에는 레퍼런스라는 것이 존재한다. 포인터와 비슷하게 변수나 상수를 가리키는 기능을 제공하는데, 제공되는 기능은 비슷하지만, 몇 가지 차이점들이 존재한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
-
-<span class="n">ref</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ref</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">num</span><span class="p">;</span>
-<span class="c1">// 20 20
-</span></code></pre></div><p><code>ref</code>는 레퍼런스 변수다. <code>num</code>을 가리키고 있기 때문에 <code>ref</code>의 값을 수정하면 <code>num</code>의 값도 함께 수정된다. 이렇게만 보면 포인터와 다를게 없어 보인다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ref</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ref</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 20 20
+</span></span></span></code></pre></div><p><code>ref</code>는 레퍼런스 변수다. <code>num</code>을 가리키고 있기 때문에 <code>ref</code>의 값을 수정하면 <code>num</code>의 값도 함께 수정된다. 이렇게만 보면 포인터와 다를게 없어 보인다.</p>
 <p>하지만 레퍼런스는 선언과 동시에 레퍼런스가 가리킬 대상을 지정해야 한다. 따라서 다음과 같은 코드에서 컴파일 에러가 발생한다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span><span class="p">;</span>       <span class="c1">// error 레퍼런스는 선언과 동시에 초기화 필요
-</span><span class="c1"></span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
-</code></pre></div><p>또한, 레퍼런스가 한 번 초기화가 되면 다른 변수를 다시 레퍼런스할 수 없다. 포인터의 경우 가리킬 대상을 자유롭게 변경할 수 있는 것과는 대조적이다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="n">ref</span> <span class="o">=</span> <span class="n">num2</span><span class="p">;</span>     <span class="c1">// error 다른 변수를 새로 참조할 수 없음
-</span><span class="c1"></span>
-<span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-<span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num2</span><span class="p">;</span>
-</code></pre></div><p>레퍼런스가 가지는 독특한 특징 중 하나는 경우에 메모리에 항상 할당되지 않는다는 것이다. 레퍼런스라는 것은 참조할 변수의 별명이 되는 것으로 레퍼런스를 통해 값을 조작하거나, 원래의 변수를 통해 값을 조작하는 것은 컴파일러는 이 작업을 완전히 동일하게 취급한다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span><span class="p">;</span>       <span class="c1">// error 레퍼런스는 선언과 동시에 초기화 필요
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+</span></span></code></pre></div><p>또한, 레퍼런스가 한 번 초기화가 되면 다른 변수를 다시 레퍼런스할 수 없다. 포인터의 경우 가리킬 대상을 자유롭게 변경할 수 있는 것과는 대조적이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ref</span> <span class="o">=</span> <span class="n">num2</span><span class="p">;</span>     <span class="c1">// error 다른 변수를 새로 참조할 수 없음
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num2</span><span class="p">;</span>
+</span></span></code></pre></div><p>레퍼런스가 가지는 독특한 특징 중 하나는 경우에 메모리에 항상 할당되지 않는다는 것이다. 레퍼런스라는 것은 참조할 변수의 별명이 되는 것으로 레퍼런스를 통해 값을 조작하거나, 원래의 변수를 통해 값을 조작하는 것은 컴파일러는 이 작업을 완전히 동일하게 취급한다.</p>
 <p>따라서 다음과 같은 경우에는 레퍼런스가 메모리에 할당되지 않는다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>     <span class="c1">// ref는 num의 다른 이름(별명)
-</span></code></pre></div><p>하지만 레퍼런스를 함수의 인자로 사용하게 되면 메모리에 할당이 된다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p><code>sum</code> 함수에서는 레퍼런스를 매개변수로 받는다. <code>sum</code>을 호출하면서 <code>num1</code>과 <code>num2</code>를 전달하는데, 일반적인 정수형의 변수이며, <code>sum</code>이 호출되고 스택 프레임이 만들어지면 그 때 레퍼런스 <code>a</code>와 <code>b</code>가 선언과 함께 초기화 되는 것이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>     <span class="c1">// ref는 num의 다른 이름(별명)
+</span></span></span></code></pre></div><p>하지만 레퍼런스를 함수의 인자로 사용하게 되면 메모리에 할당이 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">sum</span><span class="p">(</span><span class="kt">int</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>sum</code> 함수에서는 레퍼런스를 매개변수로 받는다. <code>sum</code>을 호출하면서 <code>num1</code>과 <code>num2</code>를 전달하는데, 일반적인 정수형의 변수이며, <code>sum</code>이 호출되고 스택 프레임이 만들어지면 그 때 레퍼런스 <code>a</code>와 <code>b</code>가 선언과 함께 초기화 되는 것이다.</p>
 <p>결국 <code>sum</code> 내부에서 사용하는 <code>a</code>와 <code>b</code>는 <code>num1</code>, <code>num2</code>를 가리키는 레퍼런스가 되는데, 매개변수로 사용하지 않는 경우와 동일하게 컴파일러가 동일하게 취급을 할 것으로 생각할 수 있다.</p>
 <p>그러나 함수는 호출되는 시점에서 스택 프레임이 생기고, 종료되는 시점에는 스택 프레임이 제거된다. 따라서 <code>sum</code>을 호출할 때 할당되는 스택 영역에 <code>a</code>와 <code>b</code> 레퍼런스의 주소는 <code>num1</code>, <code>num2</code>과 동일한 주소를 가지고 있지만, 스택 프레임이라는 새로운 공간에 메모리를 할당받게 된다.</p>
 <p>마지막으로 상수 레퍼런스가 아닌 이상 상수에 대한 참조는 불가능하다.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-<span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>        <span class="c1">// error. 상수는 코드 영역에 저장되므로 읽기 전용
-</span><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref2</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>  <span class="c1">// 상수 레퍼런스는 상수를 참조할 수 있음
-</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref1</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>        <span class="c1">// error. 상수는 코드 영역에 저장되므로 읽기 전용
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">ref2</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>  <span class="c1">// 상수 레퍼런스는 상수를 참조할 수 있음
+</span></span></span></code></pre></div>
 
         
           <div class="blog-tags">
@@ -401,7 +401,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
           
         </p>
       </div>
