@@ -15,14 +15,5 @@
       <description>&lt;p&gt;Hugo에서 uml을 사용해보자.&lt;/p&gt;</description>
     </item>
     
-    <item>
-      <title>Go로 URL 단축기 만들기 - 1</title>
-      <link>https://jeongmin94.github.io/go/01-go-url-shortener-setup/</link>
-      <pubDate>Mon, 08 Aug 2022 21:02:20 +0900</pubDate>
-      
-      <guid>https://jeongmin94.github.io/go/01-go-url-shortener-setup/</guid>
-      <description>&lt;p&gt;Go로 URL 단축기 만들어 본다.&lt;/p&gt;</description>
-    </item>
-    
   </channel>
 </rss>
