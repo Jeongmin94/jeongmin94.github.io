@@ -90,7 +90,7 @@
   <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
-  <meta name="generator" content="Hugo 0.101.0" />
+  <meta name="generator" content="Hugo 0.68.3" />
   <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
@@ -255,79 +255,79 @@
 <h1 id="포인터">포인터</h1>
 <p>일부 언어에서는 메모리의 주소값을 저장하는 포인터 기능을 제공해준다. Java에서는 포인터를 사용해서 직접 메모리 주소에 대한 작업을 하진 않지만, 참조 변수를 통해 포인터와 비슷한 개념으로 프로그래밍을 할 수 있게 만들어준다.</p>
 <p>가장 기본적인 포인터 사용법은 다음과 같다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span></code></pre></div><p>변수 <code>num</code>의 주소를 포인터 변수 <code>ptr</code>에 저장하는 것이다. 이렇게 되면 <code>ptr</code>은 <code>num</code>의 주소를 가리키고 있기 때문에 역참조를 하게 되면 <code>num</code>의 값인 10이 나오게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</code></pre></div><p>변수 <code>num</code>의 주소를 포인터 변수 <code>ptr</code>에 저장하는 것이다. 이렇게 되면 <code>ptr</code>은 <code>num</code>의 주소를 가리키고 있기 때문에 역참조를 하게 되면 <code>num</code>의 값인 10이 나오게 된다.</p>
 <p>또한, 포인터는 함수의 주소도 가리킬 수 있다. 함수도 변수와 마찬가지로 메모리에 로드되어 실행되기 때문에 주소를 가지고 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello World&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 00007FF651471451
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><p><code>func</code>라는 함수의 주소를 보고 싶으면 표준 출력 함수에 함수의 이름을 입력하면 된다. 따라서 포인터는 함수의 주소 역시 가리킬 수 있게 된다. 함수 포인터는 다음과 같이 사용할 수 있다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello World&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">funcPtr</span><span class="p">)</span> <span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="n">funcPtr</span> <span class="o">=</span> <span class="n">func</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">funcPtr</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// Hello World
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
-</span></span></code></pre></div><p>함수 포인터를 선언할 때에는 가리키는 함수의 반환 타입과 매개변수에 맞춰서 선언하기만 하면 된다. <code>funcPtr</code>이 <code>func</code>라는 함수를 가리키고 있기 때문에 이제 함수 포인터를 <code>func</code> 함수를 호출하는 것처럼 사용할 수 있게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello World&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span><span class="p">;</span>
+    <span class="c1">// 00007FF651471451
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p><code>func</code>라는 함수의 주소를 보고 싶으면 표준 출력 함수에 함수의 이름을 입력하면 된다. 따라서 포인터는 함수의 주소 역시 가리킬 수 있게 된다. 함수 포인터는 다음과 같이 사용할 수 있다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">void</span> <span class="nf">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Hello World&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">funcPtr</span><span class="p">)</span> <span class="p">();</span>
+    <span class="n">funcPtr</span> <span class="o">=</span> <span class="n">func</span><span class="p">;</span>
+
+    <span class="n">funcPtr</span><span class="p">();</span>
+    <span class="c1">// Hello World
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>함수 포인터를 선언할 때에는 가리키는 함수의 반환 타입과 매개변수에 맞춰서 선언하기만 하면 된다. <code>funcPtr</code>이 <code>func</code>라는 함수를 가리키고 있기 때문에 이제 함수 포인터를 <code>func</code> 함수를 호출하는 것처럼 사용할 수 있게 된다.</p>
 <h2 id="상수와-포인터">상수와 포인터</h2>
 <p>포인터도 변수이기 때문에 <code>const</code> 키워드를 사용해서 상수화 시킬 수 있다.</p>
 <h3 id="상수를-가리키는-포인터">상수를 가리키는 포인터</h3>
 <p>상수를 가리키는 포인터다.(pointer to const)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 주소 변경은 가능
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">ptr1</span> <span class="o">=</span> <span class="o">*</span><span class="n">num2</span>    <span class="c1">// *ptr1 == 500
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">*</span><span class="n">num2</span>    <span class="c1">// *ptr2 == 500
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 상수이기 때문에 값 변경 불가능
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>    <span class="c1">// error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>   <span class="c1">// error
-</span></span></span></code></pre></div><p>여기서 조금 헷갈릴 수 있는데 포인터를 선언할 때 <code>const int</code> 부분과 <code>*ptr1</code> 부분을 따로 분리해서 생각해보면 쉽다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+
+<span class="c1">// 주소 변경은 가능
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">num2</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+<span class="n">ptr1</span> <span class="o">=</span> <span class="o">*</span><span class="n">num2</span>    <span class="c1">// *ptr1 == 500
+</span><span class="c1"></span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">*</span><span class="n">num2</span>    <span class="c1">// *ptr2 == 500
+</span><span class="c1"></span>
+<span class="c1">// 상수이기 때문에 값 변경 불가능
+</span><span class="c1"></span><span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>    <span class="c1">// error
+</span><span class="c1"></span><span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>   <span class="c1">// error
+</span></code></pre></div><p>여기서 조금 헷갈릴 수 있는데 포인터를 선언할 때 <code>const int</code> 부분과 <code>*ptr1</code> 부분을 따로 분리해서 생각해보면 쉽다.</p>
 <p><code>const int</code> 혹은 <code>int const</code>는 정수형 상수를 의미하고, <code>*ptr1</code>은 포인터를 의미한다. 따라서 <code>ptr1</code>은 정수형 상수를 가리키는 포인터가 된다.</p>
 <p>그렇기 때문에 <code>ptr1</code>과 <code>ptr2</code>에서 역참조를 통해 상수값에 접근할 수는 있지만, 이 값은 상수이기 때문에 값을 바꿀 순 없다. 하지만 <code>*ptr</code>로 선언을 했기 때문에 가리키는 주소를 바꿀 순 있다.</p>
 <p>여기서 재미있는 부분은 <code>num</code>이나 <code>num2</code>의 경우 포인터가 가리키고 있으면서, 포인터에서는 상수로 취급하지만, <code>num</code>, <code>num2</code>에 새로운 값을 할당하면 새로운 값이 역참조값으로 나오게 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">org</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">org</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// 100
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="c1">// *ptr = 200   error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">org</span> <span class="o">=</span> <span class="mi">200</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// 200
-</span></span></span></code></pre></div><p>결국 상수 포인터의 경우 가리키는 주소에 저장된 값을 상수처럼 취급하기 때문에 역참조를 통해 값을 변경할 순 없지만, <code>org</code>와 같은 원 변수가 있다면 그 변수에서는 값을 변경할 수 있다. 상수 포인터를 사용할 때 주의해야 할 부분이다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">org</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">=</span> <span class="n">org</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// 100
+</span><span class="c1"></span>
+<span class="c1">// *ptr = 200   error
+</span><span class="c1"></span><span class="n">org</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptr</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="c1">// 200
+</span></code></pre></div><p>결국 상수 포인터의 경우 가리키는 주소에 저장된 값을 상수처럼 취급하기 때문에 역참조를 통해 값을 변경할 순 없지만, <code>org</code>와 같은 원 변수가 있다면 그 변수에서는 값을 변경할 수 있다. 상수 포인터를 사용할 때 주의해야 할 부분이다.</p>
 <h3 id="포인터가-상수">포인터가 상수</h3>
 <p>포인터 자체가 상수인 경우다.(pointer is const)</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span></code></pre></div><p>포인터 자체가 상수이기 때문에 포인터가 가리키는 주소의 값이 상수처럼 취급된다. 따라서 pointer to const의 케이스와는 다르게 역참조를 통해 새로운 값을 할당하는 것은 가능하지만, 새로운 주소값을 대입하는 것은 불가능하다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>    <span class="c1">// error, 상수를 가리키는 포인터이기 때문에 역참조로 값 변경 불가
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">new_num</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">new_num</span><span class="p">;</span>    <span class="c1">// error, 포인터가 상수이기 때문에 주소값 변경 불가
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">new_num</span><span class="p">;</span>
-</span></span></code></pre></div><p>따라서 <code>const int*</code>나 <code>int *const</code>나 모두 주소값을 변경하거나 역참조를 통해 값을 변경할 수 있기 때문에 포인터를 완전히 상수화 시키려면 다음과 같이 사용하면 된다.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">ptr</span>
-</span></span></code></pre></div><p>이렇게 사용하면 <code>ptr</code>이 가리키는 주소도 변경할 수 없고, 값도 변경할 수 없게 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+</code></pre></div><p>포인터 자체가 상수이기 때문에 포인터가 가리키는 주소의 값이 상수처럼 취급된다. 따라서 pointer to const의 케이스와는 다르게 역참조를 통해 새로운 값을 할당하는 것은 가능하지만, 새로운 주소값을 대입하는 것은 불가능하다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+<span class="kt">int</span> <span class="k">const</span> <span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">num</span><span class="p">;</span>
+
+<span class="o">*</span><span class="n">ptr1</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="o">*</span><span class="n">ptr2</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>    <span class="c1">// error, 상수를 가리키는 포인터이기 때문에 역참조로 값 변경 불가
+</span><span class="c1"></span>
+<span class="kt">int</span> <span class="n">new_num</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="n">ptr1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">new_num</span><span class="p">;</span>    <span class="c1">// error, 포인터가 상수이기 때문에 주소값 변경 불가
+</span><span class="c1"></span><span class="n">ptr2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">new_num</span><span class="p">;</span>
+</code></pre></div><p>따라서 <code>const int*</code>나 <code>int *const</code>나 모두 주소값을 변경하거나 역참조를 통해 값을 변경할 수 있기 때문에 포인터를 완전히 상수화 시키려면 다음과 같이 사용하면 된다.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="k">const</span> <span class="kt">int</span> <span class="o">*</span><span class="k">const</span> <span class="o">*</span><span class="n">ptr</span>
+</code></pre></div><p>이렇게 사용하면 <code>ptr</code>이 가리키는 주소도 변경할 수 없고, 값도 변경할 수 없게 된다.</p>
 
         
           <div class="blog-tags">
@@ -434,7 +434,7 @@
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          <a href="https://gohugo.io">Hugo v0.68.3</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
           
         </p>
       </div>
