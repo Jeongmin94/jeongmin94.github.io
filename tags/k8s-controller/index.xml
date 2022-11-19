@@ -5,11 +5,7 @@
     <link>https://jeongmin94.github.io/tags/k8s-controller/</link>
     <description>Recent content in k8s-controller on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 18 Jul 2022 21:59:10 +0900</lastBuildDate>
-    
-	<atom:link href="https://jeongmin94.github.io/tags/k8s-controller/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 18 Jul 2022 21:59:10 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/k8s-controller/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>07 Kube Controller</title>
       <link>https://jeongmin94.github.io/k8s/07-kube-controller/</link>
