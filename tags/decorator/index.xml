@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>decorator on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/decorator/</link>
+    <description>Recent content in decorator on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 30 Oct 2022 12:47:58 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/decorator/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>데코레이터 패턴</title>
+      <link>https://jeongmin94.github.io/design/decorator/</link>
+      <pubDate>Sun, 30 Oct 2022 12:47:58 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/design/decorator/</guid>
+      <description>&lt;p&gt;데코레이터 패턴을 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

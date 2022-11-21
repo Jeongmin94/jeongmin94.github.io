@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>prototype pattern on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/prototype-pattern/</link>
+    <description>Recent content in prototype pattern on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 15 Oct 2022 20:04:00 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/prototype-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>프로토타입 패턴</title>
+      <link>https://jeongmin94.github.io/design/prototype/</link>
+      <pubDate>Sat, 15 Oct 2022 20:04:00 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/design/prototype/</guid>
+      <description>&lt;p&gt;프로토타입 패턴에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

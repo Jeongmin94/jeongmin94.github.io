@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>어댑터 패턴 - 저장소</title>
+  <meta name="description" content="어탭터 패턴에 대해 알아본다.">
+  <meta name="author" content="jeongmin94"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "저장소",
+    
+    "url": "https:\/\/jeongmin94.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/jeongmin94.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io\/design\/adapter\/",
+          "name": "어댑터 패턴"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "jeongmin94"
+  },
+  "headline": "어댑터 패턴",
+  "description" : "어탭터 패턴에 대해 알아본다.\n",
+  "inLanguage" : "ko",
+  "wordCount":  258 ,
+  "datePublished" : "2022-10-23T13:31:47",
+  "dateModified" : "2022-10-23T13:31:47",
+  "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "adapter pattern" ],
+  "mainEntityOfPage" : "https:\/\/jeongmin94.github.io\/design\/adapter\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/jeongmin94.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="어댑터 패턴" />
+<meta property="og:description" content="어탭터 패턴에 대해 알아본다.">
+<meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://jeongmin94.github.io/design/adapter/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="저장소" />
+
+  <meta name="twitter:title" content="어댑터 패턴" />
+  <meta name="twitter:description" content="어탭터 패턴에 대해 알아본다.">
+  <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.101.0" />
+  <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://jeongmin94.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://jeongmin94.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">네비게이션 토글</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jeongmin94.github.io">저장소</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Categories" href="/categories">Categories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="" href="/"></a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="저장소" href="https://jeongmin94.github.io">
+            <img class="avatar-img" src="https://jeongmin94.github.io/img/avatar-icon.png" alt="저장소" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="design-heading">
+              
+                <h1>어댑터 패턴</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>어탭터 패턴에 대해 알아본다.</p>
+<blockquote>
+<p>코딩으로 학습하는 GoF의 디자인 패턴(<a href="https://inf.run/W9wa">https://inf.run/W9wa</a>)</p>
+</blockquote>
+<h1 id="어댑터-패턴">어댑터 패턴</h1>
+<link href="/css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script defer src="/js/mermaid.js">
+    mermaid.initialize({startOnLoad:true});
+</script>
+<div class="mermaid" align="center" >
+    
+classDiagram
+    class Target {
+        + operation()
+    }
+    class Adapter {
+        + operation()
+    }
+    class Adaptee {
+        + specificOperation()
+    }
+    class Client
+    Target <.. Client
+    Target <|.. Adapter
+    Adaptee <-- Adapter
+
+</div>
+
+<p>한국에서 사용하는 가전 제품은 220 볼트의 소켓을 사용하도록 만들어져 있다. 가전 제품(클라이언트)이 220 볼트 소켓(타겟)를 직접 사용하고 있는 것이다.</p>
+<p>그러나 한국에서 사용하던 제품은 110 볼트의 소켓을 사용하는 국가에서는 정상적으로 사용할 수 없게 된다. 이 경우에는 220 볼트의 콘센트를 직접 110 볼트 소켓에 끼우는 것이 아니라, 220 볼트에서 110 볼트로 전환시켜주는 어댑터를 이용하게 된다. 어댑터를 통해서 우리는 220 볼트 소켓을 사용하는 가전 제품도 110 볼트 소켓을 이용할 수 있게 된다.</p>
+<p>어댑터 패턴이 바로 이러한 것이다. 클라이언트가 사용하는 기존 코드를 인터페이스의 구현체로 바꾸어서 사용할 수 있게 해주는 것이다. 위의 예시에서 가전 제품이 220 볼트 소켓을 직접 사용하는 것을 어댑터를 중간에 두어 사용할 수 있게 만들어 준 것처럼 말이다.</p>
+<p>어댑터 패턴을 사용하게 되면 인터페이스를 따르지 않는 기존 코드들을 인터페이스의 하위 구현체로 만들어 사용하기 때문에 재사용성이 높아지게 되며, 클라이언트는 인터페이스에서 명세한 내용만 사용하면 되기 때문에 하위 클래스의 구현체가 변경되어도 코드를 변경할 필요가 없게 된다. 이를 통해 어댑터 패턴은 개방 폐쇄 원칙을 지킬 수 있게 된다.</p>
+<p>또한 정석적으로 어댑터 패턴을 구현하는 경우에는 어댑티로 대표되는 기존 코드를 어댑터로 적용한 새로운 구현체를 만들어 사용하게 된다. 이 경우에는 기존 코드의 변경 없이 어댑터가 적용된 새로운 클래스를 사용하여 각 클래스가 본연의 역할에 충실할 수 있게 된다. 이 경우에는 단일 책임 원칙 역시 지켜지게 된다.</p>
+<p>하지만 경우에 따라 기존 코드에 직접 어댑터 관련 코드를 추가하여 사용할 수도 있기 때문에 자신의 상황에 맞게 어댑터 패턴을 적용하여 사용하면 되겠다.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://jeongmin94.github.io/tags/adapter-pattern/">adapter pattern</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://jeongmin94.github.io/design/prototype/" data-toggle="tooltip" data-placement="top" title="프로토타입 패턴">&larr; 이전 글</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://jeongmin94.github.io/design/bridge/" data-toggle="tooltip" data-placement="top" title="브리지 패턴">다음 글 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+<script src="https://utteranc.es/client.js"
+        repo="Jeongmin94/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Jeongmin94" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              jeongmin94
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jeongmin94.github.io">저장소</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://jeongmin94.github.io/js/main.js"></script>
+<script src="https://jeongmin94.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://jeongmin94.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

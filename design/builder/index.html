@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>빌더 패턴 - 저장소</title>
+  <meta name="description" content="빌더 패턴에 대해 알아본다.">
+  <meta name="author" content="jeongmin94"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "저장소",
+    
+    "url": "https:\/\/jeongmin94.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/jeongmin94.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io\/design\/builder\/",
+          "name": "빌더 패턴"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "jeongmin94"
+  },
+  "headline": "빌더 패턴",
+  "description" : "빌더 패턴에 대해 알아본다.\n",
+  "inLanguage" : "ko",
+  "wordCount":  186 ,
+  "datePublished" : "2022-10-10T18:17:22",
+  "dateModified" : "2022-10-10T18:17:22",
+  "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "builder pattern" ],
+  "mainEntityOfPage" : "https:\/\/jeongmin94.github.io\/design\/builder\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/jeongmin94.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="빌더 패턴" />
+<meta property="og:description" content="빌더 패턴에 대해 알아본다.">
+<meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://jeongmin94.github.io/design/builder/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="저장소" />
+
+  <meta name="twitter:title" content="빌더 패턴" />
+  <meta name="twitter:description" content="빌더 패턴에 대해 알아본다.">
+  <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.101.0" />
+  <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://jeongmin94.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://jeongmin94.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">네비게이션 토글</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jeongmin94.github.io">저장소</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Categories" href="/categories">Categories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="" href="/"></a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="저장소" href="https://jeongmin94.github.io">
+            <img class="avatar-img" src="https://jeongmin94.github.io/img/avatar-icon.png" alt="저장소" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="design-heading">
+              
+                <h1>빌더 패턴</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>빌더 패턴에 대해 알아본다.</p>
+<blockquote>
+<p>코딩으로 학습하는 GoF의 디자인 패턴(<a href="https://inf.run/W9wa">https://inf.run/W9wa</a>)</p>
+</blockquote>
+<h1 id="빌더-패턴">빌더 패턴</h1>
+<link href="/css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script defer src="/js/mermaid.js">
+    mermaid.initialize({startOnLoad:true});
+</script>
+<div class="mermaid" align="center" >
+    
+classDiagram
+    class Builder {
+        + buildStepA()
+        + buildStepB()
+        + getProduct(): Product
+    }
+    class ConcreteBuilderA {
+        + buildStepA()
+        + buildStepB()
+        + getProduct(): Product
+    }
+    class Client
+    class Product
+    class Director {
+        - builder: Builder
+        + Director(Builder)
+        + construct()
+    }
+    Builder <|-- ConcreteBuilderA
+    Director <-- Client
+    Builder <-- Director
+
+</div>
+
+<p>빌더 패턴은 다양한 구성을 가진 인스턴스의 생성을 동일한 로직을 통해 생성할 수 있게 도와주는 패턴이다. 인스턴스가 가지고 있는 프로퍼티의 개수나 종류에 따라 인스턴스 생성에 필요한 인수의 수도 늘어나게 되는데, 모든 종류의 생성자를 만들 수 없기 때문에 빌더 패턴을 이용해서 이런 복잡한 과정을 하나의 방법으로 처리할 수 있게 된다.</p>
+<p>Director를 사용한다면 사용자 입장에서 복잡한 인스턴스의 생성 로직을 신경쓰지 않고 미리 정의해둔 로직에 기반을 두어 인스턴스를 생성해 사용할 수 있기 때문에 사용자 편의적인 측면에서도 장점을 가지고 있다.</p>
+<p>또한, 빌더 패턴을 사용하는 경우 <code>getPorduct</code>와 같은 구현체를 생성하는 메서드를 가지고 있기 때문에 사용자에게 인스턴스를 확실하게 전달시켜줄 수 있다는 장점을 가지기도 한다.</p>
+<p>여기에 개발자의 의도에 따라 인스턴스를 만드는 과정에서 특정 로직에 대한 검증 과정을 추가할 수 있기 때문에, 생성자에 인수가 많거나, 인스턴스 생성에 필요한 중요한 검증 로직이 있다면 빌더 패턴을 도입해볼 수 있다.</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://jeongmin94.github.io/tags/builder-pattern/">builder pattern</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://jeongmin94.github.io/design/abstract-factory/" data-toggle="tooltip" data-placement="top" title="추상 팩토리 패턴">&larr; 이전 글</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://jeongmin94.github.io/design/prototype/" data-toggle="tooltip" data-placement="top" title="프로토타입 패턴">다음 글 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+<script src="https://utteranc.es/client.js"
+        repo="Jeongmin94/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Jeongmin94" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              jeongmin94
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jeongmin94.github.io">저장소</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://jeongmin94.github.io/js/main.js"></script>
+<script src="https://jeongmin94.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://jeongmin94.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

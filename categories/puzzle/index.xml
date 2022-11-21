@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>puzzle on 저장소</title>
+    <link>https://jeongmin94.github.io/categories/puzzle/</link>
+    <description>Recent content in puzzle on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 22 Oct 2022 20:37:24 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/categories/puzzle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quiz 07: 문서 순서를 원래대로 되돌리기</title>
+      <link>https://jeongmin94.github.io/puzzle/quiz-07/</link>
+      <pubDate>Sat, 22 Oct 2022 20:37:24 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/puzzle/quiz-07/</guid>
+      <description>&lt;p&gt;알고리즘 퍼즐의 퀴즈 7번을 이해해본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

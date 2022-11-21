@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chain of responsible pattern on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/chain-of-responsible-pattern/</link>
+    <description>Recent content in chain of responsible pattern on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 14 Nov 2022 19:15:44 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/chain-of-responsible-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>책임 연쇄 패턴</title>
+      <link>https://jeongmin94.github.io/design/chain_of_responsible/</link>
+      <pubDate>Mon, 14 Nov 2022 19:15:44 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/design/chain_of_responsible/</guid>
+      <description>&lt;p&gt;책임 연쇄 패턴에 대해 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

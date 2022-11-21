@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ko" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>12 Managing Cluster - 저장소</title>
+  <meta name="description" content="쿠버네티스의 클러스터를 효율적으로 운영 및 유지보수 하기 위한 방법들에 대해 알아본다.">
+  <meta name="author" content="jeongmin94"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "저장소",
+    
+    "url": "https:\/\/jeongmin94.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/jeongmin94.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io\/k8s\/12-managing-cluster\/",
+          "name": "12 managing cluster"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "jeongmin94"
+  },
+  "headline": "12 Managing Cluster",
+  "description" : "쿠버네티스의 클러스터를 효율적으로 운영 및 유지보수 하기 위한 방법들에 대해 알아본다.\n",
+  "inLanguage" : "ko",
+  "wordCount":  1843 ,
+  "datePublished" : "2022-08-20T20:13:09",
+  "dateModified" : "2022-08-20T20:13:09",
+  "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "managing cluster" ],
+  "mainEntityOfPage" : "https:\/\/jeongmin94.github.io\/k8s\/12-managing-cluster\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/jeongmin94.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="12 Managing Cluster" />
+<meta property="og:description" content="쿠버네티스의 클러스터를 효율적으로 운영 및 유지보수 하기 위한 방법들에 대해 알아본다.">
+<meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://jeongmin94.github.io/k8s/12-managing-cluster/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="저장소" />
+
+  <meta name="twitter:title" content="12 Managing Cluster" />
+  <meta name="twitter:description" content="쿠버네티스의 클러스터를 효율적으로 운영 및 유지보수 하기 위한 방법들에 대해 알아본다.">
+  <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.101.0" />
+  <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://jeongmin94.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://jeongmin94.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">네비게이션 토글</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jeongmin94.github.io">저장소</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Categories" href="/categories">Categories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="" href="/"></a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="저장소" href="https://jeongmin94.github.io">
+            <img class="avatar-img" src="https://jeongmin94.github.io/img/avatar-icon.png" alt="저장소" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="k8s-heading">
+              
+                <h1>12 Managing Cluster</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>쿠버네티스의 클러스터를 효율적으로 운영 및 유지보수 하기 위한 방법들에 대해 알아본다.</p>
+<h1 id="리소스-관리">리소스 관리</h1>
+<p>쿠버네티스에서는 가상의 논리 클러스터인 네임 스페이스를 이용하여 리소스를 관리할 수 있게 해준다. 앞에서는 Pod의 resource 프로퍼티를 사용하여 리소스를 관리했는데, 쿠버네티스에서는 LimitRange, ResourceQuota라는 리소스 관리 담당 리소스가 존재한다.</p>
+<p>일반적으로 쿠버네티스 사용자는 두 분류로 나눌 수 있다. 첫 번째는 일반 사용자이고, 다른 한 종류는 관리자이다.</p>
+<p>일반 사용자는 자신이 개발한 어플리케이션을 쿠버네티스 플랫폼 위에 실행하는 역할을 가진다. 관리자는 쿠버네티스 클러스터 자체를 관리하고 필요한 물리 리소스를 제공하는 역할을 한다. 이 두 역할을 한 사람이 맡을 수도 있지만, 서로 다른 사람이 될 수도 있다.</p>
+<p>이때, 클러스터 관리자가 일반 사용자에게 리소스 사용량을 제한하기 위해 사용하는 것이 LimitRange와 ResourceQuota 리소스다.</p>
+<h2 id="1-limitrange">1. LimitRange</h2>
+<p>LimitRange 리소스는 두 가지 역할을 가지고 있다.</p>
+<ul>
+<li>일반 사용자가 리소스 사용량 정의를 생략해도 자동으로 Pod의 리소스 사용량을 설정한다.</li>
+<li>관리자가 설정한 최대 요청량을 일반 사용자가 넘지 못하게 제한한다.</li>
+</ul>
+<p>한 마디로 LimitRange는 일반 사용자의 Pod 리소스 설정을 통제하는 리소스가 된다. 일반적으로 리소스에 대한 특별한 설정 없이 Pod를 만들면 제약 없이 무제한으로 노드의 전체 리소스를 사용할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 일반적인 Pod 생성, Pod가 속한 노드의 리소스를 무제한으로 사용할 수 있다.</span>
+</span></span><span class="line"><span class="cl">kubectl run mynginx --image nginx
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get pod mynginx -oyaml <span class="p">|</span> grep resources
+</span></span><span class="line"><span class="cl"><span class="c1"># resources: {}</span>
+</span></span></code></pre></div><p>이런 경우에는 일반 사용자가 생성한 Pod가 노드의 전체 리소스를 고갈시킬 위험을 가지고 있다. 클러스터 관리자는 이에 대비하여 LimitRange 리소스를 특정 네임스페이스에 설정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># limit-range.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">limit-range</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">400m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">512Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">defaultRequest</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">300m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">256Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">max</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">600m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">600Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">min</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">200m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">200Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>default : 일반 사용자가 resources 프로퍼티에 대한 설정을 하지 않는 경우 default 설정을 가져간다. limit 사용량을 의미한다.</li>
+<li>defaultRequest : resources 프로퍼티에 대한 설정을 하지 않는 경우 defaultRequest 설정값을 기본 요청 값으로 사용한다.</li>
+<li>max : 일반 사용자가 요청할 수 있는 최대치</li>
+<li>min : 일반 사용자가 요청할 수 있는 최소치</li>
+</ul>
+<p>이제 default 네임스페이스에 위와 같은 LimitRange 리소스를 설정하고, 다시 Pod를 생성해서 LimitRange가 적용되었는지 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f limit-range.yaml
+</span></span><span class="line"><span class="cl"><span class="c1"># limitrange/limit-range created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl run nginx-lr --image nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/nginx-lr created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get pod nginx-lr -oyaml <span class="p">|</span> grep -A <span class="m">6</span> resources
+</span></span><span class="line"><span class="cl"><span class="c1">#    resources:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      limits:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        cpu: 400m</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        memory: 512Mi</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#      requests:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        cpu: 300m</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#        memory: 256Mi</span>
+</span></span></code></pre></div><p><code>mynginx</code> Pod와는 다르게 resources 프로퍼티를 설정하지 않아도 LimitRange 리소스에서 지정한 설정값이 적용되어 있는 것을 확인할 수 있다. 만약, 사용자가 LimitRange를 벗어난 리소스를 요청한다면 어떻게 될까?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># pod-exceed.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pod-exceed</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;700m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;700Mi&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;300m&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;256Mi&#34;</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl apply -f pod-exceed.yaml
+</span></span><span class="line"><span class="cl"><span class="c1"># Error from server (Forbidden): error when creating &#34;STDIN&#34;: pods </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;pod-exceed&#34; is forbidden: [maximum cpu usage per Container </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is 600m, but limit is 700m, maximum memory usage per Container </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is 600Mi, but limit is 700Mi]</span>
+</span></span></code></pre></div><p>일반 사용자가 LimitRange의 max 프로퍼티에서 설정한 설정값을 벗어난 limit을 설정하여 Pod 생성 에러가 발생한 것을 확인할 수 있다.</p>
+<h3 id="clean-up">clean up</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete limitrange limit-range
+</span></span><span class="line"><span class="cl">kubectl delete pod --all
+</span></span></code></pre></div><h2 id="2-resourcequota">2. ResourceQuota</h2>
+<p>LimitRange는 특정 네임스페이스 내의 개별 Pod 생성에 대해 관여했다면 ResourceQuota는 전체 네임스페이스에 대한 제약을 설정할 수 있다.</p>
+<ul>
+<li>LimitRange는 네임스페이스 내의 개별 Pod에 대한 제약조건이다. LimitRange를 만족하는 Pod가 여러개 존재한다고 하면, LimitRange 제약은 만족하지만 전체 노드의 리소스 고갈 위험은 여전히 존재한다.</li>
+<li>ResourceQuota는 이런 문제를 방지하고자 네임스페이스 전체에 대한 제약을 설정할 수 있게 만들어주는 리소스다.</li>
+</ul>
+<p>따라서 ResourceQuota를 사용하게 되면 네임스페이스의 전체 총합에 대한 제약을 생성하는 것으로 이해할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># res-quota.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ResourceQuota</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">res-quota</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hard</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">limits.cpu</span><span class="p">:</span><span class="w"> </span><span class="l">700m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">limits.memory</span><span class="p">:</span><span class="w"> </span><span class="l">800Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requests.cpu</span><span class="p">:</span><span class="w"> </span><span class="l">500m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requests.memory</span><span class="p">:</span><span class="w"> </span><span class="l">700Mi</span><span class="w">
+</span></span></span></code></pre></div><ul>
+<li>ResourceQuota에서 설정한 spec.hard 프로퍼티의 값들은 특정 네임스페이스가 가질 수 있는 총 cpu, memory 양을 의미한다.</li>
+<li>Pod 전체 총합이 cpu는 700m, memory는 800mi를 넘으면 안된다.</li>
+<li>마찬가지로 cpu, memory에 대한 요청 총합이 각각 500m, 700mi를 넘으면 안된다.</li>
+</ul>
+<p>이와 같은 ResourceQuota를 실행하고 ResourceQuota를 만족하는 Pod를 실행해보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ResourceQuota 생성</span>
+</span></span><span class="line"><span class="cl">kubectl apply -f res-quota.yaml
+</span></span><span class="line"><span class="cl"><span class="c1"># resourcequota/res-quota created </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Pod 생성 limit CPU 600m</span>
+</span></span><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: Pod
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: rq-1
+</span></span></span><span class="line"><span class="cl"><span class="s">spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">  containers:
+</span></span></span><span class="line"><span class="cl"><span class="s">  - image: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    resources:
+</span></span></span><span class="line"><span class="cl"><span class="s">      limits:
+</span></span></span><span class="line"><span class="cl"><span class="s">        cpu: &#34;600m&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        memory: &#34;600Mi&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      requests:
+</span></span></span><span class="line"><span class="cl"><span class="s">        cpu: &#34;300m&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        memory: &#34;300Mi&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/rq-1 created</span>
+</span></span></code></pre></div><p>ResourceQuota를 실행하고 cpu, memory 제한이 600m, 600mi이고, 요청을 300m, 300mi를 하는 Pod를 실행했을 때 정상적으로 작동하는 것을 확인할 수 있다. 이 상태에서 <code>rq-1</code>과 동일한 스펙을 가진 다른 Pod를 실행시켜 보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: Pod
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: rq-2
+</span></span></span><span class="line"><span class="cl"><span class="s">spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">  containers:
+</span></span></span><span class="line"><span class="cl"><span class="s">  - image: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    resources:
+</span></span></span><span class="line"><span class="cl"><span class="s">      limits:
+</span></span></span><span class="line"><span class="cl"><span class="s">        cpu: &#34;600m&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        memory: &#34;600Mi&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      requests:
+</span></span></span><span class="line"><span class="cl"><span class="s">        cpu: &#34;300m&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">        memory: &#34;300Mi&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Error from server (Forbidden): error when creating &#34;STDIN&#34;: </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pods &#34;rq-2&#34; is forbidden: exceeded quota: res-quota, </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># requested: limits.cpu=600m,limits.memory=600Mi,requests.cpu=300m, </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># used: limits.cpu=600m,limits.memory=600Mi,requests.cpu=300m, </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># limited: limits.cpu=700m,limits</span>
+</span></span></code></pre></div><p><code>rq-2</code>는 <code>rq-1</code>과 동일한 스펙을 가졌지만, Pod 생성에 실패한 것을 확인할 수 있다. 그 이뉴는 ResourceQuota를 통해 default 네임스페이스의 총합에 대한 제약을 걸었기 때문이다. <code>rq-1</code>과 <code>rq-2</code> 총합이 ResourceQuota에서 설정한 총합에 대한 제약을 넘어 에러가 발생한 것이다.</p>
+<h4 id="clean-up-1">clean up</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete resourcequota res-quota
+</span></span><span class="line"><span class="cl">kubectl delete pod --all
+</span></span></code></pre></div><h1 id="노드-관리">노드 관리</h1>
+<p>Pod와 같은 리소스에 대한 관리뿐만 아니라 노드 자체에 대한 관리도 필요하다. 쿠버네티스에서는 특정 노드를 유지보수 상태로 전환하여 해당 노드에 대해서 새로운 Pod를 스케줄링하지 않게 만들 수 있다.</p>
+<ul>
+<li>cordon : 노드를 유지보수 모드로 전환</li>
+<li>uncordon : 유지보수가 완료된 노드의 정상화</li>
+<li>drain : 노드를 유지보수 모드로 전환하며, 기존의 Pod을 evict 시킴</li>
+</ul>
+<h2 id="1-cordon">1. cordon</h2>
+<p>쿠버네티스에서 특정 노드를 유지보수 모드로 전환하기 위해 cordon을 사용한다. 유지보수 모드가 된 노드에는 Pod이 출입할 수 없게 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 먼저 worker의 상태를 확인합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get node worker -oyaml <span class="p">|</span> grep spec -A <span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># spec:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDR: 10.42.0.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDRs:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - 10.42.0.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   providerID: k3s://worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># status:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># worker를 cordon시킵니다.</span>
+</span></span><span class="line"><span class="cl">kubectl cordon worker
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker cordoned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 다시 worker의 상태를 확인합니다. taint가 설정된 것을 확인할 수 있고 unschedulable이 true로 설정되어 있습니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get node worker -oyaml <span class="p">|</span> grep spec -A <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># spec:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDR: 10.42.0.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDRs:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - 10.42.0.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   providerID: k3s://worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   taints:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - effect: NoSchedule</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     key: node.kubernetes.io/unschedulable</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     timeAdded: &#34;2020-04-04T11:04:48Z&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   unschedulable: true</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># status:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># worker의 상태를 확인합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get node
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME     STATUS                    ROLES    AGE   VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># master   Ready                     master   32d   v1.18.6+k3s1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># worker   Ready,SchedulingDisabled  worker   32d   v1.18.6+k3s1</span>
+</span></span></code></pre></div><p>이 상태에서 ReplicaSet을 이용하여 여러 Pod를 생성하면, 출입이 통제된 worker 노드에는 더 이상 Pod가 생성되지 않고 전부 마스터 노드에서 실행되게 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: apps/v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: ReplicaSet
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: rs
+</span></span></span><span class="line"><span class="cl"><span class="s">spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">  replicas: 5
+</span></span></span><span class="line"><span class="cl"><span class="s">  selector:
+</span></span></span><span class="line"><span class="cl"><span class="s">    matchLabels:
+</span></span></span><span class="line"><span class="cl"><span class="s">      run: rs
+</span></span></span><span class="line"><span class="cl"><span class="s">  template:
+</span></span></span><span class="line"><span class="cl"><span class="s">    metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">      labels:
+</span></span></span><span class="line"><span class="cl"><span class="s">        run: rs
+</span></span></span><span class="line"><span class="cl"><span class="s">    spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">      containers:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">        image: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME     READY   STATUS    RESTARTS   AGE    IP          NODE     ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rs-xxxx  1/1     Running   0          3s     10.42.1.6   master   ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rs-xxxx  1/1     Running   0          3s     10.42.1.7   master   ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rs-xxxx  1/1     Running   0          3s     10.42.1.8   master   ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rs-xxxx  1/1     Running   0          3s     10.42.1.9   master   ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rs-xxxx  1/1     Running   0          3s     10.42.1.10  master   ...</span>
+</span></span></code></pre></div><p>반대로 nodeSelector를 이용해서 명시적으로 worker 노드에서 실행되게 만들면 pending 상태가 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: Pod
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: pod-worker
+</span></span></span><span class="line"><span class="cl"><span class="s">spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">  containers:
+</span></span></span><span class="line"><span class="cl"><span class="s">  - image: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">  nodeSelector:
+</span></span></span><span class="line"><span class="cl"><span class="s">    kubernetes.io/hostname: worker
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/pod-worker created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get pod -owide
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME         READY  STATUS    RESTARTS   AGE     IP       NODE    ... </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod-worker   0/1    Pending   0          70s     &lt;none&gt;   &lt;none&gt;  ...</span>
+</span></span></code></pre></div><h2 id="2-uncordon">2. uncordon</h2>
+<p>유지보수가 완료된 노드를 다시 스케줄링 가능한 상태로 만들기 위해선 uncordon을 사용하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl uncordon worker
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker uncordoned</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># taint가 사라졌습니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get node worker -oyaml <span class="p">|</span> grep spec -A <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># spec:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDR: 10.42.1.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDRs:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - 10.42.1.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   providerID: k3s://worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># status:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   addresses:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - address: 172.31.16.173</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     type: InternalIP</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - address: worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     type: Hostname</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get node
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME     STATUS   ROLES    AGE   VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># master   Ready    master   32d   v1.18.6+k3s1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># worker   Ready    worker   32d   v1.18.6+k3s1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get pod -owide
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME        READY   STATUS    RESTARTS   AGE   IP       NODE     ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod-worker  1/1     Running   0          70s   &lt;none&gt;   worker   ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl delete pod pod-worker
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/pod-worker deleted</span>
+</span></span></code></pre></div><p>uncordon을 시키면 pending 상태인 Pod가 running 상태로 변경된다.</p>
+<h1 id="drain">drain</h1>
+<p>cordon은 새로운 Pod의 유입은 불가능하지만, 노드에서 실행되고 있던 기존 Pod에는 영향을 주지 않는다. 기존에 실행되고 있던 Pod도 중지시키고 싶다면 drain을 사용하면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF | kubectl apply -f -
+</span></span></span><span class="line"><span class="cl"><span class="s">apiVersion: apps/v1
+</span></span></span><span class="line"><span class="cl"><span class="s">kind: Deployment
+</span></span></span><span class="line"><span class="cl"><span class="s">metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">  name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">  selector:
+</span></span></span><span class="line"><span class="cl"><span class="s">    matchLabels:
+</span></span></span><span class="line"><span class="cl"><span class="s">      app: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">  replicas: 3
+</span></span></span><span class="line"><span class="cl"><span class="s">  template:
+</span></span></span><span class="line"><span class="cl"><span class="s">    metadata:
+</span></span></span><span class="line"><span class="cl"><span class="s">      labels:
+</span></span></span><span class="line"><span class="cl"><span class="s">        app: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">    spec:
+</span></span></span><span class="line"><span class="cl"><span class="s">      containers:
+</span></span></span><span class="line"><span class="cl"><span class="s">      - name: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">        image: nginx
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/pod-drain created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx Pod가 워커 노드에 생성된 것을 확인할 수 있습니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -o wide
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME               READY  STATUS    RESTARTS  AGE  IP           NODE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx-7ff78b8-xxx  1/1    Running   0         42s  10.42.0.25   master</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx-7ff78b8-xxx  1/1    Running   0         42s  10.42.1.2    worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx-7ff78b8-xxx  1/1    Running   0         42s  10.42.4.62   worker</span>
+</span></span></code></pre></div><p>worker 노드에 3개의 Pod를 생성하고 drain을 해보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 모든 노드에 존재하는 DaemonSet은 무시합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl drain worker  --ignore-daemonsets
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker cordoned</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;nginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;nginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx Pod가 어떻게 동작하는지 확인합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl get pod -owide
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME              READY   STATUS    RESTARTS  AGE  IP          NODE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx-7ff7b-xxx   1/1     Running   0         2m   10.42.0.25  master</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx-7ff7b-xxx   1/1     Pending   0         2m   &lt;none&gt;      &lt;none&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">kubectl get node worker -oyaml <span class="p">|</span> grep spec -A <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># spec:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDR: 10.42.1.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   podCIDRs:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - 10.42.1.0/24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   providerID: k3s://worker</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   taints:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   - effect: NoSchedule</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     key: node.kubernetes.io/unschedulable</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#     timeAdded: &#34;2020-04-04T15:37:25Z&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   unschedulable: true</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># status:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">kubectl get node
+</span></span><span class="line"><span class="cl"><span class="c1"># NAME     STATUS                    ROLES    AGE   VERSION</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># master   Ready                     master   32d   v1.18.6+k3s1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># worker   Ready,SchedulingDisabled  worker   32d   v1.18.6+k3s1</span>
+</span></span></code></pre></div><p>cordon에서 그랬던 것처럼 노드의 상태가 유지보수로 변하고, 여기에 더해 기존에 실행되고 있던 Pod이 pending 되는 것을 확인할 수 있다. drain 역시 uncordon으로 되돌리면 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl uncordon worker
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker uncordoned</span>
+</span></span></code></pre></div><h2 id="pod-개수-유지">Pod 개수 유지</h2>
+<p>drain을 사용하면 Pod가 갑자기 종료된다. 트래픽을 많이 받는 서비스의 경우, 순간적으로 모든 요청이 한쪽 Pod에게 집중되어 응답 지연이 발생할 수 있게 된다. PodDisruptionBudget(pdb)을 사용하면 이러한 문제를 해결할 수 있다.</p>
+<p>pdb는 운영 중인 Pod의 개수를 항상 일정 수준으로 유지하도록 Pod의 evict를 막아주는 역할을 한다. 유지보수와 같은 목적으로 Pod을 중단하는 것은 장애로 인해 Pod이 종료되는 것이 아니기 때문에 사전에 이를 알 수 있다. 따라서 pdb는 노드가 유지보수 작업으로 인해 의도적으로 중단된 상황에서는 Pod의 개수를 일정 수준 이하로 내려가지 않도록 막아주게 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl scale deploy nginx --replicas <span class="m">10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># deployment.apps/mydeploy scaled</span>
+</span></span></code></pre></div><p>테스트에 사용한 nginx의 레플리카를 10으로 변경하고, pdb를 통해 최소 9개의 Pod가 실행될 수 있도록 만들어보자.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># nginx-pdb.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">policy/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PodDisruptionBudget</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-pdb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">minAvailable</span><span class="p">:</span><span class="w"> </span><span class="m">9</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># pdb를 생성합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl apply -f nginx-pdb.yaml
+</span></span><span class="line"><span class="cl"><span class="c1"># poddisruptionbudget/nginx-pdb created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># worker을 drain합니다.</span>
+</span></span><span class="line"><span class="cl">kubectl drain worker --ignore-daemonsets
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker cordoned</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;nginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;nginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># error when evicting pod &#34;mynginx-xxx&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (will retry after 5s): Cannot evict pod as it would violate the </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   pod&#39;s disruption budget.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/mynginx-xxx evicted</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;mynginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># error when evicting pod &#34;mynginx-xxx&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (will retry after 5s): Cannot evict pod as it would violate the </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   pod&#39;s disruption budget.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># evicting pod &#34;mynginx-xxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pod/mynginx-xxx evicted</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># node/worker evicted</span>
+</span></span></code></pre></div><p>pdb를 설정했기 때문에 총 10개의 Pod 중에서 9개가 유지되어야 해서, Pod이 1개씩 evict 되는 것을 확인할 수 있다. 중요한 것은 nginx는 9개가 실행되어야 하기 때문에 해당 노드에서 evcit 된 Pod는 다른 노드에서 생성이 되고 나서야 다음 Pod이 evict 된다는 것이다.</p>
+<p>이를 통해 pdb가 적용된 네임스페이스에서 nginx Pod는 차례대로 줄어들고, 줄어든 만큼의 nginx Pod는 다른 노드에서 실행되어 서비스에 지장이 없도록 만들어 줄 것이다.</p>
+<h4 id="clean-up-2">clean up</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl delete pdb nginx-pdb
+</span></span><span class="line"><span class="cl">kubectl delete deploy nginx
+</span></span><span class="line"><span class="cl">kubectl delete rs rs
+</span></span><span class="line"><span class="cl">kubectl uncordon worker
+</span></span></code></pre></div>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://jeongmin94.github.io/tags/managing-cluster/">managing cluster</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://jeongmin94.github.io/k8s/11-scheduling/" data-toggle="tooltip" data-placement="top" title="11 Scheduling">&larr; 이전 글</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+<script src="https://utteranc.es/client.js"
+        repo="Jeongmin94/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Jeongmin94" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              jeongmin94
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jeongmin94.github.io">저장소</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://jeongmin94.github.io/js/main.js"></script>
+<script src="https://jeongmin94.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://jeongmin94.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+

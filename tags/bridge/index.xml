@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bridge on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/bridge/</link>
+    <description>Recent content in bridge on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 26 Oct 2022 21:34:32 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/bridge/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>브리지 패턴</title>
+      <link>https://jeongmin94.github.io/design/bridge/</link>
+      <pubDate>Wed, 26 Oct 2022 21:34:32 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/design/bridge/</guid>
+      <description>&lt;p&gt;브리지 패턴을 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

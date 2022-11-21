@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>singleton on 저장소</title>
+    <link>https://jeongmin94.github.io/tags/singleton/</link>
+    <description>Recent content in singleton on 저장소</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 26 Sep 2022 22:59:06 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/singleton/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>싱글톤 패턴</title>
+      <link>https://jeongmin94.github.io/design/singleton/</link>
+      <pubDate>Mon, 26 Sep 2022 22:59:06 +0900</pubDate>
+      
+      <guid>https://jeongmin94.github.io/design/singleton/</guid>
+      <description>&lt;p&gt;싱글톤 패턴을 알아본다.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ko" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>싱글톤 패턴 - 저장소</title>
+  <meta name="description" content="싱글톤 패턴을 알아본다.">
+  <meta name="author" content="jeongmin94"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "저장소",
+    
+    "url": "https:\/\/jeongmin94.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/jeongmin94.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/jeongmin94.github.io\/design\/singleton\/",
+          "name": "싱글톤 패턴"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "jeongmin94"
+  },
+  "headline": "싱글톤 패턴",
+  "description" : "싱글톤 패턴을 알아본다.\n",
+  "inLanguage" : "ko",
+  "wordCount":  844 ,
+  "datePublished" : "2022-09-26T22:59:06",
+  "dateModified" : "2022-09-26T22:59:06",
+  "image" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+  "keywords" : [ "singleton" ],
+  "mainEntityOfPage" : "https:\/\/jeongmin94.github.io\/design\/singleton\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/jeongmin94.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/jeongmin94.github.io\/img\/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="싱글톤 패턴" />
+<meta property="og:description" content="싱글톤 패턴을 알아본다.">
+<meta property="og:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+<meta property="og:url" content="https://jeongmin94.github.io/design/singleton/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="저장소" />
+
+  <meta name="twitter:title" content="싱글톤 패턴" />
+  <meta name="twitter:description" content="싱글톤 패턴을 알아본다.">
+  <meta name="twitter:image" content="https://jeongmin94.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href='https://jeongmin94.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta name="generator" content="Hugo 0.101.0" />
+  <link rel="alternate" href="https://jeongmin94.github.io/index.xml" type="application/rss+xml" title="저장소"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://jeongmin94.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://jeongmin94.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://jeongmin94.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">네비게이션 토글</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://jeongmin94.github.io">저장소</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Categories" href="/categories">Categories</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="" href="/"></a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="저장소" href="https://jeongmin94.github.io">
+            <img class="avatar-img" src="https://jeongmin94.github.io/img/avatar-icon.png" alt="저장소" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="design-heading">
+              
+                <h1>싱글톤 패턴</h1>
+              
+              
+                <hr class="small">
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>싱글톤 패턴을 알아본다.</p>
+<blockquote>
+<p>코딩으로 학습하는 GoF의 디자인 패턴(<a href="https://inf.run/W9wa">https://inf.run/W9wa</a>)</p>
+</blockquote>
+<h1 id="싱글톤singleton-패턴">싱글톤(Singleton) 패턴</h1>
+<link href="/css/mermaid.css" type="text/css" rel="stylesheet"/>
+<script defer src="/js/mermaid.js">
+    mermaid.initialize({startOnLoad:true});
+</script>
+<div class="mermaid" align="center" >
+    
+classDiagram
+    class Singleton {
+        - instance Singleton
+        + getInstance(): Singleton
+    }
+
+</div>
+
+<p>싱글톤 패턴은 오직 한개의 인스턴스만 제공하는 클래스를 만들어 사용한다.</p>
+<p>시스템 런타임, 환경 설정 등 인스턴스가 하나만 필요한 경우에 유용하게 사용할 수 있는 것이 바로 싱글톤 패턴이다.</p>
+<p>오직 하나의 인스턴스만 만들기 위해서는 어떻게 할 수 있을까? 가장 간단한 방법은 private 생성자를 하나 만들어 놓고, 접근은 static 키워드를 사용해서 가능하게 만드는 것이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Setting</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이렇게 <code>Setting</code> 클래스는 오직 private 접근 제한자를 가진 생성자 하나만을 가지고 있기 때문에 외부에서 인스턴스에 접근하는 방법은 오로지 static 메서드만 존재하게 된다.</p>
+<p>이 상황에서 <code>getInstance</code> 메서드를 호출하게 되면 <code>INSTANCE</code>가 null일 때 단 한 번 초기화 되고 리턴된다.</p>
+<p>그러나 이 방법은 멀티 스레드 환경에서 심각한 문제를 야기한다. 여러 스레드가 동시에 <code>getInstance</code> 메서드를 호출하게 되면 컨텍스트 스위칭이 발생하는 순간에 <code>INSTANCE == null</code>이라는 조건을 통과하는 스레드가 여러개가 될 수있다. 그렇게 되면 각자의 스레드가 가지고 있는 <code>INSTACNE</code>는 싱글톤이 아니게 된다.</p>
+<h2 id="멀티-스레드-환경에서-안전하게-싱글톤-구현하기">멀티 스레드 환경에서 안전하게 싱글톤 구현하기</h2>
+<h3 id="1-synchronized-사용">1. synchronized 사용</h3>
+<p>자바에는 synchronized 키워드가 있다. synchronized 키워드를 사용하면 특정 메서드에 락을 걸어 동시에 한 스레드만 접근이 가능하게 된다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Setting</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">synchronized</span> <span class="n">Setting</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이와 같이 <code>getInstance</code> 메서드에 synchronized를 사용하게 되면 아무리 많은 스레드가 있더라도 한 스레드에서만 <code>getInstance</code> 메서드에 접근할 수 있다.</p>
+<blockquote>
+<p><code>static synchronized</code>를 사용하게 되면 클래스 단위로 메서드에 접근할 수 있게 된다. <code>Setting</code> 클래스의 인스턴스가 여러개 생성되어도 static 메서드는 공유해서 사용하기 때문이다.
+<code>synchronized</code>를 사용하면 인스턴스 단위로 메서드 접근이 가능해진다. 즉, A라는 인스턴스가 여러 스레드에서 실행될 때 <code>synchronized</code> 키워드가 붙은 메서드에 대한 동기화는 가능하지만, A,B 인스턴스가 있을 때에는 A,B 사이의 동기화는 불가능하다. A,B 사이의 동기화가 필요하다면 static 키워드를 사용하자.</p>
+</blockquote>
+<h3 id="2-즉시-초기화eager-initializaion-사용">2. 즉시 초기화(eager initializaion) 사용</h3>
+<p>즉시 초기화는 정적 바인딩을 이용해서 클래스의 인스턴스를 미리 생성해놓고, 이를 가져다 사용하는 방식이다. 어떻게 보면 가장 간단한 방식으로 멀티 스레드에서도 안전하게 사용할 수 있는 방법이다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Setting</span> <span class="n">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Setting</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>다만, 정적 바인딩을 통해 인스턴스를 생성하고 있기 때문에 static 블록이나 static 메서드를 따로 사용해서 인스턴스 생성시 발생하는 예외를 처리해야 할 수도 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// static 블록 사용하여 예외 처리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// exception
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// static method 사용하여 예외 처리
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Setting</span> <span class="n">INSTANCE</span> <span class="o">=</span> <span class="n">createInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="nf">createInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// exception
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>그리고 미리 인스턴스를 생성해 놓기 때문에 인스턴스가 필요하지 않은 순간에도 메모리를 잡아먹고 있다는 단점을 가진다.</p>
+<h3 id="3-더블-체크-락-사용">3. 더블 체크 락 사용</h3>
+<p><code>synchronized</code>를 사용하면 나중에 인스턴스를 만들 수 있지만 여러 스레드에서 인스턴스에 대한 접근을 시도할 때에는 스레드 대기 시간이 너무 길어지고, 정적 바인딩을 사용하면 일정 시간 동안 메모리 공간을 낭비하는 것 같다. 그럴 때 synchronized 키워드를 조금 더 효과적으로 사용할 수 있는 더블 체크 락을 사용해볼 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">volatile</span> <span class="n">Setting</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Setting</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="o">(</span><span class="n">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">synchronized</span><span class="o">(</span><span class="n">Setting</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">INSTANCE</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Setting</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">INSTANCE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이름 그대로 인스턴스가 null인지 두 번 확인을 한다. 첫 번째 조건에는 동기화가 안되어 있지만, 동기화 블록에서 다시 null 체크를 하기 때문에 INSTACNE 객체가 원자적으로 생성될 수 있다.</p>
+<p>여기에 인스턴스까지 volatile로 선언하여야 안전하게 싱글톤 객체가 생성됨을 보장할 수 있다.</p>
+<p>메서드에 synchronized 키워드를 사용하는 방법에서는 인스턴스를 생성하고, 그 데이터를 메모리에 위치시키는 것까지 모두 동기화 블록 내에서 이루어진다. 따라서 <code>static synchronized</code> 메서드를 사용해서 싱글톤 인스턴스를 생성할 때에는 <code>INSTANCE</code>에 volatile 키워드를 사용할 이유가 없다.</p>
+<p>반면, 더블 체크 락 방식에서는 동기화 블록에서 벗어날 때, 동기화 블록에서 생성된 인스턴스를 온전히 메모리에 위치시키기 전에 컨텍스트 스위칭으로 인해 다른 스레드가 동기화 블록에서 또 새로운 인스턴스를 생성시킬 수 있는 기회를 줄 수 있다. 이는 멀티 스레드에서 캐시 메모리 사용에 따라 발생하는 문제로, 캐시 메모리에 적재되어 있는 인스턴스 데이터가 메모리에 반영되지 않았기 때문에 다른 스레드에서는 동기화 블록에 입장하여도 <code>INSTANCE == null</code>이 될 수 있다.</p>
+<p>이러한 문제를 해결하기 위해 <code>INSTANCE</code>의 데이터는 캐시에 저장하지 않고 온전히 메모리에만 위치시키게 만드는 volatile 키워드를 사용한 것이다.</p>
+<h3 id="4-static-inner-클래스-사용">4. static inner 클래스 사용</h3>
+<p>자바에서 static 클래스는 메모리에 로드되어 있긴 하지만, 그 내부의 멤버들은 호출되기 전까지는 초기화 되지 않는다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Setting</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SettingHolder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Settings</span> <span class="n">SETTINGS</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Setting</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">SettingHolder</span><span class="o">.</span><span class="na">SETTINGS</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>이를 이용해서 싱글톤 패턴을 구현하면 위와 같다. 내부에 인스턴스를 가지고 있는 홀더를 static inner로 만들어 준다. <code>Setting</code> 클래스의 인스턴스는 홀더 내부에서 생성을 해주는데, <code>getInstance</code>가 호출되기 전까지는 인스턴스가 생성되지 않는다. <code>getInstance</code>가 호출되면 메모리에 로드되어 있던 홀더의 데이터를 기반으로 홀더 초기화가 진행되고, 이를 통해 필요한 시점에 싱글톤 인스턴스를 리턴 받아 사용할 수 있게 된다.</p>
+<h3 id="5-enum-사용하기">5. enum 사용하기</h3>
+<p>enum을 사용하는 것은 가장 간단한 방식의 싱글톤 구현 방법이라 할 수 있다. enum은 자바 언어 자체에서 싱글톤으로 생성되며, 리플렉션 API와 직렬화 역직렬화를 통한 객체 생성도 막을 수 있어 진정한 의미의 싱글톤이 될 수 있다.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">Setting</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">INSTACNE</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://jeongmin94.github.io/tags/singleton/">singleton</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+          
+            <li class="next">
+              <a href="https://jeongmin94.github.io/design/factory-method/" data-toggle="tooltip" data-placement="top" title="팩토리 메서드 패턴">다음 글 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+<script src="https://utteranc.es/client.js"
+        repo="Jeongmin94/blog-comment"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+      
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+      
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/Jeongmin94" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              jeongmin94
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2022
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://jeongmin94.github.io">저장소</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="https://gohugo.io">Hugo v0.101.0</a> 을 사용함 &nbsp;&bull;&nbsp; <a href="https://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> 를 개조한 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 테마
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js" integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://jeongmin94.github.io/js/main.js"></script>
+<script src="https://jeongmin94.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://jeongmin94.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+    
+  </body>
+</html>
+
