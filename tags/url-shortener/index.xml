@@ -5,16 +5,7 @@
     <link>https://jeongmin94.github.io/tags/url-shortener/</link>
     <description>Recent content in url-shortener on 저장소</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 10 Aug 2022 21:20:27 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/url-shortener/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Go로 URL 단축기 만들기 - 2</title>
-      <link>https://jeongmin94.github.io/go/02-go-url-shortener-storage/</link>
-      <pubDate>Wed, 10 Aug 2022 21:20:27 +0900</pubDate>
-      
-      <guid>https://jeongmin94.github.io/go/02-go-url-shortener-storage/</guid>
-      <description>&lt;p&gt;데이터를 저장하기 위한 스토리지를 추가해본다.&lt;/p&gt;</description>
-    </item>
-    
+    <lastBuildDate>Mon, 08 Aug 2022 21:02:20 +0900</lastBuildDate><atom:link href="https://jeongmin94.github.io/tags/url-shortener/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go로 URL 단축기 만들기 - 1</title>
       <link>https://jeongmin94.github.io/go/01-go-url-shortener-setup/</link>
